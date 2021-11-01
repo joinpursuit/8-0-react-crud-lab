@@ -1,5 +1,4 @@
-const { REACT_APP_API_BASE_URL } = process.env;
-const URL = `${REACT_APP_API_BASE_URL}`;
+const URL = process.env.REACT_APP_API_BASE_URL;
 
 export function getAllMovies() {
   return fetch(`${URL}/movies`).then((response) => response.json());
