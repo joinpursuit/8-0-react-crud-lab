@@ -1,9 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&display=swap");
 
 :root {
-  --dark: #000000;
-  --light: #ffffff;
+  --dark: #241715;
+  --gray: #3d3d3d;
+  --light: #f4fffd;
   --primary: #4e598c;
+  --error: #ed254e;
   --primary-font: "Nunito", sans-serif;
 }
 
