@@ -1,7 +1,11 @@
 import React from "react";
+import MovieListing from "./MovieListing";
+import Movie from "./Movie";
+import './MoviesIndex.css';
 
 // Helper functions
 import { getAllMovies } from "../../api/fetch";
+import { Switch, Route } from "react-router-dom";
 
 class MoviesIndex extends React.Component {
   constructor(props) {
@@ -23,7 +27,22 @@ class MoviesIndex extends React.Component {
   }
 
   render() {
-    return <p>Movie List</p>;
+    return (
+      <Switch>
+        <Route path="/movies/:id"> 
+          <Movie movies={this.state.movies} />
+        </Route>
+      <section className="movies-index-wrapper">
+        <h2>All Movies</h2>
+        <section className="movies-index">
+          {this.state.movies.map((movie) => {
+            console.log(movie)
+            return <MovieListing movie={ movie } key={ movie.id }/>
+          })}
+        </section>
+      </section>
+      </Switch>
+    )
   }
 }
 
