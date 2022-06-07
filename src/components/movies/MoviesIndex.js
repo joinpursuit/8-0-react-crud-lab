@@ -19,6 +19,7 @@ class MoviesIndex extends React.Component {
         console.error(error);
         this.setState({ loadingError: true });
       });
+      
   }
 
   render() {
