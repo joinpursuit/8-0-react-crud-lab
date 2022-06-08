@@ -1,10 +1,10 @@
-import React from 'react'
-import './Error.css'
+import React from 'react';
+import './Error.css';
 
 export default function Error() {
   return (
-      <section classname="error"> 
-          <p>Something went wrong! Please try again later.</p>
-      </section>
+    <section className="error">
+      <p>Something went wrong! Please try again later.</p>
+    </section>
   )
 }
