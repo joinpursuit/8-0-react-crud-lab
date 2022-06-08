@@ -11,6 +11,7 @@ export default function Show({ shows, handleDelete }) {
 //   console.log(show);
 
   const history = useHistory();
+  
   const handleClick = () => {
     history.push("/shows");
   };
