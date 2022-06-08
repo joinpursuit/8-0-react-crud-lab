@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import './Show.css';
 
-export default function Show({shows}) {
+export default function Show({shows, handleDelete}) {
     const { id } = useParams() //> Matchs show id selected
     const history = useHistory(); 
 
@@ -25,7 +25,7 @@ export default function Show({shows}) {
                 <article>
                     <p>{show.description}</p>
                 </article>
-                <aside><button onClick={handleClick} class="delete">Remove show</button></aside>
+                <aside><button value = {id} onClick={handleDelete} class="delete">Remove show</button></aside>
             </section>
         </section>
     )
