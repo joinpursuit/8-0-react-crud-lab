@@ -1,0 +1,26 @@
+.movies-index-wrapper {
+    margin: 0 auto;
+    width: 70%;
+  }
+  
+  .movies-index {
+    display: grid;
+    gap: 15px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  @media screen and (max-width: 1000px) {
+    .movies-index-wrapper {
+      width: 90%;
+    }
+    .movies-index {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media screen and (max-width: 800px) {
+    .movies-index {
+      grid-template-columns: 1fr;
+    }
+  }
+  
