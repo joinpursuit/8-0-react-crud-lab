@@ -1,0 +1,26 @@
+.movie {
+    margin: 0 auto;
+    width: 70%;
+  }
+  
+  .movie {
+    display: grid;
+    gap: 15px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @media screen and (max-width: 1000px) {
+    .movie {
+      width: 90%;
+    }
+    .movie {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media screen and (max-width: 800px) {
+    .movie {
+      grid-template-columns: 1fr;
+    }
+  }
+  

@@ -12,3 +12,4 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById("root")
 );
+// Router is set up to route everything to App where it is using Switch

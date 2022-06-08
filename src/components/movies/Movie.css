@@ -1,0 +1,26 @@
+.movies-movie-wrapper {
+    margin: 0 auto;
+    width: 70%;
+  }
+  
+  .movies-movie-wrapper {
+    display: grid;
+    gap: 15px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @media screen and (max-width: 1000px) {
+    .movies-movie-wrapper {
+      width: 90%;
+    }
+    .movies-movie-wrapper {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media screen and (max-width: 800px) {
+    .movies-movie-wrapper {
+      grid-template-columns: 1fr;
+    }
+  }
+  

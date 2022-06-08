@@ -1,0 +1,26 @@
+.show {
+    margin: 0 auto;
+    width: 70%;
+  }
+  
+  .show {
+    display: grid;
+    gap: 15px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  @media screen and (max-width: 1000px) {
+    .show {
+      width: 90%;
+    }
+    .show {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media screen and (max-width: 800px) {
+    .show {
+      grid-template-columns: 1fr;
+    }
+  }
+  
