@@ -1,12 +1,13 @@
 import React from "react";
-import Error from '../common/Error';
-
+// import { Routes, Route, Navigate } <--- v6 hooks - not for class components
+import { Switch, Route, withRouter } from "react-router-dom";
 // Helper functions
 import { getAllShows } from "../../api/fetch";
-import ShowListing from './ShowListing';
-import { Switch, Route } from "react-router-dom";
+import { deleteShow } from "../../api/fetch";
+import ErrorMessage from "../common/ErrorMessage";
 import "./ShowsIndex.css";
-import Show from './Show';
+import Show from "./Show";
+import ShowListing from "./ShowListing";
 
 class ShowsIndex extends React.Component {
   constructor(props) {
@@ -25,25 +26,49 @@ class ShowsIndex extends React.Component {
         this.setState({ loadingError: true });
       });
   }
+  handleDelete = (e) => {
+    const { value } = e.target;
+    try {
+      deleteShow(value);
+      const indToDelete = this.state.shows.findIndex((show) => {
+        return show.id === value;
+      });
+      const newShows = [...this.state.shows];
+      newShows.splice(indToDelete, 1);
+      this.setState({
+        shows: newShows,
+      });
+      // router-dom v5 syntax
+      this.props.history.push("/shows");
+      // navigate("/shows") v6 syntax
+    } catch (err) {
+      console.error(err);
+      this.setState({ loadingError: true });
+    }
+  };
 
   render() {
+    if (this.state.loadingError) {
+      return <ErrorMessage />;
+    }
     return (
       <Switch>
-        <Route path="./shows/:id">
-          <Show shows={this.state.shows} />
-
+        <Route path="/shows/:id">
+          <Show shows={this.state.shows} handleDelete={this.handleDelete} />
         </Route>
-        <section className="shows-index-wrapper">
-          <h2>All Shows</h2>
-          <section className="shows-index">
-            {this.state.shows.map((show) => {
-              return <ShowListing show={show} key={show.id} />
-            })}
+        <Route>
+          <section className="shows-index-wrapper">
+            <h2> All Shows </h2>
+            <section className="shows-index">
+              {this.state.shows.map((show) => (
+                <ShowListing show={show} />
+              ))}
+            </section>
           </section>
-        </section>
+        </Route>
       </Switch>
-    )
+    );
   }
 }
-
-export default ShowsIndex;
+// we do this in version 5 for class components
+export default withRouter(ShowsIndex);

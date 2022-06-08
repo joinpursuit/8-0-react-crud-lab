@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 import "./ShowListing.css";
 
 export default function ShowListing({ show }) {
-  const { title, description, duration, id, listedIn } = show;
+  const { title, description, listedIn, duration, id } = show;
   return (
     <article className="show">
-      <h3 class="title">
+      <h3>
         <Link to={`/shows/${id}`}>{title}</Link>
       </h3>
       <p className="description">{description}</p>
-      <aside className="details">
+      <aside>
         <p>
           <span>Listed Categories:</span> {listedIn}
         </p>
