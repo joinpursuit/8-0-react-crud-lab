@@ -11,6 +11,7 @@ import Footer from "./components/common/Footer";
 const App = () => (
   <div className="wrapper">
     <Nav />
+    {/* <Routes> is the new  <Switch> */}
     <Switch>
       <Route exact path="/">
         <Home />
