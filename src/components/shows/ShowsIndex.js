@@ -1,11 +1,11 @@
 import React from "react";
 import ShowListing from './ShowListing';
 // import ErrorMessage from "../common/error";
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import Show from './Show';
 
 // Helper functions
-import { getAllShows } from "../../api/fetch";
+import { getAllShows, deleteShow } from "../../api/fetch";
 
 class ShowsIndex extends React.Component {
   constructor(props) {
@@ -25,11 +25,29 @@ class ShowsIndex extends React.Component {
       });
   }
 
+  handleDelete = (event) => {
+    const id = event.target.value
+    try { 
+      deleteShow(id)
+      .then(() => { 
+        const index = this.state.shows.findIndex(show =>  id === show.id)
+        const updatedShows = [...this.state.shows]
+        updatedShows.splice(index, 1)
+        this.setState({
+          shows:updatedShows
+        })
+        this.props.history.push("/shows")  
+    })}
+    catch (err) {
+      console.log(err)
+    }
+  }
+
   render() {
     return (
     <Switch>
       <Route path="/shows/:id">
-          <Show shows= { this.state.shows }/>
+          <Show shows= { this.state.shows } handleDelete= { this.handleDelete }/>
       </Route>
     <section className="shows-index-wrapper">
   <h2>All Shows</h2>
@@ -44,4 +62,4 @@ class ShowsIndex extends React.Component {
   }
 }
 
-export default ShowsIndex;
+export default withRouter(ShowsIndex);
