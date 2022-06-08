@@ -10,8 +10,8 @@ import Footer from "./components/common/Footer";
 
 const App = () => (
   <div className="wrapper">
-    <Nav />
-    <Switch>
+    <Nav />  {/* < Router /> <= is in the index.js*/}
+    <Switch> {/* === < Routes />  */}
       <Route exact path="/">
         <Home />
       </Route>
