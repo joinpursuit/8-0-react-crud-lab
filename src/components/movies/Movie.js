@@ -3,7 +3,7 @@ import { useParams, useHistory } from "react-router-dom";
 import Error from "../common/Error";
 import "./Movie.css";
 
-export default function Movie({ movies }) {
+export default function Movie({ movies, handleDelete }) {
   const { id } = useParams();
   const history = useHistory();
   const movie = movies.find((movie) => movie.id === id);
@@ -40,7 +40,8 @@ export default function Movie({ movies }) {
             <p>{movie.description}</p>
           </article>
           <aside>
-            <button class="delete" onClick={handleClick}>Remove movie</button>
+            <button value={id} class="delete" onClick={handleDelete}>Remove movie</button>
+            <button class="go-back" onClick={handleClick}>Go Back</button>
           </aside>
         </section>
       </section>
