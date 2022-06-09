@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-
+import ErrorMessage from "./components/common/ErrorMessage";
 // Components
 import Nav from "./components/common/Nav";
 import Home from "./components/home/Home";
@@ -20,6 +20,9 @@ const App = () => (
       </Route>
       <Route path="/movies">
         <MoviesIndex />
+      </Route>
+      <Route path="*">
+      <ErrorMessage />
       </Route>
     </Switch>
     <Footer />
