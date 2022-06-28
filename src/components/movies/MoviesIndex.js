@@ -9,6 +9,7 @@ import { Switch, Route, withRouter } from 'react-router-dom'
 import './MoviesIndex.css'
 
 
+
 class MoviesIndex extends React.Component {
   constructor(props) {
     super(props);
