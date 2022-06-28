@@ -1,7 +1,10 @@
 import React from "react";
+import Movie from "./Movie";
 
 // Helper functions
-import { getAllMovies } from "../../api/fetch";
+import { getAllMovies, deleteMovie } from "../../api/fetch";
+import MovieListing from "./MovieListing";
+import { Switch, Route, withRouter } from "react-router-dom";
 
 class MoviesIndex extends React.Component {
   constructor(props) {
@@ -11,7 +14,6 @@ class MoviesIndex extends React.Component {
       loadingError: false,
     };
   }
-
   componentDidMount() {
     getAllMovies()
       .then((movies) => this.setState({ movies, loadingError: false }))
@@ -20,10 +22,47 @@ class MoviesIndex extends React.Component {
         this.setState({ loadingError: true });
       });
   }
+  handleDelete = (event) => {
+    const value = event.target.value
+    try{
+
+      deleteMovie(value)
+      .then(()=>{
+        const index = this.state.movies.findIndex(movie=> movie.id === value)
+        const updatedMovies = [...this.state.movies]
+        updatedMovies.splice(index, 1)
+        this.setState({
+          movies:updatedMovies
+        })
+        //navigate("/movies") is new way
+        this.props.history.push("/movies")
+      })
+
+
+    } catch(err){
+      console.log(err)
+    }
+  }
+
 
   render() {
-    return <p>Movie List</p>;
+    return (
+      <Switch>
+        <Route path="/movies/:id">
+          <Movie movies={this.state.movies} handleDelete={this.handleDelete}/>
+        </Route>
+        <section className="movies-index-wrapper">
+          <h2>All Movies</h2>
+          <section className="movies-index">
+            {this.state.movies.map((movie) => {
+              return <MovieListing movie={movie} key={movie.id} />;
+            })}
+          </section>
+        </section>
+      </Switch>
+    );
   }
 }
 
-export default MoviesIndex;
+export default withRouter(MoviesIndex);
+
