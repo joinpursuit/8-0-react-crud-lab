@@ -1,0 +1,46 @@
+.movies-show-wrapper {
+  margin: 0 auto;
+  width: 70%;
+}
+
+.movies-show {
+  border: 1px solid var(--primary);
+  border-radius: 3px;
+  color: var(--gray);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+.movies-show article {
+  padding: 10px 25px;
+}
+
+.movies-show aside {
+  background: var(--primary);
+  color: var(--light);
+}
+
+.movies-show aside p {
+  display: inline-block;
+  font-size: 14px;
+  margin: 10px 25px;
+  padding: 0;
+  width: auto;
+}
+
+.movies-show aside span {
+  font-weight: bold;
+}
+
+.movies-show aside button {
+  background: none;
+  border: none;
+  color: var(--light);
+  cursor: pointer;
+  margin: 10px 25px;
+  text-decoration: underline;
+}
+
+.movies-show aside button:hover {
+  text-decoration: none;
+}

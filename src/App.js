@@ -10,7 +10,7 @@ import Footer from "./components/common/Footer";
 
 const App = () => (
   <div className="wrapper">
-    <Nav />
+    <Nav />  
     <Switch>
       <Route exact path="/">
         <Home />
