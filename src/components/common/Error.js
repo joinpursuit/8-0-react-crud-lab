@@ -4,7 +4,7 @@ import './Error.css'
 export default function Error() {
   return (
       <section classname="error"> 
-          <p>Something went wrong! Please try again later.</p>
+          <p>ERROR. NOTHING TO SEE HERE...</p>
       </section>
   )
 }
