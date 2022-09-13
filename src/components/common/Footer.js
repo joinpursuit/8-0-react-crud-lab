@@ -1,11 +1,9 @@
 import "./Footer.css";
 
-export const Footer = () => {
+export default function Footer() {
   return (
     <footer>
       <p>ScreenViews. An application created by YOUR_NAME.</p>
     </footer>
   );
-};
-
-export default Footer;
+}
