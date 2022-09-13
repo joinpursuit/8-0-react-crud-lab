@@ -1,29 +1,35 @@
-import React from "react";
+import { Link } from "react-router-dom";
 
-// Helper functions
-import { getAllShows } from "../../api/fetch";
+import ErrorMessage from "../errors/ErrorMessage";
 
-class ShowsIndex extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      shows: [],
-      loadingError: false,
-    };
-  }
+import "./ShowsIndex.css";
 
-  componentDidMount() {
-    getAllShows()
-      .then((shows) => this.setState({ shows, loadingError: false }))
-      .catch((error) => {
-        console.error(error);
-        this.setState({ loadingError: true });
-      });
-  }
-
-  render() {
-    return <p>Shows List</p>;
-  }
+export default function ShowsIndex() {
+  return (
+    <div>
+      {false ? (
+        <ErrorMessage />
+      ) : (
+        <section className="shows-index-wrapper">
+          <h2>All Shows</h2>
+          <button>
+            <Link to="/shows/new">Add a new show</Link>
+          </button>
+          <br />
+          <label htmlFor="searchTitle">
+            Search Shows:
+            <input
+              type="text"
+              // value={searchTitle}
+              id="searchTitle"
+              // onChange={handleTextChange}
+            />
+          </label>
+          <section className="shows-index">
+            {/* <!-- ShowListing components --> */}
+          </section>
+        </section>
+      )}
+    </div>
+  );
 }
-
-export default ShowsIndex;

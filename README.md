@@ -16,30 +16,6 @@ You've been hired to build out _ScreenViews_, a website dedicated to rating show
    npm install
    ```
 
-   This will install the libraries needed to run the tests.
-
-1. Open up the repository in VSCode. Follow the instructions below to complete the Lab.
-
-### Tests
-
-To run the tests, you can run the following command from the command line. You will need to be in the root directory of your local directory.
-
-```
-npm test
-```
-
-This will open the Cypress testing window, where you can click to run an individual suite of tests or all of the tests at once.
-
-#### Testing Tips
-
-Keep the following in mind for this lab as you run the tests.
-
-1. While running your tests, you must have a server up and running in another terminal. This means you will have _both_ a terminal window running the actual React application _and_ a terminal window running the tests.
-
-1. When creating a component, make sure to create and import it with the same name as the file name. For example, the component created and exported inside of the `NavBar.js` file should be `NavBar`. The tests look for these specific names.
-
-1. While the `cypress-watch-and-reload` package has been installed in this project, sometimes the React application will take longer to reload than the tests. If you feel as though a test should be passing that isn't, try pressing the re-run button in the Cypress tests before asking for help.
-
 ### API for this lab
 
 You will be running your own local server on your machine. Follow the instructions at the link below to get it up and running.
@@ -49,3 +25,40 @@ You will be running your own local server on your machine. Follow the instructio
 ---
 
 Data sourced from [Kaggle](https://www.kaggle.com/shivamb/hulu-movies-and-tv-shows).
+
+### Lab Goals
+
+In class, create the following routes:
+
+- `/` home
+- `/shows` shows index
+- `/shows/new` shows new form
+- `/shows/:id` shows show one
+- `/shows/:id/edit` shows edit form
+
+On your own, create the following routes:
+
+- `/movies` movies index
+- `/movies/new` movies new form
+- `/movies/:id` movies show one
+- `/movies/:id/edit` movies edit form
+
+In class, create the following functionality:
+
+- As a user, I can see an index (list) of shows
+- As a user, I can get an error message if the application is not connected to the server
+- As a user, I can click on a show from the index and see a detailed view
+- As a user, I can delete a show
+- As a user, I can create a show
+- As a user, I can edit a show
+- As a user I can search the list of shows
+
+On your own, create the following routes:
+
+- As a user, I can see an index (list) of movies
+- As a user, I can get an error message if the application is not connected to the server
+- As a user, I can click on a movie from the index and see a detailed view
+- As a user, I can delete a movie
+- As a user, I can create a movie
+- As a user, I can edit a movie
+- As a user I can search the list of movies

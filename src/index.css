@@ -32,3 +32,11 @@ h6 {
   grid-template-rows: auto 1fr auto;
   min-height: 100vh;
 }
+
+img {
+  max-width: 100%;
+}
+
+div > p {
+  text-align: center;
+}

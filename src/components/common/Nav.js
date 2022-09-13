@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "./Nav.css";
 
-export const Nav = () => {
+export default function Nav() {
   return (
     <header>
       <article>
@@ -23,6 +23,4 @@ export const Nav = () => {
       </nav>
     </header>
   );
-};
-
-export default Nav;
+}
