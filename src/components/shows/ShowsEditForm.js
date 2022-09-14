@@ -1,6 +1,4 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { getOneShow } from "../../api/fetch";
+import { useState } from "react";
 import "./ShowsForm.css";
 
 export default function ShowsForm() {
@@ -16,8 +14,6 @@ export default function ShowsForm() {
     releaseYear: "",
   });
 
-  const { id } = useParams();
-
   function handleSubmit(event) {}
 
   function handleTextChange(event) {
@@ -26,16 +22,6 @@ export default function ShowsForm() {
       [event.target.id]: event.target.value,
     });
   }
-
-  useEffect(() => {
-    getOneShow(id)
-      .then((response) => {
-        setShow(response);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, [id]);
 
   return (
     <form onSubmit={handleSubmit}>
