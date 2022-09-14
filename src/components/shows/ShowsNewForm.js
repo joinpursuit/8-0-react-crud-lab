@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useState } from "react";
 
 import "./ShowsForm.css";
 
@@ -16,8 +15,6 @@ export default function ShowsForm() {
     releaseYear: "",
   });
 
-  const { id } = useParams();
-
   function handleSubmit(event) {}
 
   function handleTextChange(event) {
@@ -26,22 +23,6 @@ export default function ShowsForm() {
       [event.target.id]: event.target.value,
     });
   }
-
-  useEffect(() => {
-    function getShow() {
-      fetch(`${URL}/shows/${id}`)
-        .then((response) => response.json())
-        .then((response) => {
-          setShow(response);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    }
-    if (id) {
-      getShow();
-    }
-  }, [id]);
 
   return (
     <form onSubmit={handleSubmit}>
