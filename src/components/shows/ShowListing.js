@@ -1,10 +1,11 @@
+import {Link} from 'react-router-dom'
 import "./ShowListing.css";
 
 export default function ShowListing({ show }) {
   return (
     <article className="show">
       <h3 className="title">
-        <a href={`/shows/${show.id}`}>{show.title}</a>
+        <Link to={`/shows/${show.id}`}>{show.title}</Link>
       </h3>
       <p className="description">{show.description}</p>
       <aside className="details">
