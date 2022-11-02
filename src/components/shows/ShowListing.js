@@ -1,7 +1,10 @@
-import {Link} from 'react-router-dom'
+import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./ShowListing.css";
 
 export default function ShowListing({ show }) {
+  const { id } = useParams();
+
   return (
     <article className="show">
       <h3 className="title">
