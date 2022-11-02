@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { getAllMovies } from "../../api/fetch";
 import { Link } from "react-router-dom";
 import ErrorMessage from "../errors/ErrorMessage";
-import MovieListing from "./movieListing";
+import MovieListing from "./MovieListing";
 import "./MoviesIndex.css";
 
 export default function MoviesIndex() {
