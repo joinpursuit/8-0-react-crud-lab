@@ -1,5 +1,5 @@
 // Shows
-const URL = process.env.REACT_APP_BASE_URL
+const URL = process.env.REACT_APP_API_BASE_URL
 // Create
 export function createShow(show) {
   return

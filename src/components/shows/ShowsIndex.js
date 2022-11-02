@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import { useState, useEffect } from "react"
 import ErrorMessage from "../errors/ErrorMessage"
-import ShowListing from "react"
+import ShowListing from "./ShowListing"
 import "./ShowsIndex.css"
 
 import { getAllShows } from "../../api/fetch"
