@@ -1,5 +1,6 @@
-import {Link} from 'react-router-dom'
-import "./ShowListing.css";
+import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import './ShowListing.css';
 
 export default function ShowListing({ show }) {
   return (

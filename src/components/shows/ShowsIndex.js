@@ -1,13 +1,31 @@
-import { Link } from "react-router-dom";
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
-import ErrorMessage from "../errors/ErrorMessage";
+import ErrorMessage from '../errors/ErrorMessage';
+import ShowListing from './ShowListing';
 
-import "./ShowsIndex.css";
+import './ShowsIndex.css';
 
+import { getAllShows } from '../../api/fetch';
 export default function ShowsIndex() {
+  const [loadingError, setLoadingError] = useState(false);
+  const [shows, setShows] = useState([]);
+
+  useEffect(() => {
+    getAllShows()
+      .then((response) => {
+        setShows(response);
+        setLoadingError(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        setLoadingError(true);
+      });
+  }, []);
+
   return (
     <div>
-      {false ? (
+      {loadingError ? (
         <ErrorMessage />
       ) : (
         <section className="shows-index-wrapper">
@@ -27,6 +45,9 @@ export default function ShowsIndex() {
           </label>
           <section className="shows-index">
             {/* <!-- ShowListing components --> */}
+            {shows.map((show) => {
+              return <ShowListing show={show} key={show.id} />;
+            })}
           </section>
         </section>
       )}
