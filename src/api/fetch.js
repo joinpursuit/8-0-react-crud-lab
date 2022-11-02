@@ -22,7 +22,11 @@ export function getAllShows() {
 
 // Show/Get one
 export function getOneShow(id) {
-  return;
+    return(
+      fetch(`${URL}/shows/${id}`)
+      .then((response) => response.json())
+    )
+  
 }
 
 // Update
@@ -30,8 +34,34 @@ export function updateShow(id, show) {
   return;
 }
 
+
+
 // Movies
 
+// Create
+export function createMovie(show) {
+  return;
+}
+
+// Delete
+export function destroyMovie(id) {
+  return;
+}
+
+// Show/Get one
+export function getOneMovie(id) {
+  return(
+    fetch(`${URL}/movies/${id}`)
+    .then((response) => response.json())
+  )
+}
+
+// Update
+export function updateMovie(id, show) {
+  return;
+}
+
+//Get all movies
 export function getAllMovies() {
   return(
     fetch(`${URL}/movies`)

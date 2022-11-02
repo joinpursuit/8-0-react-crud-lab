@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import {getAllMovies} from "../../api/fetch"
 import ErrorMessage from "../errors/ErrorMessage";
 import MoviesListing from "./MovieListing"
-
+import "./MovieIndex.css"
 export default function MoviesIndex() {
 
   const [loadingError, setLoadingError] = useState(false)
@@ -31,7 +31,7 @@ export default function MoviesIndex() {
       <section className="movies-index-wrapper">
         <h2>All Movies</h2>
         <button>
-          <Link to="/shows/new">Add a new movie</Link>
+          <Link to="/movies/new">Add a new movie</Link>
         </button>
         <br />
         <label htmlFor="searchTitle">
@@ -43,7 +43,7 @@ export default function MoviesIndex() {
           
           />
         </label>
-        <section className="movie-index">
+        <section className="movies-index">
         {movies.map((movie) => {
           return (
 

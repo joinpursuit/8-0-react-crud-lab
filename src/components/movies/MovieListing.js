@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom'
-
+import "./MovieListing.css";
 
 export default function ShowListing({ movie }) {
 
