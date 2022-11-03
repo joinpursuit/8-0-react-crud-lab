@@ -6,7 +6,19 @@ import { getAllMovies } from "../../api/fetch"
 
 export default function MoviesIndex() {
   const [movies, setMovies] = useState([])
-  const [searchMovies, setSearchMovies] = useState([])
+  const [searchMovies, setSearchMovies] = useState("")
+  const [allMovies, setAllMovies] = useState([])
+
+  useEffect(() => {
+    getAllMovies()
+      .then((res) => {
+        setMovies(res)
+        setAllMovies(res)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [])
 
   function handleTextChange(e) {
     const movieTitle = e.target.value
