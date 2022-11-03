@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function MovieListing({title, description, category, id, rating }) {
+function MovieListing({title, description, category, id, rating, releaseYear }) {
     return (
        <article className = "show">
             
             <h3 className = "title">
-                <Link to = {`/shows/${id}`}>{title}</Link>
+                <Link to = {`/movies/${id}`}>{title}</Link>
             </h3>
             
             <p className = 'description'>{description}</p>
@@ -20,11 +20,13 @@ function MovieListing({title, description, category, id, rating }) {
                     <span>Rating: </span>
                     {rating}
                 </p>
+                <p>
+                    <span>Released: </span>
+                    {releaseYear}
+                </p>
             </aside>
 
-        </article>
-
-         
+        </article> 
     );
 }
 

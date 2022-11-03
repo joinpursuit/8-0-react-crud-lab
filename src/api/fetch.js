@@ -43,8 +43,15 @@ export function updateShow(id, show) {
 }
 
 // Movies
-
+// fetch for all movies -> movieIndex page
 export function getAllMovies() {
   return fetch(`${URL}/movies`)
   .then(resp => resp.json())
 }
+
+// function for fetch with movie id endpoint -> movie page
+export function getByMovieId (value) {
+  return fetch(`${URL}/movies/${value}`)
+  .then(resp => resp.json())
+}
+

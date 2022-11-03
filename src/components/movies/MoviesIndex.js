@@ -46,7 +46,7 @@ const [error, setError] = useState(false)
           <section className="shows-index">
             {/* map over movies and return a component for each film here */}
             {
-              movies.map(({title, description, listedIn, id, rating }) => 
+              movies.map(({title, description, listedIn, id, rating, releaseYear }) => 
                 <MovieListing
                 key = {id}
                 id = {id}
@@ -54,6 +54,7 @@ const [error, setError] = useState(false)
                 description = {description}
                 category = {listedIn} 
                 rating = {rating}
+                releaseYear = {releaseYear}
                 />
               )
             }
