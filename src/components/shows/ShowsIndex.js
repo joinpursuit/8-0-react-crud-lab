@@ -27,11 +27,9 @@ export default function ShowsIndex() {
 
   
   function filterShows(search, shows){
-    return(
-      shows.filter((show) => show.title.toLowerCase().match(search.toLowerCase()))
-      ) 
-
+    return shows.filter((show) => show.title.toLowerCase().match(search.toLowerCase()))
     }
+    
     const handleTextChange = (event) => {
       const title = event.target.value
       const result = title ? filterShows(title, allShows) : allShows
