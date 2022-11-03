@@ -22,7 +22,8 @@ export function getOneShow(id) {
 
 // Update
 export function updateShow(id, show) {
-  return
+  const options = { method: "DELETE" }
+  return fetch(`${URL}/shows/${id}`, options)
 }
 
 // Movies
