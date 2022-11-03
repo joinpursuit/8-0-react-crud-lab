@@ -13,7 +13,7 @@ function Show() {
   const { id } = useParams()
   const navigate = useNavigate()
 
-  function handleDelete() {
+  function handleDelete(id) {
     destroyShow(id)
       .then(() => navigate("/shows"))
       .catch((err) => {
