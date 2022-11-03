@@ -1,17 +1,33 @@
-import { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useState, useEffect } from "react"
+import { Link, useParams } from "react-router-dom"
 
-import "./Show.css";
+import "./Show.css"
 
-import ErrorMessage from "../errors/ErrorMessage";
+import ErrorMessage from "../errors/ErrorMessage"
+import { getOneShow } from "../../api/fetch"
 
 function Show() {
-  const [show, setShow] = useState({});
-  const [loadingError, setLoadingError] = useState(false);
+  const [show, setShow] = useState({})
+  const [loadingError, setLoadingError] = useState(false)
 
-  const { id } = useParams();
+  const { id } = useParams()
 
   function handleDelete() {}
+
+  useEffect(() => {
+    getOneShow(id)
+      .then((response) => {
+        setShow(response)
+        if (Object.keys(response).length === 0) {
+          setLoadingError(true)
+        } else {
+          setLoadingError(false)
+        }
+      })
+      .catch((err) => {
+        setLoadingError(true)
+      })
+  }, [id])
 
   return (
     <section className="shows-show-wrapper">
@@ -53,7 +69,7 @@ function Show() {
         )}
       </section>
     </section>
-  );
+  )
 }
 
-export default Show;
+export default Show
