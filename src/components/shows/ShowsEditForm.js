@@ -47,7 +47,7 @@ export default function ShowsForm() {
       .catch((error) => {
         console.error(error);
       });
-  }, [id]);
+  }, []);
 
   return (
     <form onSubmit={handleSubmit}>

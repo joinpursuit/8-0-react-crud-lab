@@ -27,7 +27,9 @@ export default function ShowsIndex() {
 
   
   function filterShows(search, shows){
-    return shows.filter((show) => show.title.toLowerCase().match(search.toLowerCase()))
+    return(
+      shows.filter((show) => show.title.toLowerCase().match(search.toLowerCase()))
+    ) 
     }
     
     const handleTextChange = (event) => {
@@ -36,8 +38,16 @@ export default function ShowsIndex() {
       setShows(result)
       setSearchTitle(title)
     }
+  
+  //    function removeObject(arr, id) {
+  //     const objIndex = arr.findIndex((obj) => obj.id === id);
+  //      arr.splice(objIndex, 1);
+  //      return arr;
+  //    }
 
-
+  // //  removeObject(shows, `0sgjGuG`)
+ 
+console.log(shows)
   return (
     <div>
       {loadingError ? (
