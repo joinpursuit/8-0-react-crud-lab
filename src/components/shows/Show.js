@@ -8,6 +8,7 @@ import ErrorMessage from "../errors/ErrorMessage";
 function Show() {
   const [show, setShow] = useState({});
   const [loadingError, setLoadingError] = useState(false);
+  
 
   const { id } = useParams();
 
