@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { Link, useParams } from "react-router-dom";
-
+import { useState, useEffect } from "react";
+import { Link, useParams, useNavigate } from "react-router-dom";
+import { getOneShow, destroyShow } from "../../api/fetch";
 import "./Show.css";
 
 import ErrorMessage from "../errors/ErrorMessage";
@@ -10,8 +10,30 @@ function Show() {
   const [loadingError, setLoadingError] = useState(false);
 
   const { id } = useParams();
+  // when show is deleted, want to send user back to shows index page -> useNavigate
+  const navigate = useNavigate()
 
-  function handleDelete() {}
+  function handleDelete(value) {
+    destroyShow(value)
+    .then(() => navigate("/shows"))
+    .catch(err => setLoadingError(true))
+  }
+
+  // Object.keys to get an array of the object's key values. If the array's length is 0 (no keys), it is an empty object.
+  useEffect(() => {
+    getOneShow(id).then(respJson => {
+      setShow(respJson)
+
+      if(Object.keys(respJson).length === 0){
+        setLoadingError(true)
+      }
+      else{
+        setLoadingError(false)
+      }
+    })
+    .catch(err => setLoadingError(true))
+  }, [id])
+  // use the id value in dependency array to fire whenever the selected show id value changes. -> id is optional param value :id
 
   return (
     <section className="shows-show-wrapper">
@@ -42,7 +64,9 @@ function Show() {
               <p>{show.description}</p>
             </article>
             <aside>
-              <button className="delete" onClick={() => handleDelete(show.id)}>
+              <button className="delete" 
+              // on click trigger DELETE fetch call
+              onClick={() => handleDelete(show.id)}>
                 Remove show
               </button>
               <Link to={`/shows/${id}/edit`}>
