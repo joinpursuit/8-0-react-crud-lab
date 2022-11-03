@@ -3,11 +3,11 @@
 // REACT_APP_API_BASE_URL="http://localhost:5001/api"
 const URL = process.env.REACT_APP_API_BASE_URL;
 
-export function filterShows(input, showsArr) {
-  const filteredShows = showsArr.filter((show) => show.title.toLowerCase().match(input.toLowerCase())
+export function filterSearch(input, arr) {
+  const filteredArr = arr.filter((obj) => obj.title.toLowerCase().match(input.toLowerCase())
   );
 
-  return filteredShows
+  return filteredArr
 }
 
 // Create

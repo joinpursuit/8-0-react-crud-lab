@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { getAllShows, filterShows } from "../../api/fetch";
+import { getAllShows, filterSearch } from "../../api/fetch";
 
 
 import ErrorMessage from "../errors/ErrorMessage";
@@ -22,7 +22,7 @@ const [searchInput, setSearchInput] = useState("")
 function handleSearch(e) {
   const input = e.target.value
   if(input){
-    setAllShows(filterShows(input, allShows2))
+    setAllShows(filterSearch(input, allShows2))
   }
   else {
     setAllShows(allShows2)
