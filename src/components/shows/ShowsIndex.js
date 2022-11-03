@@ -8,15 +8,28 @@ import "./ShowsIndex.css";
 
 import { getAllShows } from "../../api/fetch";
 
+function filterShows(search, shows) {
+  return shows.filter((show) => {
+    return show.title.toLowerCase().match(search.toLowerCase());
+  });
+}
+
 export default function ShowsIndex() {
   const [shows, setShows] = useState([]);
   const [loadingError, setLoadingError] = useState(false);
   const [allShows, setAllShows] = useState();
   const [searchTitle, setSearchTitle] = useState("");
 
+  /**
+   * Saves text input for search in state
+   * @param {str} e
+   */
   function handleTextChange(e) {
     const title = e.target.value;
+    const result = title.length ? filterShows(title, allShows) : allShows;
+
     setSearchTitle(title);
+    setShows(result);
   }
 
   useEffect(() => {
