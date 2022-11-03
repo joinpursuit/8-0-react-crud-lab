@@ -35,3 +35,12 @@ export function getAllMovies() {
   // return;
   return fetch(`${URL}/movies`).then((response) => response.json());
 }
+
+export function getOneMovie(id) {
+  return fetch(`${URL}/movies/${id}`).then((response) => response.json());
+}
+
+export function destroyMovie(id) {
+  const options = { method: "DELETE" };
+  return fetch(`${URL}/movies/${id}`, options);
+}
