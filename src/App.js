@@ -11,6 +11,7 @@ import ShowsNewForm from "./components/shows/ShowsNewForm"
 import MoviesEditForm from "./components/movies/MoviesEditForm"
 import MoviesIndex from "./components/movies/MoviesIndex"
 import MoviesNewForm from "./components/movies/MoviesNewForm"
+import Movies from "./components/movies/Movies"
 
 function App() {
   return (
