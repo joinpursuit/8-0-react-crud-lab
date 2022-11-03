@@ -1,18 +1,37 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-//? imported getAllMovies
 import { getAllMovies } from "../../api/fetch";
 import ErrorMessage from "../errors/ErrorMessage";
 import MovieListing from "./MovieListing";
 import "./MoviesIndex.css";
+
+function filterMovies(search, movies) {
+  return movies.filter((movie) =>
+    movie.title.toLowerCase().match(search.toLowerCase())
+  );
+}
 export default function MoviesIndex() {
   const [loadingError, setLoadingError] = useState(false);
   const [movies, setMovies] = useState([]);
+  //* allMovies && Title state
+  const [allMovies, setAllMovies] = useState([]);
+  const [searchTitle, setSearchTitle] = useState("");
 
+  //* Created a handleText function
+ function handleTextChange(e) {
+    const title = e.target.value;
+    const results = title.length ? filterMovies(title, allMovies) : allMovies;
+    setMovies(results);
+    setSearchTitle(title);
+  };
+
+  //* Update the useEffect for setAllmovies
   useEffect(() => {
     getAllMovies()
-      .then((result) => {
-        setMovies(result);
+      .then((res) => {
+        // *
+        setAllMovies(res);
+        setMovies(res);
         setLoadingError(false);
       })
       .catch((err) => {
@@ -36,9 +55,11 @@ export default function MoviesIndex() {
             Search Movies:
             <input
               type="text"
-              // value={searchTitle}
+              //*
+              value={searchTitle}
               id="searchTitle"
-              // onChange={handleTextChange}
+              //*
+              onChange={handleTextChange}
             />
           </label>
           <section className="movies-index">

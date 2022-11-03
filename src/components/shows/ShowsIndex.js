@@ -1,24 +1,37 @@
-//! 1 allSHows 7.imported useEffect()
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-//! 10
 import ShowListing from "./ShowListing";
 import ErrorMessage from "../errors/ErrorMessage";
-
 import "./ShowsIndex.css";
-// !8 imported all shows
 import { getAllShows } from "../../api/fetch";
 
-export default function ShowsIndex() {
-  //!2 loading error state
-  const [loadingError, setLoadingError] = useState(false);
-  const [shows, setShows] = useState([]); //!6
+function filterShows(search, shows) {
+  return shows.filter((show) =>
+    show.title.toLowerCase().match(search.toLowerCase())
+  );
+}
 
-  //! 9 UseEffect()
+export default function ShowsIndex() {
+  const [loadingError, setLoadingError] = useState(false);
+  const [shows, setShows] = useState([]);
+  //*  day 2 setAllShows
+  const [allShows, setAllShows] = useState([]);
+  //* searchTitle
+  const [searchTitle, setSearchTitle] = useState("");
+
+  //* handle textChange
+  const handleTextChange = (e) => {
+    const title = e.target.value;
+    const results = title.length ? filterShows(title, allShows) : allShows;
+    setShows(results);
+    setSearchTitle(title);
+  };
+
   useEffect(() => {
     getAllShows()
-      .then((result) => {
-        setShows(result);
+      .then((res) => {
+        setAllShows(res);
+        setShows(res);
         setLoadingError(false);
       })
       .catch((err) => {
@@ -28,36 +41,34 @@ export default function ShowsIndex() {
   }, []);
   return (
     <div>
-      {/* updated ternary to the loading err wich is false */}
-      {
-        //! 3 false
-        loadingError ? (
-          <ErrorMessage />
-        ) : (
-          <section className="shows-index-wrapper">
-            <h2>All Shows</h2>
-            <button>
-              <Link to="/shows/new">Add a new show</Link>
-            </button>
-            <br />
-            <label htmlFor="searchTitle">
-              Search Shows:
-              <input
-                type="text"
-                // value={searchTitle}
-                id="searchTitle"
-                // onChange={handleTextChange}
-              />
-            </label>
-            <section className="shows-index">
-              {/* //!12 <!-- ShowListing components --> */}
-              {shows.map((show) => {
-                return <ShowListing show={show} key={show.id} />;
-              })}
-            </section>
+    
+      {loadingError ? (
+        <ErrorMessage />
+      ) : (
+        <section className="shows-index-wrapper">
+          <h2>All Shows</h2>
+          <button>
+            <Link to="/shows/new">Add a new show</Link>
+          </button>
+          <br />
+          <label htmlFor="searchTitle">
+            Search Shows:
+            <input
+              type="text"
+              //* uncomment searchTitle
+              value={searchTitle}
+              id="searchTitle"
+              //* uncomment handleText
+              onChange={handleTextChange}
+            />
+          </label>
+          <section className="shows-index">
+            {shows.map((show) => {
+              return <ShowListing show={show} key={show.id} />;
+            })}
           </section>
-        )
-      }
+        </section>
+      )}
     </div>
   );
 }
