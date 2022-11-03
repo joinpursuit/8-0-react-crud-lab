@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { getByMovieId } from '../../api/fetch';
+import { useParams, Link, useNavigate } from 'react-router-dom';
+import { getByMovieId, deleteMovie } from '../../api/fetch';
 import ErrorMessage from '../errors/ErrorMessage';
 import Show from '../shows/Show';
 
@@ -11,6 +11,7 @@ function Movie(props) {
     -useParams to pull url endpoint from link to value
     - declare state to hold returned (single movie) obj
     - error guard clause
+    - delete fetch function
     */
     
     // Declare state for single movie data -> obj {}
@@ -19,6 +20,15 @@ function Movie(props) {
     const [error, setError] = useState(false)
     // variable for useParam
     const {movieId} = useParams()
+    // variable for useNavigate()
+    const navigate = useNavigate()
+
+    // onClick function for delete movie
+    function handleDelete(value) {
+        deleteMovie(value)
+        .then(() => navigate("/movies"))
+        .catch(err => setError(true))
+    }
 
 
    /*  useEffect to call fetch by id on page load 
@@ -70,7 +80,7 @@ function Movie(props) {
                     {/* aside with delete button and edit link */}
                     <aside>
                         <button className = 'delete'
-                        onClick = {() => {}}>Remove Show
+                        onClick = {() => {handleDelete(movieId)}}>Remove Show
                         </button>
                         
                         <Link to = {`/movies/${movieId}/edit`}>

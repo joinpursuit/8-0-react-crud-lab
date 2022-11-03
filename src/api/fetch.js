@@ -3,8 +3,10 @@
 // REACT_APP_API_BASE_URL="http://localhost:5001/api"
 const URL = process.env.REACT_APP_API_BASE_URL;
 
+// function to filter for search bars, dynamic
 export function filterSearch(input, arr) {
-  const filteredArr = arr.filter((obj) => obj.title.toLowerCase().match(input.toLowerCase())
+  const filteredArr = arr.filter((obj) => 
+  obj.title.toLowerCase().match(input.toLowerCase())
   );
 
   return filteredArr
@@ -53,5 +55,11 @@ export function getAllMovies() {
 export function getByMovieId (value) {
   return fetch(`${URL}/movies/${value}`)
   .then(resp => resp.json())
+}
+
+// function to remove movie via fetch
+export function deleteMovie(value) {
+  const reqType = {method: 'DELETE'}
+  return fetch(`${URL}/movies/${value}`, reqType)
 }
 
