@@ -8,11 +8,13 @@ export default function MoviesIndex() {
 
   const [loadingError, setLoadingError] = useState(false)
   const [movies, setMovies] = useState([])
-
+  const [allMovies, setAllMovies] = useState([])
+  const [searchTitle, setSearchTitle] = useState("")
 
   useEffect(() => {
     getAllMovies()
     .then(res =>{
+      setAllMovies(res)
       setMovies(res)
       setLoadingError(false)
     })
@@ -21,6 +23,19 @@ export default function MoviesIndex() {
       setLoadingError(true)
     })
   }, [])
+
+  function filterMovies(search, movies){
+    return(
+      movies.filter((movie) => movie.title.toLowerCase().match(search.toLowerCase()))
+    )
+  }
+
+  const handleTextChange = (event) => {
+    const title = event.target.value
+    const result = title.length ? filterMovies(title , allMovies) : allMovies
+    setMovies(result)
+    setSearchTitle(title)
+  }
 
 
   return (
@@ -38,9 +53,9 @@ export default function MoviesIndex() {
           Search Movies:
           <input
             type="text"
-            
+            value={searchTitle}
             id="searchTitle"
-          
+            onChange={handleTextChange}
           />
         </label>
         <section className="movies-index">

@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom'
 import "./MovieListing.css";
 
-export default function ShowListing({ movie }) {
+export default function MovieListing({ movie }) {
 
   return (
     <article className="movie">

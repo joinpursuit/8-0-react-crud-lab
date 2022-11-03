@@ -18,6 +18,7 @@ function App() {
       <Router>
         <Nav />
         <Routes>
+          
           <Route path="/" element={<Home />} />
           <Route path="/shows" element={<ShowsIndex />} />
           <Route path="/shows/new" element={<ShowsNewForm />} />
@@ -28,6 +29,7 @@ function App() {
           <Route path="/movies/:id" element={<Movie />} />
           <Route path="/movies" element={<MoviesIndex />} />
           <Route path="/movies/new" element={<MoviesNewForm />} />
+
         </Routes>
         <Footer />
       </Router>
