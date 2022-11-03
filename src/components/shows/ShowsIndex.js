@@ -11,10 +11,18 @@ import { getAllShows } from "../../api/fetch";
 export default function ShowsIndex() {
   const [shows, setShows] = useState([]);
   const [loadingError, setLoadingError] = useState(false);
+  const [allShows, setAllShows] = useState();
+  const [searchTitle, setSearchTitle] = useState("");
+
+  function handleTextChange(e) {
+    const title = e.target.value;
+    setSearchTitle(title);
+  }
 
   useEffect(() => {
     getAllShows()
       .then((response) => {
+        setAllShows(response);
         setShows(response);
         setLoadingError(false);
       })
@@ -39,9 +47,9 @@ export default function ShowsIndex() {
             Search Shows:
             <input
               type="text"
-              // value={searchTitle}
+              value={searchTitle}
               id="searchTitle"
-              // onChange={handleTextChange}
+              onChange={handleTextChange}
             />
           </label>
           <section className="shows-index">
