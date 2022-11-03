@@ -7,16 +7,31 @@ import { Link } from 'react-router-dom';
 import ErrorMessage from '../errors/ErrorMessage';
 import MovieListing from './MovieListing';
 
-// import './MoviesIndex.css';
+import './MoviesIndex.css';
 
 import { getAllMovies } from '../../api/fetch';
+
+function filterMovies(search, movies) {
+  return movies.filter((movie) =>
+    movie.title.toLowerCase().match(search.toLowerCase())
+  );
+}
 export default function MoviesIndex() {
   const [err, setErr] = useState(false);
   const [movies, setMovies] = useState([]);
+  const [searchTitle, setSearchTitle] = useState('');
+  const [allMovies, setAlMovies] = useState([]);
 
+  function handleTextChange(e) {
+    const title = e.target.value;
+    const result = title.length ? filterMovies(title, allMovies) : allMovies;
+    setMovies(result);
+    setSearchTitle(title);
+  }
   useEffect(() => {
     getAllMovies()
       .then((response) => {
+        setAlMovies(response);
         setMovies(response);
         setErr(false);
       })
@@ -31,7 +46,7 @@ export default function MoviesIndex() {
       {err ? (
         <ErrorMessage />
       ) : (
-        <section className="shows-index-wrapper">
+        <section className="movies-index-wrapper">
           <h2>All Movies</h2>
           <button>
             <Link to="/movies/new">Add a new Movie</Link>
@@ -41,9 +56,9 @@ export default function MoviesIndex() {
             Search Movies:
             <input
               type="text"
-              // value={searchTitle}
+              value={searchTitle}
               id="searchTitle"
-              // onChange={handleTextChange}
+              onChange={handleTextChange}
             />
           </label>
           <section className="movies-index">

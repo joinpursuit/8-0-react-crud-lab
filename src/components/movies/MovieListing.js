@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-// import './MovieListing.css';
+
+import './MovieListing.css';
 
 export default function MovieListing({ movie }) {
   return (
