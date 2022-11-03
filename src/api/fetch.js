@@ -7,18 +7,18 @@ export function createShow(show) {
 
 // Delete
 export function destroyShow(id) {
-  return;
+  const options = { method: "DELETE"}
+  return fetch(`${URL}/shows/${id}`, options)
 }
 
 // Index/Get all
 export function getAllShows() {
-  return fetch(`${URL}/shows`).then((res)=>res.json())
+  return fetch(`${URL}/shows`).then((res)=>res.json());
 }
-//This is just to get he then. 
 
 // Show/Get one
 export function getOneShow(id) {
-  return;
+  return fetch(`${URL}/shows/${id}`).then((res) => res.json());
 }
 
 // Update
@@ -28,6 +28,35 @@ export function updateShow(id, show) {
 
 // Movies
 
-export function getAllMovies() {
+//Create Movies
+export function createMovie(movie) {
   return;
 }
+
+//Index/Get All
+export function getAllMovies(id) {
+  return fetch(`${URL}/movies`).then((res) => res.json());
+}
+
+//Get One Movie
+export function getOneMovie(id){
+  return fetch(`${URL}/movies/${id}`).then((res) => res.json());
+} 
+
+// Delete Movies 
+export function destroyMovie(id){
+  const options = { method: "DELETE"}
+  return fetch(`${URL}/shows/${id}`, options)
+}
+
+// Update
+export function updateMovie(id, movie) {
+  return;
+}
+
+//Created Functions 
+
+export function filterShows(search, shows){
+  return shows.filter((show) => show.title.toLowerCase().match(search.toLowerCase()))
+}
+
