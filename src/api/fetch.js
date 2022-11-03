@@ -18,7 +18,7 @@ export function getAllShows() {
 
 // Show/Get one
 export function getOneShow(id) {
-  return;
+  return fetch(`${URL}/shows/${id}`).then((response) => response.json());
 }
 
 // Update
