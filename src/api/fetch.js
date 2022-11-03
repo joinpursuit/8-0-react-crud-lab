@@ -8,7 +8,8 @@ export function createShow(show) {
 
 // Delete
 export function destroyShow(id) {
-  return;
+  const options = { method: "DELETE" };
+  return fetch(`${URL}/shows/${id}`, options);
 }
 
 // Index/Get all
@@ -18,7 +19,7 @@ export function getAllShows() {
 
 // Show/Get one
 export function getOneShow(id) {
-  return;
+  return fetch(`${URL}/shows/${id}`).then((res) => res.json());
 }
 
 // Update
@@ -30,4 +31,17 @@ export function updateShow(id, show) {
 
 export function getAllMovies() {
   return fetch(`${URL}/movies`).then((res) => res.json());
+}
+
+//Movie/getOne
+
+export function getOneMovie(id) {
+  return fetch(`${URL}/movies/${id}`).then((res) => res.jeson());
+}
+
+//Movies/ delete
+
+export function destroyMovie(id) {
+  const options = { method: "DELETE" };
+  return fetch(`${URL}/movies/${id}`, options);
 }

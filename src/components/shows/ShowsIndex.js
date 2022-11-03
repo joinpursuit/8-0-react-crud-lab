@@ -6,14 +6,30 @@ import "./ShowsIndex.css";
 import ShowListing from "./ShowListing";
 import { getAllShows } from "../../api/fetch";
 
+function filterShows(search, shows) {
+  return shows.filter((show) => {
+    return show.title.toLowerCase().match(search.toLowerCase());
+  });
+}
+
 export default function ShowsIndex() {
   const [loadingError, setLoadingError] = useState(false);
   const [shows, setShows] = useState([]);
+  const [allShows, setAllShows] = useState([]);
+  const [searchTitle, setSearchTitle] = useState("");
+
+  function handleTextChange(e) {
+    const title = e.target.value;
+    const result = title.length ? filterShows(title, allShows) : allShows;
+    setSearchTitle(title);
+    setShows(result);
+  }
 
   useEffect(() => {
     getAllShows()
       .then((res) => {
         setShows(res);
+        setAllShows(res);
         setLoadingError(false);
       })
       .catch((err) => {
@@ -37,9 +53,9 @@ export default function ShowsIndex() {
             Search Shows:
             <input
               type="text"
-              // value={searchTitle}
+              value={searchTitle}
               id="searchTitle"
-              // onChange={handleTextChange}
+              onChange={handleTextChange}
             />
           </label>
           <section className="shows-index">

@@ -5,21 +5,37 @@ import ErrorMessage from "../errors/ErrorMessage";
 import MovieListing from "./MovieListings";
 import "./MoviesIndex.css";
 
+function filterMovies(search, movies) {
+  return movies.filter((movie) => {
+    return movie.title.toLowerCase().match(search.toLowerCase());
+  });
+}
+
 export default function MoviesIndex() {
   const [movies, setMovies] = useState([]);
   const [loadingError, setLoadingError] = useState(false);
+  const [allMovies, setAllMovies] = useState([]);
+  const [searchTitle, setSearchTitle] = useState("");
+
+  function handleTextChange(e) {
+    const title = e.target.value;
+    const result = title.length ? filterMovies(title, allMovies) : allMovies;
+    setSearchTitle(title);
+    setMovies(result);
+  }
 
   useEffect(() => {
     getAllMovies()
       .then((res) => {
         setMovies(res);
+        setAllMovies(res);
         setLoadingError(false);
       })
       .catch((err) => {
         console.log(err);
         setLoadingError(true);
-      }, []);
-  });
+      });
+  }, []);
 
   return (
     <div>
@@ -36,9 +52,9 @@ export default function MoviesIndex() {
             Search Movies:
             <input
               type="text"
-              // value={searchTitle}
+              value={searchTitle}
               id="searchTitle"
-              // onChange={handleTextChange}
+              onChange={handleTextChange}
             />
           </label>
           <section className="movies-index">
