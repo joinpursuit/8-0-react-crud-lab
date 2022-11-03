@@ -15,8 +15,8 @@ const [allShows, setAllShows] = useState([]);
 const [searchTitle, setSearchTitle] = useState("");
 
 function handleTextChange(event) {
-  const result = title.length ? filterShows(title, allShows) : allShows;
   const title = event.target.value;
+  const result = title.length ? filterShows(title, allShows) : allShows;
   setSearchTitle(title);
   setShows(result);
 }
