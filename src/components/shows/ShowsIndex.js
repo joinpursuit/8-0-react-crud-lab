@@ -11,11 +11,26 @@ import { getAllShows } from "../../api/fetch";
 export default function ShowsIndex() {
   const [loadingError, setLoadingError] = useState(false);
 const [shows, setShows] = useState([]);
+const [allShows, setAllShows] = useState([]);
+const [searchTitle, setSearchTitle] = useState("");
+
+function handleTextChange(event) {
+  const result = title.length ? filterShows(title, allShows) : allShows;
+  const title = event.target.value;
+  setSearchTitle(title);
+  setShows(result);
+}
+function filterShows(search, shows) {
+  return shows.filter((show) => {
+    return show.title.toLowerCase().match(search.toLowerCase());
+  });
+}
 
 useEffect(() => {
   getAllShows()
     .then((response) => {
       setShows(response);
+      setAllShows(response);
       setLoadingError(false);
     })
     .catch((error) => {
@@ -39,9 +54,9 @@ useEffect(() => {
             Search Shows:
             <input
               type="text"
-              // value={searchTitle}
+              value={searchTitle}
               id="searchTitle"
-              // onChange={handleTextChange}
+              onChange={handleTextChange}
             />
           </label>
           <section className="shows-index">
