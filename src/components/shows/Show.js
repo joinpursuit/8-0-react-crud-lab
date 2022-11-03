@@ -18,11 +18,8 @@ function Show() {
     getOneShow(id)
       .then((response) => {
         setShow(response)
-        if (Object.keys(response).length === 0) {
-          setLoadingError(true)
-        } else {
-          setLoadingError(false)
-        }
+        if (Object.keys(response).length === 0) setLoadingError(true)
+        else setLoadingError(false)
       })
       .catch((err) => {
         setLoadingError(true)
