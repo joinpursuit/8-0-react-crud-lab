@@ -5,17 +5,17 @@ import MovieListing from "./MovieListing";
 import "./MoviesIndex.css"
 
 export default function MoviesIndex() {
+  const [loadingError, setLoadingError] = useState(false);
   const [movies, setMovies] = useState([])
   const [movieSearch, setMovieSearch] = useState([])
   const [search, setSearch] = useState("")
-  const [loadingError, setLoadingError] = useState(false);
 
   const handleTextChange = (e) => {
     const title = e.target.value
-    const results = title.length ? filterMovies(search, movies) : movieSearch
+    const results = title.length ? filterMovies(title, movieSearch) : movieSearch
 
     setSearch(title)
-    setMovieSearch(results)
+    setMovies(results)
   }
 
   const filterMovies = (search, movies) => {
