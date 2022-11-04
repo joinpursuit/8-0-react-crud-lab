@@ -75,15 +75,19 @@ console.log(shows)
               id="searchTitle"
               onChange={handleTextChange}
             />
+          
           </label>
-          <section className="shows-index">
-            {/* <!-- ShowListing components --> */}
             <ReactPaginate
             previousLabel={"Previous"}
             nextLabel={"Next"}
             pageCount={pageCount}
             onPageChange={handlePageChange}
+            containerClassName={"pagination"}
+            previousLinkClassName={"pagination-link"}
+            nextLinkClassName={"pagination-link"}
             />
+          <section className="shows-index">
+            
             {currentPageData}
           </section>
         </section>
