@@ -10,7 +10,6 @@ export default function Movie() {
   const [loadingError, setLoadingError] = useState(false);
   const { id } = useParams();
   let navigate = useNavigate();
-  //! delete function
   const handleDelete = (id) => {
     removeMovie(id)
       .then(() => navigate("/movies"))
@@ -19,7 +18,7 @@ export default function Movie() {
         setLoadingError(true);
       });
   };
-  //useEffect
+
   useEffect(() => {
     getOneMovie(id)
       .then((res) => {

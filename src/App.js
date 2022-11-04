@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
 // Components
 import Footer from "./components/common/Footer";
 import Home from "./components/home/Home";
@@ -12,7 +11,8 @@ import ShowsNewForm from "./components/shows/ShowsNewForm";
 //MOVIES-SECTION
 import MoviesIndex from "./components/movies/MoviesIndex";
 import Movie from "./components/movies/Movie";
-import MoviesEditForm from './components/movies/MoviesEditForm'
+import MoviesEditForm from "./components/movies/MoviesEditForm";
+import MoviesNewForm from "./components/movies/MoviesNewForm";
 
 function App() {
   return (
@@ -28,8 +28,11 @@ function App() {
 
           {/* MOVIES SECTION  */}
           <Route path="/movies" element={<MoviesIndex />} />
-          <Route path='/movies/:id' element={<Movie />} />
-          <Route path='/movies/:id/edit' element={<MoviesEditForm />} />
+          <Route path="/movies/:id" element={<Movie />} />
+
+          <Route path="/movies/:id/edit" element={<MoviesEditForm />} />
+
+          <Route path="/movies/new" element={<MoviesNewForm />} />
         </Routes>
         <Footer />
       </Router>

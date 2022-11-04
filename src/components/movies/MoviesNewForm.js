@@ -1,13 +1,12 @@
-import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./MoviesForm.css";
 
-import { updateMovie, getOneMovie } from "../../api/fetch";
+import { createMovie } from "../../api/fetch";
 
-export default function MoviesForm() {
-  const { id } = useParams();
+export default function MoviesNewForm() {
+
   let navigate = useNavigate();
-
   const [movie, setMovie] = useState({
     type: "",
     title: "",
@@ -22,12 +21,12 @@ export default function MoviesForm() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    updateMovie(id, movie)
-      .then(() => {
-        navigate(`/movies/${id}`);
+    createMovie(movie)
+      .then((res) => {
+        navigate(`/movies/${res.id}`);
       })
       .catch((err) => {
-        console.error(err);
+        console.log(err);
       });
   }
 
@@ -37,15 +36,7 @@ export default function MoviesForm() {
       [event.target.id]: event.target.value,
     });
   }
-  useEffect(() => {
-    getOneMovie(id)
-      .then((res) => {
-        setMovie(res);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }, [id]);
+
   return (
     <form onSubmit={handleSubmit}>
       <label htmlFor="title">Title:</label>

@@ -1,16 +1,30 @@
 // Shows
 //!4 imported the URL fetch API from .env
 const URL = process.env.REACT_APP_API_BASE_URL;
-// Create
+// Create 
 export function createShow(show) {
-  return;
+  const options = {
+    method: "POST",
+    body: JSON.stringify(show),
+    headers: { "Content-Type": "application/json" },
+  };
+  return fetch(`${URL}/shows`, options).then((res) => {
+    return res.json();
+  });
 }
 // Create / movie
 export function createMovie(movie) {
-  return;
+  const options = {
+    method: "POST",
+    body: JSON.stringify(movie),
+    headers: { "Content-Type": "application/json" },
+  };
+  return fetch(`${URL}/movies`, options).then((res) => {
+    return res.json();
+  });
 }
 
-// Delete
+// Delete / delete show
 export function destroyShow(id) {
   const options = { method: "DELETE" };
   return fetch(`${URL}/shows/${id}`, options);
@@ -21,8 +35,7 @@ export function removeMovie(id) {
   return fetch(`${URL}/movies/${id}`, options);
 }
 
-//! 5
-// Index/Get all
+// Index / Get all
 export function getAllShows() {
   return fetch(`${URL}/shows`).then((res) => res.json());
 }
@@ -31,17 +44,34 @@ export function getAllMovies() {
   return fetch(`${URL}/movies`).then((res) => res.json());
 }
 
-// Show/Get one
+// Show / Get one show
 export function getOneShow(id) {
   return fetch(`${URL}/shows/${id}`).then((res) => res.json());
 }
-// movie / Get One
+// movie / Get One Movie
 export function getOneMovie(id) {
   return fetch(`${URL}/movies/${id}`).then((res) => res.json());
 }
 
-// Update
+// Update / Edit Show
 export function updateShow(id, show) {
-  return;
+  const options = {
+    method: "PUT",
+    body: JSON.stringify(show),
+    headers: { "Content-Type": "application/json" },
+  };
+  return fetch(`${URL}/shows/${id}`, options).then((res) => {
+    return res.json();
+  });
 }
-//! MOVIE SECTION
+// Update / Edit Movie
+export function updateMovie(id, movie) {
+  const options = {
+    method: "PUT",
+    body: JSON.stringify(movie),
+    headers: { "Content-Type": "application/json" },
+  };
+  return fetch(`${URL}/movies/${id}`, options).then((res) => {
+    return res.json();
+  });
+}

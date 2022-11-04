@@ -19,7 +19,6 @@ function Show() {
         setLoadingError(true);
       });
   }
-  //*useEffect
   useEffect(() => {
     getOneShow(id)
       .then((res) => {
@@ -34,7 +33,6 @@ function Show() {
         setLoadingError(true);
       });
   }, [id]);
-
   return (
     <section className="shows-show-wrapper">
       <h2>{show.title}</h2>

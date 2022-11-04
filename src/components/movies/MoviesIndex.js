@@ -16,7 +16,6 @@ export default function MoviesIndex() {
   //* allMovies && Title state
   const [allMovies, setAllMovies] = useState([]);
   const [searchTitle, setSearchTitle] = useState("");
-
   //* Created a handleText function
  function handleTextChange(e) {
     const title = e.target.value;
@@ -24,7 +23,6 @@ export default function MoviesIndex() {
     setMovies(results);
     setSearchTitle(title);
   };
-
   //* Update the useEffect for setAllmovies
   useEffect(() => {
     getAllMovies()
@@ -39,7 +37,6 @@ export default function MoviesIndex() {
         setLoadingError(true);
       });
   }, []);
-
   return (
     <div>
       {loadingError ? (
@@ -55,10 +52,8 @@ export default function MoviesIndex() {
             Search Movies:
             <input
               type="text"
-              //*
               value={searchTitle}
               id="searchTitle"
-              //*
               onChange={handleTextChange}
             />
           </label>

@@ -10,7 +10,6 @@ function filterShows(search, shows) {
     show.title.toLowerCase().match(search.toLowerCase())
   );
 }
-
 export default function ShowsIndex() {
   const [loadingError, setLoadingError] = useState(false);
   const [shows, setShows] = useState([]);
@@ -18,7 +17,6 @@ export default function ShowsIndex() {
   const [allShows, setAllShows] = useState([]);
   //* searchTitle
   const [searchTitle, setSearchTitle] = useState("");
-
   //* handle textChange
   const handleTextChange = (e) => {
     const title = e.target.value;
@@ -26,7 +24,6 @@ export default function ShowsIndex() {
     setShows(results);
     setSearchTitle(title);
   };
-
   useEffect(() => {
     getAllShows()
       .then((res) => {
@@ -41,7 +38,6 @@ export default function ShowsIndex() {
   }, []);
   return (
     <div>
-    
       {loadingError ? (
         <ErrorMessage />
       ) : (
@@ -55,10 +51,8 @@ export default function ShowsIndex() {
             Search Shows:
             <input
               type="text"
-              //* uncomment searchTitle
               value={searchTitle}
               id="searchTitle"
-              //* uncomment handleText
               onChange={handleTextChange}
             />
           </label>
