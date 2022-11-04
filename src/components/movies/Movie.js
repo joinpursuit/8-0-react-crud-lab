@@ -33,45 +33,48 @@ function Movie() {
     <section className="movie-movie-wrapper">
       <h2>{movie.title}</h2>
       <section className="movie-movie">
-        {/* loadingERRor ? do i really need it? */}
-        <>
-          <aside>
-            <p>
-              <span>Duration: {movie.duration}</span>
-            </p>
-            <p>
-              <span>Listed Categories: </span>
-              {movie.listedIn}
-            </p>
-            <p>
-              <span>Country: {movie.country}</span>
-            </p>
-            <p>
-              <span>Ratings: </span>
-              {movie.rating}
-            </p>
-            <p>
-              <span>Date Added: </span>
-              {movie.dateAdded}
-            </p>
-            <p>
-              <span> Year released: </span>
-              {movie.releaseYear}
-            </p>
-          </aside>
-          <article>
-            <h2>Description:</h2>
-            <p>{movie.description}</p>
-          </article>
-          <aside>
-            <button className="delete" onClick={() => handleDelete(movie.id)}>
-              Remove movie
-            </button>
-            <Link to={`/movies/${id}/edit`}>
-              <button>Edit</button>
-            </Link>
-          </aside>
-        </>
+        {loadingError ? (
+          <ErrorMessage />
+        ) : (
+          <>
+            <aside>
+              <p>
+                <span>Duration: {movie.duration}</span>
+              </p>
+              <p>
+                <span>Listed Categories: </span>
+                {movie.listedIn}
+              </p>
+              <p>
+                <span>Country: {movie.country}</span>
+              </p>
+              <p>
+                <span>Ratings: </span>
+                {movie.rating}
+              </p>
+              <p>
+                <span>Date Added: </span>
+                {movie.dateAdded}
+              </p>
+              <p>
+                <span> Year released: </span>
+                {movie.releaseYear}
+              </p>
+            </aside>
+            <article>
+              <h2>Description:</h2>
+              <p>{movie.description}</p>
+            </article>
+            <aside>
+              <button className="delete" onClick={() => handleDelete(movie.id)}>
+                Remove movie
+              </button>
+              <Link to={`/movies/${id}/edit`}>
+                <button>Edit</button>
+              </Link>
+            </aside>
+          </>
+        )}
       </section>
     </section>
   )

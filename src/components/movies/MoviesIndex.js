@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import MoviesListing from "./MoviesListing"
+import ErrorMessage from "../errors/ErrorMessage"
 
 import { getAllMovies } from "../../api/fetch"
 
@@ -16,15 +17,17 @@ export default function MoviesIndex() {
   const [movies, setMovies] = useState([])
   const [searchMovies, setSearchMovies] = useState("")
   const [allMovies, setAllMovies] = useState([])
+  const [loadingError, setLoadingError] = useState(false)
 
   useEffect(() => {
     getAllMovies()
       .then((res) => {
         setMovies(res)
         setAllMovies(res)
+        setLoadingError(false)
       })
       .catch((err) => {
-        console.log(err)
+        console.log(err).setLoadingError(true)
       })
   }, [])
 
@@ -38,27 +41,31 @@ export default function MoviesIndex() {
   }
   return (
     <div>
-      <section className="movies-index-wrapper">
-        <h2>All Movie</h2>
-        <button>
-          <Link to="/movies/new">Add New Movie</Link>
-        </button>
-        <br></br>
-        <label htmlFor="SearchMovies">
-          Search Movies:
-          <input
-            type="text"
-            value={searchMovies}
-            id="searchMovies"
-            onChange={handleTextChange}
-          />
-        </label>
-        <section className="movies-index">
-          {movies.map((movie) => {
-            return <MoviesListing movie={movie} key={movie.id} />
-          })}
+      {loadingError ? (
+        <ErrorMessage />
+      ) : (
+        <section className="movies-index-wrapper">
+          <h2>All Movie</h2>
+          <button>
+            <Link to="/movies/new">Add New Movie</Link>
+          </button>
+          <br></br>
+          <label htmlFor="SearchMovies">
+            Search Movies:
+            <input
+              type="text"
+              value={searchMovies}
+              id="searchMovies"
+              onChange={handleTextChange}
+            />
+          </label>
+          <section className="movies-index">
+            {movies.map((movie) => {
+              return <MoviesListing movie={movie} key={movie.id} />
+            })}
+          </section>
         </section>
-      </section>
+      )}
     </div>
   )
 }
