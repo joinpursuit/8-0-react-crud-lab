@@ -33,7 +33,14 @@ export function getOneShow(id) {
 
 // Update
 export function updateShow(id, show) {
-  return;
+  const options = {
+    method: "PUT",
+    bldy: JSON.stringify(show),
+    headers: { "Content-Type": "application/jason" },
+  };
+  return fetch(`${URL}/shows/${id}`, options).then((response) => {
+    return response.json();
+  });
 }
 
 // Movies
