@@ -57,3 +57,8 @@ export function destroyMovie(id) {
   }
   return fetch(`${URL}/movies/${id}`, options).then((res) => res.json)
 }
+
+// create
+export function createMovie() {
+  const options = {}
+}
