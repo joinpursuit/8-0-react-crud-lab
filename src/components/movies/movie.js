@@ -6,7 +6,7 @@ import "./Movie.css";
 import ErrorMessage from "../errors/ErrorMessage";
 import { getOneMovie, destroyMovie } from "../../api/fetch";
 
-function Movie({}) {
+function Movie() {
   const [movie, setMovie] = useState({});
   const [loadingError, setLoadingError] = useState(false);
 
