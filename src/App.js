@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-// Components
+// Common Components
 import Footer from "./components/common/Footer";
 import Home from "./components/home/Home";
 import Nav from "./components/common/Nav";
@@ -12,7 +12,6 @@ import ShowsIndex from "./components/shows/ShowsIndex";
 import ShowsNewForm from "./components/shows/ShowsNewForm";
 
 // Movies Components
-
 import Movie from "./components/movies/Movie";
 import MoviesEditForm from "./components/movies/MoviesEditForm";
 import MoviesIndex from "./components/movies/MoviesIndex";
@@ -33,8 +32,8 @@ function App() {
           <Route path="/shows/:id/edit" element={<ShowsEditForm />} />
 
           <Route path="/movies" element={<MoviesIndex />} />
-          <Route path="/movies/:id" element={<Movie />} />
           <Route path="/movies/new" element={<MoviesNewForm />} />
+          <Route path="/movies/:id" element={<Movie />} />
           <Route path="/movies/:id/edit" element={<MoviesEditForm />} />
         </Routes>
 
