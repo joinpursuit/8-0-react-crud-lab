@@ -1,6 +1,7 @@
 import React from "react"
 import { useState, useEffect } from "react"
 import { useParams, useNavigate, Link } from "react-router-dom"
+import "./Movie.css"
 
 import { getOneMovie, destroyMovie } from "../../api/fetch"
 import ErrorMessage from "../errors/ErrorMessage"
@@ -30,9 +31,9 @@ function Movie() {
   }, [id])
 
   return (
-    <section className="movie-movie-wrapper">
+    <section className="movies-movie-wrapper">
       <h2>{movie.title}</h2>
-      <section className="movie-movie">
+      <section className="movies-movie">
         {loadingError ? (
           <ErrorMessage />
         ) : (

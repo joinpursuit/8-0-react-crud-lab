@@ -41,7 +41,6 @@ export function updateShow(id, show) {
 }
 
 // Movies
-
 export function getAllMovies() {
   return fetch(`${URL}/movies`).then((res) => res.json())
 }
@@ -71,7 +70,6 @@ export function createMovie(movie) {
 }
 
 // edit
-
 export function editMovie(id, movie) {
   const options = {
     method: "PUT",
