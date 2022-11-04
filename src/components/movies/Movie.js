@@ -3,6 +3,7 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 // import "./Shows/Show.css"
 import ErrorMessage from "../errors/ErrorMessage";
 import { getOneMovie, destroyMovie } from "../../api/fetch";
+import  "../shows/ShowsIndex.css";
 
 
 function Movie() {
@@ -34,9 +35,9 @@ function Movie() {
     }, [id])
 
   return (
-    <section className="movies-movie-wrapper">
+    <section className="shows-show-wrapper">
       <h2>{movie.title}</h2>
-      <section className="movies-movie">
+      <section className="shows-show">
         {loadingError ? (
           <ErrorMessage />
         ) : (

@@ -30,8 +30,8 @@ function App() {
 
           <Route path="/movies" element= {<MoviesIndex />} />
           <Route path="movies/:id" element={<Movie />} />
-          <Route path="/shows/new" element={<MoviesNewForm />} />
-          <Route path="/shows/:id" element={<Movie />} />
+          <Route path="/movies/new" element={<MoviesNewForm />} />
+          <Route path="/movies/:id" element={<Movie />} />
           <Route path="/movies/:id/edit" element= {<MoviesEditForm />} />   
         </Routes>
         <Footer />

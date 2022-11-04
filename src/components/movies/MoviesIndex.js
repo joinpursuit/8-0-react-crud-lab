@@ -3,7 +3,6 @@ import {useState} from "react"
 import {useEffect} from "react"
 import ErrorMessage from "../errors/ErrorMessage";
 import MovieListing from "./MovieListing";
-// import "./MoviesIndex.css" 
 import {getAllMovies} from  "../../api/fetch";
 
 
@@ -38,7 +37,7 @@ useEffect(() =>{
   setLoadingError(true)
 })
 }, [])
-
+console.log("movies = ",movies)
   return (
     <div>
       {loadingError ? (
@@ -47,7 +46,7 @@ useEffect(() =>{
         <section className="movie-index-wrapper">
           <h2>All Movies</h2>
           <button>
-            <Link to="/movie/new">Add a new movie</Link>
+            <Link to="/movies/new">Add a new movie</Link>
           </button>
           <br />
           <label htmlFor="searchTitle">
@@ -62,7 +61,7 @@ useEffect(() =>{
           <section className="movies-index">
             {/* <MovieListing components map-->  */}
              {
-              movies.map((movie) =>{
+              allMovies.map((movie) =>{
                 return < MovieListing movie={movie}  key={movie.id}/>
               })
             }
