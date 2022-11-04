@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { getAllMovies } from "../../api/fetch";
 import ErrorMessage from "../errors/ErrorMessage";
 import MovieListing from "./MovieListing";
@@ -45,7 +46,9 @@ export default function MoviesIndex() {
         (
         <section className="movies-index-wrapper">
           <h2>All Movies</h2>
-          <button>Add a new movie</button>
+          <Link to="/movies/new">
+            <button>Add a new movie</button>
+          </Link>
           <br/>
           <label htmlFor="searchMovie" >
             Search Movies: 

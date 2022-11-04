@@ -64,7 +64,7 @@ function Movie (){
                                 <p>{movie.description}</p>
                             </article>
                             <aside>
-                                <button className="delete" onClick={() => handleDelete(movie.id)}>Remove show</button>
+                                <button className="delete" onClick={() => handleDelete(movie.id)}>Remove movie</button>
                                 <Link to={`/movies/${id}/edit`}>
                                     <button>Edit</button>
                                 </Link>

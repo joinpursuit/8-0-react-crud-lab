@@ -8,7 +8,8 @@ export function createShow(show) {
     body: JSON.stringify(show),
     headers: {"Content-Type" : "application/json"}
   }
-  return fetch(`${URL}/shows`, options).then(res => res.json());
+  return fetch(`${URL}/shows`, options)
+    .then(res => res.json());
 }
 
 // Delete
@@ -19,12 +20,14 @@ export function destroyShow(id) {
 
 // Index/Get all
 export function getAllShows() {
-  return fetch(`${URL}/shows`).then(res => res.json());
+  return fetch(`${URL}/shows`)
+    .then(res => res.json());
 }
 
 // Show/Get one
 export function getOneShow(id) {
-  return fetch(`${URL}/shows/${id}`).then(res => res.json());
+  return fetch(`${URL}/shows/${id}`)
+    .then(res => res.json());
 }
 
 // Update
@@ -41,13 +44,15 @@ export function updateShow(id, show) {
 // Movies
 
 export function getAllMovies() {
-  return fetch(`${URL}/movies`).then(res => res.json());
+  return fetch(`${URL}/movies`)
+    .then(res => res.json());
 }
 
 // Show one movie
 
 export function getOneMovie(id) {
-  return fetch(`${URL}/movies/${id}`).then(res => res.json());
+  return fetch(`${URL}/movies/${id}`)
+    .then(res => res.json());
 }
 
 // Delete a movie
@@ -57,7 +62,7 @@ export function destroyMovie(id){
   return fetch(`${URL}/movies/${id}`, options)
 }
 
-//Update a movie
+// Update a movie
 export function updateMovie(id, movie) {
   const options = {
     method: "PUT",
@@ -66,4 +71,15 @@ export function updateMovie(id, movie) {
   }
   return fetch(`${URL}/movies/${id}`, options)
     .then(res => res.json());
+}
+
+// Create a new movie
+export function createMovie (movie) {
+  const options = {
+    method: "POST",
+    body: JSON.stringify(movie),
+    headers: { "Content-Type" : "application/json"}
+  }
+  return fetch (`${URL}/movies`, options)
+    .then(res => res.json())
 }
