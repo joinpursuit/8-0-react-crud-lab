@@ -1,20 +1,31 @@
-import { useState } from "react";
-import "./ShowsForm.css";
+import { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { updateShow, getOneShow } from '../../api/fetch';
+import './ShowsForm.css';
 
 export default function ShowsForm() {
+  const navigate = useNavigate();
+  const { id } = useParams();
   const [show, setShow] = useState({
-    type: "",
-    title: "",
-    country: "",
-    dateAdded: "",
-    description: "",
-    duration: "",
-    listedIn: "",
-    rating: "",
-    releaseYear: "",
+    type: '',
+    title: '',
+    country: '',
+    dateAdded: '',
+    description: '',
+    duration: '',
+    listedIn: '',
+    rating: '',
+    releaseYear: '',
   });
 
-  function handleSubmit(event) {}
+  function handleSubmit(event) {
+    //* day 3 code along with carlos
+    event.preventDefault();
+    updateShow(id, show)
+      .then((response) => navigate(`/shows/${response.id}`))
+      .catch((err) => console.log(err));
+  }
 
   function handleTextChange(event) {
     setShow({
@@ -22,7 +33,11 @@ export default function ShowsForm() {
       [event.target.id]: event.target.value,
     });
   }
-
+  useEffect(() => {
+    getOneShow(id).then((response) => setShow(response));
+    // .then((response) => navigate(`/shows/`))
+    // .catch((err) => console.log(err));
+  }, [id]);
   return (
     <form onSubmit={handleSubmit}>
       <label htmlFor="title">Title:</label>
