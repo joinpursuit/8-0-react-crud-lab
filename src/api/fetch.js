@@ -48,8 +48,14 @@ export function getOneShow(showId) {
 }
 
 // Update
-export function updateShow(id, show) {
-  return;
+// use a PUT fetch request to edit a show
+export function updateShow(showId, obj) {
+  const options = {
+    method: "PUT",
+    body: JSON.stringify(obj),
+    headers: { "Content-Type": "application/json" },
+  };
+  return fetch(`${URL}/shows/${showId}`, options).then((response) => response.json())
 }
 
 // Movies

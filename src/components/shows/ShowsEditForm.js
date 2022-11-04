@@ -1,5 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./ShowsForm.css";
+import { updateShow, getOneShow } from "../../api/fetch";
+import { useNavigate, useParams } from "react-router-dom";
+
 
 export default function ShowsForm() {
   const [show, setShow] = useState({
@@ -14,7 +17,19 @@ export default function ShowsForm() {
     releaseYear: "",
   });
 
-  function handleSubmit(event) {}
+  // useNavigate to navigate somewhere after show is updated (submit)
+  const navigate = useNavigate()
+  // use Params to grab show id from url to send to fetch -> update function
+  const {id} = useParams()
+
+  function handleSubmit(e) {
+    e.preventDefault()
+    updateShow(id, show)
+    .then(resp => navigate(`/shows/${resp.id}`))
+    .catch(err => console.log(err))
+    // can add the error component here 
+
+  }
 
   function handleTextChange(event) {
     setShow({
@@ -23,8 +38,13 @@ export default function ShowsForm() {
     });
   }
 
+  // use effect to on page load fetch for data for selected show, to be default value for the form -> dependency array based on change in show id 
+  useEffect(() => {
+    getOneShow(id)
+    .then(resp => setShow(resp))
+  }, [id])
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={(event) =>handleSubmit(event)}>
       <label htmlFor="title">Title:</label>
       <input
         type="text"
