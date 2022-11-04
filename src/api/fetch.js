@@ -3,12 +3,21 @@ const URL = process.env.REACT_APP_API_BASE_URL;
 
 // Create
 export function createShow(show) {
-  return;
+  const options = {
+    method: "Post",
+    body: JSON.stringify(show),
+    headers: { "Content-Type": "application/json" },
+  };
+  return fetch(`${URL}/shows/`, options).then((response) => {
+    return response.json();
+  });
 }
 
 // Delete
 export function destroyShow(id) {
-  const options = { method: "DELETE" };
+  const options = {
+    method: "DELETE",
+  };
   return fetch(`${URL}/shows/${id}`, options);
 }
 
@@ -29,6 +38,18 @@ export function updateShow(id, show) {
 
 // Movies
 
+// Create
+export function createMovie(movie) {
+  const options = {
+    method: "Post",
+    body: JSON.stringify(movie),
+    headers: { "Content-Type": "application.json" },
+  };
+  return fetch(`${URL}/movies/`, options).then((response) => {
+    return response.json();
+  });
+}
+
 // Index/Get all
 export function getAllMovies() {
   return fetch(`${URL}/movies`).then((response) => response.json());
@@ -41,6 +62,8 @@ export function getOneMovie(id) {
 
 // Delete
 export function destroyMovie(id) {
-  const options = { method: "DELETE" };
+  const options = {
+    method: "DELETE",
+  };
   return fetch(`${URL}/movies/${id}`, options);
 }
