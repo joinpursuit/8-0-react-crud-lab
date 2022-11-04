@@ -68,7 +68,7 @@ export function createMovies(movie) {
   });
 }
 
-export function updateShow(id, movie) {
+export function updateMovie(id, movie) {
   const options = {
     method: "PUT",
     body: JSON.stringify(movie),

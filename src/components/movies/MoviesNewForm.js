@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { createMovie } from "../../api/fetch";
+import { createMovies } from "../../api/fetch";
 import { useNavigate } from "react-router-dom";
 
-import "./MoviesForm.css";
+// import "./MoviesForm.css";
 
 export default function MoviesNewForm() {
   const [movie, setMovie] = useState({
@@ -20,7 +20,7 @@ export default function MoviesNewForm() {
 
   function handleSubmit(event) {
     event.preventDefault();
-  createMovie(movie)
+    createMovies(movie)
     .then((response) => {
       navigate(`/movies/${response.id}`);
     })

@@ -1,7 +1,7 @@
 import { useState,useEffect } from "react";
 import { updateMovie, getOneMovie } from "../../api/fetch";
 import { useNavigate, useParams } from "react-router-dom";
-import "./moviesForm.css";
+// import "./moviesForm.css";
 
 export default function MoviesEditForm() {
   const [movie, setMovie] = useState({
