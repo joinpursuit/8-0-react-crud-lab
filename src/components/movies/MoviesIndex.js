@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
-import MoviesListing from "react"
+import MoviesListing from "./MoviesListing"
 
 import { getAllMovies } from "../../api/fetch"
 
