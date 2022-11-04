@@ -59,6 +59,13 @@ export function destroyMovie(id) {
 }
 
 // create
-export function createMovie() {
-  const options = {}
+export function createMovie(id, movie) {
+  const options = {
+    method: "POST",
+    body: JSON.stringify(movie),
+    headers: { "Content-Type": "application/json" },
+  }
+  return fetch(`${URL}/movies/${id}`, options).then((response) => {
+    return response.json()
+  })
 }
