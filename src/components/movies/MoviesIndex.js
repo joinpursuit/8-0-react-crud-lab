@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import ErrorMessage from "../errors/ErrorMessage";
 import MovieListing from "./MoviesListing";
+import "./MoviesIndex.css";
 
 import { getAllMovies } from "../../api/fetch";
 
