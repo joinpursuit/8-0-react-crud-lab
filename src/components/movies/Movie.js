@@ -1,6 +1,6 @@
 import React from "react"
 import { useState, useEffect } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, useNavigate, Link } from "react-router-dom"
 
 import { getOneMovie } from "../../api/fetch"
 import ErrorMessage from "../errors/ErrorMessage"
@@ -10,6 +10,9 @@ function Movie() {
   const [loadingError, setLoadingError] = useState(false)
 
   const { id } = useParams()
+  const navigate = useNavigate()
+
+  function handleDelete(id) {}
 
   useEffect(() => {
     getOneMovie(id)
@@ -21,7 +24,52 @@ function Movie() {
       .catch((err) => setLoadingError(true))
   }, [id])
 
-  return <div></div>
+  return (
+    <section className="movie-movie-wrapper">
+      <h2>{movie.title}</h2>
+      <section className="movie-movie">
+        {/* loadingERRor ? do i really need it? */}
+        <>
+          <aside>
+            <p>
+              <span>Duration: {movie.duration}</span>
+            </p>
+            <p>
+              <span>Listed Categories: </span>
+              {movie.listedIn}
+            </p>
+            <p>
+              <span>Country: {movie.country}</span>
+            </p>
+            <p>
+              <span>Ratings: </span>
+              {movie.rating}
+            </p>
+            <p>
+              <span>Date Added: </span>
+              {movie.dateAdded}
+            </p>
+            <p>
+              <span> Year released: </span>
+              {movie.releaseYear}
+            </p>
+          </aside>
+          <article>
+            <h2>Description:</h2>
+            <p>{movie.description}</p>
+          </article>
+          <aside>
+            <button className="delete" onClick={handleDelete(movie.id)}>
+              Remove movie
+            </button>
+            <Link to={`/movies/${id}/edit`}>
+              <button>Edit</button>
+            </Link>
+          </aside>
+        </>
+      </section>
+    </section>
+  )
 }
 
 export default Movie
