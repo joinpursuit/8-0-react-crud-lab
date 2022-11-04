@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import ErrorMessage from "../errors/ErrorMessage";
+
 import MovieListing from "./MoviesListing";
+import ErrorMessage from "../errors/ErrorMessage";
+
 import "./MoviesIndex.css";
 
 import { getAllMovies } from "../../api/fetch";
@@ -13,8 +15,8 @@ function filterMovies(search, movies) {
 }
 
 export default function MoviesIndex() {
-  const [loadingError, setLoadingError] = useState();
   const [movies, setMovies] = useState([]);
+  const [loadingError, setLoadingError] = useState(false);
   const [allMovies, setAllMovies] = useState();
   const [searchTitle, setSearchTitle] = useState("");
 
@@ -33,6 +35,7 @@ export default function MoviesIndex() {
   useEffect(() => {
     getAllMovies()
       .then((response) => {
+        setAllMovies(response);
         setMovies(response);
         setLoadingError(false);
       })
