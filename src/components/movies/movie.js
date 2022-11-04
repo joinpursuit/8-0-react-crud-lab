@@ -15,7 +15,7 @@ function Movie({}) {
 
   function handleDelete(id) {
     destroyMovie(id)
-      .then(() => navigate("/shows"))
+      .then(() => navigate("/movies"))
       .catch((error) => {
         console.error(error);
         setLoadingError(true);
@@ -65,7 +65,7 @@ function Movie({}) {
             </article>
             <aside>
               <button className="delete" onClick={() => handleDelete(movie.id)}>
-                Remove show
+                Remove movie
               </button>
               <Link to={`/movies/${id}/edit`}>
                 <button>Edit</button>
