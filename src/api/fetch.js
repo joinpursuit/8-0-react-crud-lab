@@ -36,7 +36,7 @@ export function getAllMovies() {
 
 // Movie/Get one
 export function getOneMovie(id) {
-  return fetch(`${URL}/moviess/${id}`).then((response) => response.json());
+  return fetch(`${URL}/movies/${id}`).then((response) => response.json());
 }
 
 // Delete
