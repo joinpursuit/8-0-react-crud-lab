@@ -2,7 +2,7 @@ import React from "react"
 import { useState, useEffect } from "react"
 import { useParams, useNavigate, Link } from "react-router-dom"
 
-import { getOneMovie } from "../../api/fetch"
+import { getOneMovie, destroyMovie } from "../../api/fetch"
 import ErrorMessage from "../errors/ErrorMessage"
 
 function Movie() {
@@ -12,7 +12,12 @@ function Movie() {
   const { id } = useParams()
   const navigate = useNavigate()
 
-  function handleDelete(id) {}
+  function handleDelete(id) {
+    destroyMovie(id)
+      .then(() => navigate(`/movies`))
+      .catch((err) => console.log(err))
+    setLoadingError(true)
+  }
 
   useEffect(() => {
     getOneMovie(id)
@@ -59,7 +64,7 @@ function Movie() {
             <p>{movie.description}</p>
           </article>
           <aside>
-            <button className="delete" onClick={handleDelete(movie.id)}>
+            <button className="delete" onClick={() => handleDelete(movie.id)}>
               Remove movie
             </button>
             <Link to={`/movies/${id}/edit`}>
