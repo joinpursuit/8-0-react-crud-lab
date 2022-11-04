@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./MoviesForm.css";
 
-export default function MoviesForm() {
+export default function MoviesEditForm() {
   const [movie, setMovie] = useState({
     type: "",
     title: "",

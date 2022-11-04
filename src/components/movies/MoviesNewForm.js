@@ -5,7 +5,7 @@ import "./MoviesForm.css";
 
 import { createMovie } from "../../api/fetch";
 
-export default function MoviesForm() {
+export default function MoviesNewForm() {
   const [movie, setMovie] = useState({
     type: "",
     title: "",

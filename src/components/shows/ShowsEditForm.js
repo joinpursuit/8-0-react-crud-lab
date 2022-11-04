@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./ShowsForm.css";
 
-export default function ShowsForm() {
+export default function ShowsEditForm() {
   const [show, setShow] = useState({
     type: "",
     title: "",
