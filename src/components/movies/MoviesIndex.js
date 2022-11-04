@@ -4,6 +4,14 @@ import MoviesListing from "react"
 
 import { getAllMovies } from "../../api/fetch"
 
+// comparing the entered movie in the search input to the movies in list by filtering the entire movie list and changing everything
+// to lowercase to match/find the title the is exactly the same as inputted in the search bar.
+function filterMovies(searchMovies, movies) {
+  return movies.filter((movie) =>
+    movie.title.toLowerCase().match(searchMovies.toLowerCase())
+  )
+}
+
 export default function MoviesIndex() {
   const [movies, setMovies] = useState([])
   const [searchMovies, setSearchMovies] = useState("")
@@ -20,10 +28,12 @@ export default function MoviesIndex() {
       })
   }, [])
 
-  function handleTextChange(e) {
-    const movieTitle = e.target.value
-
-    setMovies()
+  function handleTextChange(event) {
+    const movieTitle = event.target.value
+    const results = movieTitle.length
+      ? filterMovies(movieTitle, allMovies)
+      : allMovies
+    setMovies(results)
     setSearchMovies(movieTitle)
   }
   return (
