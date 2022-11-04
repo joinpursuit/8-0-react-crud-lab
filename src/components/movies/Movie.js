@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { getByMovieId, deleteMovie } from '../../api/fetch';
 import ErrorMessage from '../errors/ErrorMessage';
-import Show from '../shows/Show';
+
 
 function Movie(props) {
 /* 
@@ -80,7 +80,7 @@ function Movie(props) {
                     {/* aside with delete button and edit link */}
                     <aside>
                         <button className = 'delete'
-                        onClick = {() => {handleDelete(movieId)}}>Remove Show
+                        onClick = {() => {handleDelete(movieId)}}>Remove Movie
                         </button>
                         
                         <Link to = {`/movies/${movieId}/edit`}>

@@ -13,8 +13,16 @@ export function filterSearch(input, arr) {
 }
 
 // Create
-export function createShow(show) {
-  return;
+/* using a POST fetch call to grab the form info in form -> turned from an object to JSON to pass through 'body' key in the 'options' object */
+export function createShow(obj) {
+  const options = {
+    method: "POST",
+    body: JSON.stringify(obj),
+    headers: { "Content-Type": "application/json" },
+  };
+  // resp from server is set by server, the return is the newly created show
+  return fetch(`${URL}/shows/`, options).then((resp) => resp.json()
+  )
 }
 
 // Delete
