@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { getOneShow, destroyShow } from "../../api/fetch";
-
-import "./Show.css";
-
 import ErrorMessage from "../errors/ErrorMessage";
+import "./Show.css";
 
 function Show() {
   const [show, setShow] = useState({});
