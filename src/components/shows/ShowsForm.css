@@ -73,3 +73,6 @@ form input[type="submit"]:hover {
 label {
   color: var(--primary);
 }
+.redbox{
+  border: 1px red solid!important;
+}

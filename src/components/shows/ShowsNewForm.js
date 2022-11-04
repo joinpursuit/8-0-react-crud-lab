@@ -1,8 +1,9 @@
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
+import { createShow, entry_api } from "../../api/fetch";
 import "./ShowsForm.css";
 
-export default function ShowsForm() {
+export default function ShowsForm({entry}) {
   const [show, setShow] = useState({
     type: "",
     title: "",
@@ -14,8 +15,31 @@ export default function ShowsForm() {
     rating: "",
     releaseYear: "",
   });
-
-  function handleSubmit(event) {}
+  const navigate = useNavigate();
+  const ea = entry_api[entry];
+  function handleSubmit(event) {
+    event.preventDefault();
+    let mustVaild = ['title'];
+    let vailded = true;
+    for(let x in show)
+    {
+      event.target.querySelector(`#${x}`).classList.remove("redbox");
+      if(mustVaild.includes(x)&&show[x]=="")
+      {
+        vailded=false;
+        event.target.querySelector(`#${x}`).classList.add("redbox");
+      }
+    }
+    if(vailded){
+      ea.create(show,entry)
+        .then((data)=>{
+          navigate(`/${entry}s`);
+        })
+        .catch(error=>{
+          console.log(error);
+        });
+    }
+  }
 
   function handleTextChange(event) {
     setShow({

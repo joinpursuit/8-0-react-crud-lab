@@ -1,32 +1,69 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import ErrorMessage from "../errors/ErrorMessage";
 
 import "./ShowsIndex.css";
 
-export default function ShowsIndex() {
+import {getAllShows, entry_api} from '../../api/fetch';
+import { useEffect, useState } from 'react';
+import ShowListing from "./ShowListing";
+
+let actual_display_list = []; 
+const capitalize = (text)=>{
+  return text[0].toUpperCase()+text.slice(1);
+}
+
+
+export default function ShowsIndex({entry}) {
+  const [showsList,updateShowsList] = useState([]);
+  const [error,updateError] =useState(false);
+  const [searchTitle,setSearchTitle] = useState("");
+  const ea = entry_api[entry];
+  //////////////////////////////////////
+  function handleTextChange(evt){
+    //
+    setSearchTitle(evt.target.value);
+    updateShowsList(actual_display_list.filter(el=> el.title.toLowerCase().match(evt.target.value)));
+
+  }
+  //////////////////////////////////////
+  useEffect(()=>{
+    ea.getAll()
+    .then((data)=>{
+      console.log(data)
+      updateShowsList(data);
+      actual_display_list = data;
+      updateError(false);
+    })
+    .catch(error => {
+      updateError(true);
+      console.log(error);
+    })
+  },[entry]);
+  //////////////////////////////////////
   return (
     <div>
-      {false ? (
-        <ErrorMessage />
+      {error ? (
+        <ErrorMessage error={error}/>
       ) : (
         <section className="shows-index-wrapper">
-          <h2>All Shows</h2>
+          <h2>All {capitalize(entry)}s</h2>
           <button>
-            <Link to="/shows/new">Add a new show</Link>
+            <Link to={`/${entry}s/new`}>Add a new {capitalize(entry)}</Link>
           </button>
           <br />
           <label htmlFor="searchTitle">
-            Search Shows:
+            Search {capitalize(entry)}s:
             <input
               type="text"
-              // value={searchTitle}
+              value={searchTitle}
               id="searchTitle"
-              // onChange={handleTextChange}
+              onChange={handleTextChange}
             />
           </label>
           <section className="shows-index">
             {/* <!-- ShowListing components --> */}
+            { showsList?.map( el=> <ShowListing key={el.id} show={el} entry={entry}/> ) }
           </section>
         </section>
       )}
