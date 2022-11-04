@@ -62,7 +62,11 @@ console.log(shows)
         <ErrorMessage />
       ) : (
         <section className="shows-index-wrapper">
+          <div className="first-line">
+
           <h2>All Shows</h2>
+            <p className="page-number">Page: {currentPage + 1}</p>
+          </div>
           <button>
             <Link to="/shows/new">Add a new show</Link>
           </button>

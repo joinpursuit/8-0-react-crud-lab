@@ -96,7 +96,7 @@ export function updateMovie(id, movie) {
   const options = {
     method: "PUT",
     body: JSON.stringify(movie),
-    header: {"Content-Type": "application/json"},
+    headers: {"Content-Type": "application/json"},
   }
   return(
     fetch(`${URL}/movies/${id}`, options)

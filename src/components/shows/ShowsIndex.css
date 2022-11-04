@@ -33,6 +33,15 @@ button a {
   color: #4e598c;
 }
 
+.first-line{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 700px;
+}
+
+.page-number{
+  font-weight: bold;
+}
 
 @media screen and (max-width: 1000px) {
   .shows-index-wrapper {

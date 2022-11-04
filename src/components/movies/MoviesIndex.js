@@ -6,7 +6,7 @@ import MoviesListing from "./MovieListing"
 import ReactPaginate from "react-paginate";
 import "./MovieIndex.css"
 
-const pageData = 10
+const pageData = 6
 
 export default function MoviesIndex() {
 
@@ -31,7 +31,7 @@ export default function MoviesIndex() {
 
 
   function handlePageChange ({selected: selectedPage}){
-    setCurrentPage(selectedPage)
+    setCurrentPage(selectedPage )
   }
 
   const offSet = currentPage * pageData
@@ -62,7 +62,11 @@ export default function MoviesIndex() {
       <ErrorMessage />
     ) : (
       <section className="movies-index-wrapper">
+        <div className="first-line">
         <h2>All Movies</h2>
+        <p className="page-number">Page: {currentPage
+        +1}</p>
+        </div>
         <button>
           <Link to="/movies/new">Add a new movie</Link>
         </button>

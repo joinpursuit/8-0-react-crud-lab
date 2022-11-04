@@ -41,6 +41,9 @@ export default function MoviesForm() {
     .then((res) => {
       setMovie(res)
     })
+    .catch((error) => {
+      console.error(error);
+    });
   }, [id])
 
   return (
