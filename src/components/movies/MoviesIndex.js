@@ -8,14 +8,30 @@ import "./MoviesIndex.css";
 
 import { getAllMovies } from '../../api/fetch'
 
+function filterMovies(search, movies){ 
+  return movies.filter((movie) => {
+    return movie.title.toLowerCase().match(search.toLowerCase())
+  })
+}
+
 export default function MoviesIndex() {
 const [loadingError, setLoadingError] = useState(false)
 const [movies, setMovies] = useState([])
+const [allMovies, setAllMovies] = useState([]);
+const [searchTitle, setSearchTitle] = useState('')
+
+function handleTextChange(e){ // on change of our search input; this function is ran.
+  const title = e.target.value
+  const result = title.length ? filterMovies (title, allMovies) : allMovies;
+  setMovies(result);
+  setSearchTitle(title)
+}
 
 
 useEffect(() => {
   getAllMovies()
    .then(res => {
+    setAllMovies(res)
     setMovies(res)
     setLoadingError(false)
    })
@@ -40,13 +56,13 @@ useEffect(() => {
             Search Movies:
             <input
               type="text"
-              // value={searchTitle}
+              value={searchTitle}
               id="searchTitle"
-              // onChange={handleTextChange}
+              onChange={handleTextChange}
             />
           </label>
           <section className="movies-index">
-            {/* <!-- ShowListing components --> */}
+            {/* <!-- MovieListing components --> */}
             { movies.map((movie) => { 
               return <MovieListing movie={movie} key={movie.id} />
             })}
