@@ -31,3 +31,7 @@ export function updateShow(id, show) {
 export function getAllMovies() {
   return fetch(`${URL}/movies`).then((res) => res.json())
 }
+
+export function getOneMovie(id) {
+  return fetch(`${URL}/movies/${id}`).then((res) => res.json())
+}
