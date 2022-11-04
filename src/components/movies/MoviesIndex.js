@@ -39,7 +39,7 @@ export default function MoviesIndex() {
   return (
     <div>
       <section className="movies-index-wrapper">
-        <p>Movie List</p>
+        <h2>All Movie</h2>
         <button>
           <Link to="/movies/new">Add New Movie</Link>
         </button>
