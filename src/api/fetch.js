@@ -33,9 +33,9 @@ export function updateShow(id, show) {
   const options = {
     method: "PUT",
     body: JSON.stringify(show),
-    headers: { "Content-type": "application/json" },
+    headers: { "Content-Type": "application/json" },
   }
-  return fetch().then((response) => {
+  return fetch(`${URL}/shows/${id}`, options).then((response) => {
     return response.json()
   })
 }
