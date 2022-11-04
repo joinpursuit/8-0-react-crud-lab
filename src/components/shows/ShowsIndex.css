@@ -33,6 +33,7 @@ button a {
   color: #4e598c;
 }
 
+
 @media screen and (max-width: 1000px) {
   .shows-index-wrapper {
     width: 90%;

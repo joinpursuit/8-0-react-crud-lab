@@ -3,13 +3,18 @@ import { Link } from "react-router-dom";
 import {getAllMovies} from "../../api/fetch"
 import ErrorMessage from "../errors/ErrorMessage";
 import MoviesListing from "./MovieListing"
+import ReactPaginate from "react-paginate";
 import "./MovieIndex.css"
+
+const pageData = 10
+
 export default function MoviesIndex() {
 
   const [loadingError, setLoadingError] = useState(false)
   const [movies, setMovies] = useState([])
   const [allMovies, setAllMovies] = useState([])
   const [searchTitle, setSearchTitle] = useState("")
+  const [currentPage, setCurrentPage] = useState(0)
 
   useEffect(() => {
     getAllMovies()
@@ -23,6 +28,19 @@ export default function MoviesIndex() {
       setLoadingError(true)
     })
   }, [])
+
+
+  function handlePageChange ({selected: selectedPage}){
+    setCurrentPage(selectedPage)
+  }
+
+  const offSet = currentPage * pageData
+
+  const currentPageData = movies
+  .slice(offSet, offSet + pageData)
+  .map((movie) => <MoviesListing movie={movie} key={movie.id}/>)
+  
+  const pageCount = Math.ceil(movies.length/pageData) 
 
   function filterMovies(search, movies){
     return(
@@ -58,15 +76,19 @@ export default function MoviesIndex() {
             onChange={handleTextChange}
           />
         </label>
-        <section className="movies-index">
-        {movies.map((movie) => {
-          return (
-
-            <MoviesListing movie={movie} key={movie.id}/>
-          )
-        })}
-          
-        </section>
+        <ReactPaginate
+            previousLabel={"Previous"}
+            nextLabel={"Next"}
+            pageCount={pageCount}
+            onPageChange={handlePageChange}
+            containerClassName={"pagination"}
+            previousLinkClassName={"pagination-link"}
+            nextLinkClassName={"pagination-link"}
+            />
+          <section className="movies-index">
+            
+            {currentPageData}
+          </section>
       </section>
     )}
   </div>
