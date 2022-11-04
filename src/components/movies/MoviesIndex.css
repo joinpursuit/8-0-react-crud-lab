@@ -26,16 +26,16 @@ button a {
 }
 
 @media screen and (max-width: 1000px) {
-  .shows-index-wrapper {
+  .movies-index-wrapper {
     width: 90%;
   }
-  .shows-index {
+  .movies-index {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media screen and (max-width: 800px) {
-  .shows-index {
+  .movies-index {
     grid-template-columns: 1fr;
   }
 }
