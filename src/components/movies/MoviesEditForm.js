@@ -41,7 +41,7 @@ export default function MoviesForm() {
     .then((res) => {
       setMovie(res)
     })
-  }, [])
+  }, [id])
 
   return (
     <form onSubmit={handleSubmit}>

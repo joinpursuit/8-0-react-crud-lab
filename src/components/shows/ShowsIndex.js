@@ -1,17 +1,22 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import ReactPaginate from "react-paginate";
 import {getAllShows} from "../../api/fetch"
 import ErrorMessage from "../errors/ErrorMessage";
 import ShowListing from "./ShowListing"
 import "./ShowsIndex.css";
+
+const pageData = 10
 
 export default function ShowsIndex() {
   const [loadingError, setLoadingError] = useState(false)
   const [shows, setShows] = useState([])
   const [allShows, setAllshows] = useState([])
   const [searchTitle, setSearchTitle] = useState("")
+  const [currentPage, setCurrentPage] = useState(0)
 
-
+  
+  
   useEffect(() => {
     getAllShows()
     .then(res =>{
@@ -24,7 +29,17 @@ export default function ShowsIndex() {
       setLoadingError(true)
     })
   }, [])
-
+  
+  function handlePageChange ({selected: selectedPage}){
+    setCurrentPage(selectedPage)
+  }
+  const offSet = currentPage * pageData
+  
+  const currentPageData = shows
+  .slice(offSet, offSet + pageData)
+  .map((show) => <ShowListing show={show} key={show.id}/>)
+  
+  const pageCount = Math.ceil(shows.length/pageData) 
   
   function filterShows(search, shows){
     return(
@@ -38,14 +53,7 @@ export default function ShowsIndex() {
       setShows(result)
       setSearchTitle(title)
     }
-  
-  //    function removeObject(arr, id) {
-  //     const objIndex = arr.findIndex((obj) => obj.id === id);
-  //      arr.splice(objIndex, 1);
-  //      return arr;
-  //    }
-
-  // //  removeObject(shows, `0sgjGuG`)
+      
  
 console.log(shows)
   return (
@@ -70,9 +78,13 @@ console.log(shows)
           </label>
           <section className="shows-index">
             {/* <!-- ShowListing components --> */}
-            {shows.map((show) => {
-              return <ShowListing show={show} key={show.id}/>
-            })}
+            <ReactPaginate
+            previousLabel={"Previous"}
+            nextLabel={"Next"}
+            pageCount={pageCount}
+            onPageChange={handlePageChange}
+            />
+            {currentPageData}
           </section>
         </section>
       )}

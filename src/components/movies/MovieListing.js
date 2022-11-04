@@ -1,8 +1,9 @@
 import {Link} from 'react-router-dom'
+
 import "./MovieListing.css";
 
 export default function MovieListing({ movie }) {
-
+ 
   return (
     <article className="movie">
       <h3 className="title">

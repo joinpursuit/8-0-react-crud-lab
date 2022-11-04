@@ -1,5 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+
+
 // Components
 import Footer from "./components/common/Footer";
 import Home from "./components/home/Home";
@@ -12,7 +14,11 @@ import MoviesIndex from "./components/movies/MoviesIndex";
 import MoviesNewForm from "./components/movies/MoviesNewForm"
 import Movie from "./components/movies/Movie"
 import MoviesEditForm from "./components/movies/MoviesEditForm"
+
+
+
 function App() {
+  
   return (
     <div className="wrapper">
       <Router>
