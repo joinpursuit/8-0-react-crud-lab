@@ -37,10 +37,13 @@ export default function ShowsForm() {
     })
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     getOneShow(id)
-    .then((response)=>)
-  },[id])
+      .then((response) => {
+        setShow(response)
+      })
+      .catch((err) => console.log(err))
+  }, [id])
 
   return (
     <form onSubmit={handleSubmit}>
