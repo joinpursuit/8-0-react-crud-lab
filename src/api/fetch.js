@@ -56,3 +56,14 @@ export function destroyMovie(id){
   const options = { method : "DELETE" }
   return fetch(`${URL}/movies/${id}`, options)
 }
+
+//Update a movie
+export function updateMovie(id, movie) {
+  const options = {
+    method: "PUT",
+    body: JSON.stringify(movie),
+    headers: { "Content-Type": "application/json" },
+  }
+  return fetch(`${URL}/movies/${id}`, options)
+    .then(res => res.json());
+}

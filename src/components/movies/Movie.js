@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { useParams, useNavigate } from "react-router-dom"
+import { useParams, useNavigate, Link } from "react-router-dom"
 import ErrorMessage from "../errors/ErrorMessage";
 import { destroyMovie, getOneMovie } from "../../api/fetch"
 import "./Movie.css"
@@ -65,7 +65,9 @@ function Movie (){
                             </article>
                             <aside>
                                 <button className="delete" onClick={() => handleDelete(movie.id)}>Remove show</button>
-                                <button>Edit</button>
+                                <Link to={`/movies/${id}/edit`}>
+                                    <button>Edit</button>
+                                </Link>
                             </aside>
                         </>
                     )
