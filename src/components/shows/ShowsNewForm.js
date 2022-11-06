@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createShow } from "../../api/fetch";
+import { newFormSubmitHandle, handleFormInput } from "../../api/fetch";
 import { useNavigate } from "react-router-dom";
 import "./ShowsForm.css";
 
@@ -19,29 +19,15 @@ export default function ShowsForm() {
   // when user submits the form, send them back to the index/ newform page, wherever
   const navigate = useNavigate()
 
-  function handleSubmit(e) {
-    // submit button so prevent default
-    e.preventDefault()
-    // show is state that holds object that is updated for each form input value typed in -> send show in POST fetch -> and what is returned from POST fetch is the created show object, so then use id kay in that new show object to navigate to that show's individual page
-    createShow(show)
-    .then(resp => navigate(`/shows/${resp.id}`))
-    .catch(err => console.log(err) )
-  }
-
-  function handleTextChange(event) {
-    setShow(
-      {...show, [event.target.id]: event.target.value,}
-    );
-  }
 
   return (
-    <form onSubmit={(event) => {handleSubmit(event)}}>
+    <form onSubmit={(event) => {newFormSubmitHandle(event, show, `shows`, navigate)}}>
       <label htmlFor="title">Title:</label>
       <input
         type="text"
         id="title"
         value={show.title}
-        onChange={handleTextChange}
+        onChange={(event) => {handleFormInput(event, show, setShow)}}
       />
 
       <label htmlFor="description">Description:</label>
@@ -49,7 +35,7 @@ export default function ShowsForm() {
         type="text"
         id="description"
         value={show.description}
-        onChange={handleTextChange}
+        onChange={(event) => {handleFormInput(event, show, setShow)}}
       />
 
       <label htmlFor="type">Type</label>
@@ -57,7 +43,7 @@ export default function ShowsForm() {
         type="text"
         id="type"
         value={show.type}
-        onChange={handleTextChange}
+        onChange={(event) => {handleFormInput(event, show, setShow)}}
       />
 
       <label htmlFor="rating">Rating:</label>
@@ -65,7 +51,7 @@ export default function ShowsForm() {
         type="text"
         id="rating"
         value={show.rating}
-        onChange={handleTextChange}
+        onChange={(event) => {handleFormInput(event, show, setShow)}}
       />
 
       <label htmlFor="listedIn">Listed in</label>
@@ -73,7 +59,7 @@ export default function ShowsForm() {
         type="text"
         id="listedIn"
         value={show.listedIn}
-        onChange={handleTextChange}
+        onChange={(event) => {handleFormInput(event, show, setShow)}}
       />
 
       <label htmlFor="duration">Duration</label>
@@ -81,7 +67,7 @@ export default function ShowsForm() {
         type="text"
         id="duration"
         value={show.duration}
-        onChange={handleTextChange}
+        onChange={(event) => {handleFormInput(event, show, setShow)}}
       />
 
       <label htmlFor="releaseYear">Release Year</label>
@@ -89,7 +75,7 @@ export default function ShowsForm() {
         type="text"
         id="releaseYear"
         value={show.releaseYear}
-        onChange={handleTextChange}
+        onChange={(event) => {handleFormInput(event, show, setShow)}}
       />
 
       <label htmlFor="country">Country</label>
@@ -97,7 +83,7 @@ export default function ShowsForm() {
         type="text"
         id="country"
         value={show.country}
-        onChange={handleTextChange}
+        onChange={(event) => {handleFormInput(event, show, setShow)}}
       />
 
       <label htmlFor="dateAdded">Date added:</label>
@@ -105,7 +91,7 @@ export default function ShowsForm() {
         type="text"
         id="dateAdded"
         value={show.dateAdded}
-        onChange={handleTextChange}
+        onChange={(event) => {handleFormInput(event, show, setShow)}}
       />
 
       <br />

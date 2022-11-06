@@ -10,6 +10,7 @@ import ShowsIndex from "./components/shows/ShowsIndex";
 import ShowsNewForm from "./components/shows/ShowsNewForm";
 import MoviesIndex from "./components/movies/MoviesIndex";
 import Movie from "./components/movies/Movie";
+import MovieForm from "./components/movies/MovieForm";
 
 function App() {
   return (
@@ -29,6 +30,8 @@ function App() {
 
           {/* route for individual movie  */}
           <Route path = "/movies/:movieId" element = {<Movie />} />
+
+          <Route path = "/movies/new" element = {<MovieForm />}/>
 
         </Routes>
         <Footer />

@@ -7,21 +7,37 @@ const URL = process.env.REACT_APP_API_BASE_URL;
 export function filterSearch(input, arr) {
   const filteredArr = arr.filter((obj) => 
   obj.title.toLowerCase().match(input.toLowerCase())
-  );
-
+  )
   return filteredArr
+}
+
+// dynamic function to handle form inputs
+export function handleFormInput(e, obj, setFunction) {
+  setFunction(
+    {...obj, [e.target.id]: e.target.value,}
+  );
+}
+
+// function to handle submit for fetch calls to create a new show/movie obj -> dynamic
+export function newFormSubmitHandle(e, obj, endpoint, navigateVar ) {
+  // submit button so prevent default
+  e.preventDefault()
+  // obj is state that holds object that is updated for each form input value typed in -> send obj in POST fetch -> and what is returned from POST fetch is the created media object, so then use id key in that new media object to navigate to that media's individual page
+  createMedia(endpoint, obj)
+  .then(resp => navigateVar(`/${endpoint}/${resp.id}`))
+  .catch(err => console.log(err) )
 }
 
 // Create
 /* using a POST fetch call to grab the form info in form -> turned from an object to JSON to pass through 'body' key in the 'options' object */
-export function createShow(obj) {
+export function createMedia(endpoint, obj) {
   const options = {
     method: "POST",
     body: JSON.stringify(obj),
     headers: { "Content-Type": "application/json" },
   };
   // resp from server is set by server, the return is the newly created show
-  return fetch(`${URL}/shows/`, options).then((resp) => resp.json()
+  return fetch(`${URL}/${endpoint}/`, options).then((resp) => resp.json()
   )
 }
 

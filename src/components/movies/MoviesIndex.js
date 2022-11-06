@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { getAllMovies, filterSearch } from "../../api/fetch";
 import ErrorMessage from "../errors/ErrorMessage";
 import MovieListing from "./MovieListing";
@@ -42,8 +43,12 @@ function handleMovieSearch(e) {
     <div>
       {error ? <ErrorMessage /> :
       <section className="shows-index-wrapper">
+        
         <h2>All Movies</h2>
-        <button>Add New Movie</button>
+        <button>
+          <Link to = "/movies/new">Add New Movie</Link> 
+          </button>
+        
         <br />
         {/* Search bar input */}
         <label htmlFor="searchMovie">
