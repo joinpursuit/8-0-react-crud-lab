@@ -1,11 +1,19 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
 import ErrorMessage from '../errors/ErrorMessage';
 import { Link } from 'react-router-dom';
 import MediaListing from './MediaListing';
 import "../shows/ShowsIndex.css";
+import { getAllMedia, filterSearch } from '../../api/fetch';
 
 function IndexPage({errorVar, endpoint, searchVar, handleSearchFunction, dataVar}) {
+
+    // Declare dynamic state to hold fetch data
+    const [data, setData] = useState()
+
+    // enpoint from `shows` -> `Shows`
     const convertEndpoint = `${endpoint.slice(0,1).toUpperCase()}${endpoint.slice(1).toLowerCase()}`
+    // endpoint from `Shows` -> `Show`
     const singleEndpoint = convertEndpoint.slice(0, convertEndpoint.length-1)
    
         

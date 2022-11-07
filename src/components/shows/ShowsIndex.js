@@ -22,7 +22,6 @@ function handleSearch(e) {
   }
   else {
     setAllShows(allShows2)
-
   }
   setSearchInput(input)
 }
