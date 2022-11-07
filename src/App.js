@@ -6,12 +6,13 @@ import Home from "./components/home/Home";
 import Nav from "./components/common/Nav";
 import Show from "./components/shows/Show";
 import ShowsEditForm from "./components/shows/ShowsEditForm";
-import ShowsIndex from "./components/shows/ShowsIndex";
+
 import ShowsNewForm from "./components/shows/ShowsNewForm";
-import MoviesIndex from "./components/movies/MoviesIndex";
+
 import Movie from "./components/movies/Movie";
 import MovieForm from "./components/movies/MovieForm";
 import EditMovieForm from "./components/movies/EditMovieForm";
+import IndexPage from "./components/reusedComponents/IndexPage";
 
 function App() {
   return (
@@ -20,14 +21,14 @@ function App() {
         <Nav />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/shows" element={<ShowsIndex />} />
+          <Route path="/shows" element={<IndexPage endpoint = {`shows`} />} />
           <Route path="/shows/new" element={<ShowsNewForm />} />
           <Route path="/shows/:id" element={<Show />} />
           <Route path="/shows/:id/edit" element={<ShowsEditForm />} />
 
           {/* Movie Routes */}
           {/* route for all movies */}
-          <Route path = "/movies" element = {<MoviesIndex />} />
+          <Route path = "/movies" element = {<IndexPage endpoint = {`movies`} />} />
 
           {/* route for individual movie  */}
           <Route path = "/movies/:movieId" element = {<Movie />} />
@@ -39,7 +40,7 @@ function App() {
           <Route path = "/movies/:movieId/edit" element = {<EditMovieForm />}/>
 
         </Routes>
-        
+
         <Footer />
       </Router>
     </div>

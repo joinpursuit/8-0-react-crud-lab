@@ -1,25 +1,49 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import ErrorMessage from '../errors/ErrorMessage';
 import { Link } from 'react-router-dom';
-import MediaListing from './MediaListing';
-import "../shows/ShowsIndex.css";
 import { getAllMedia, filterSearch } from '../../api/fetch';
+import MediaListing from './MediaListing';
+import ErrorMessage from '../errors/ErrorMessage';
+import "../shows/ShowsIndex.css";
 
-function IndexPage({errorVar, endpoint, searchVar, handleSearchFunction, dataVar}) {
+
+function IndexPage({endpoint}) {
 
     // Declare dynamic state to hold fetch data
-    const [data, setData] = useState()
+    const [data, setData] = useState([])
+    // Second set of data storage for search bar 
+    const [altData, setAltData] = useState([])
+    // State for error boolean 
+    const [error, setError] = useState(false)
+    // State for search bar input
+    const [search, setSearch] = useState("")
 
-    // enpoint from `shows` -> `Shows`
+    // function to handle Search input
+    function handleSearch(e) {
+        const input = e.target.value
+        input ? setData(filterSearch(input, altData)) : setData(altData)
+        setSearch(input)
+    }
+
+    // endpoint from `shows` -> `Shows`
     const convertEndpoint = `${endpoint.slice(0,1).toUpperCase()}${endpoint.slice(1).toLowerCase()}`
     // endpoint from `Shows` -> `Show`
     const singleEndpoint = convertEndpoint.slice(0, convertEndpoint.length-1)
    
-        
+    // useEffect to fetch data on page load
+    useEffect(() => {
+        getAllMedia(endpoint)
+        .then( respJson => {
+            setData(respJson)
+            setAltData(respJson)
+            setError(false)
+        })
+        .catch(err => setError(true))
+    }, [])
+
     return (
         <div>
-        {errorVar ? (
+        {error ? (
           <ErrorMessage />
         ) : (
           <section className="shows-index-wrapper">
@@ -33,9 +57,9 @@ function IndexPage({errorVar, endpoint, searchVar, handleSearchFunction, dataVar
               Search {convertEndpoint}:
               <input
                 type="text"
-                value={searchVar}
+                value={search}
                 id="searchTitle"
-                onChange={(event) => {handleSearchFunction(event)}}
+                onChange={(event) => {handleSearch(event)}}
               />
             </label>
             
@@ -43,7 +67,7 @@ function IndexPage({errorVar, endpoint, searchVar, handleSearchFunction, dataVar
               {/* <!-- ShowListing components -> import showListing component to map over info from fetch and return showListing Component for each show--> */}
   
               {
-                dataVar.map(({title, description, listedIn, duration, id}) => {
+                data.map(({title, description, listedIn, duration, id}) => {
                   return <MediaListing
                   title ={title} 
                   description = {description} 
