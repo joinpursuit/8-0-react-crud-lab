@@ -1,9 +1,10 @@
 import React from 'react';
 import { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from 'react-router-dom';
-import { getOneFetch, deleteMedia, convertEndpoint } from "../../api/fetch";
+import { getOneFetch, deleteMedia } from "../../api/fetch";
+import { convertEndpoint } from '../../helperFunctions';
 import ErrorMessage from '../errors/ErrorMessage';
-import "../shows/Show.css"
+import "../css/Show.css"
 
 
 function DisplayIndividualInfo({endpoint}) {

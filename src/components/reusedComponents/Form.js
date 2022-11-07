@@ -1,9 +1,10 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { handleFormInput, createMedia, newFormSubmitHandle, editMedia, getOneFetch, editFormSubmitHandle } from "../../api/fetch";
+import {  createMedia, editMedia, getOneFetch } from "../../api/fetch";
+import { handleFormInput, newFormSubmitHandle, editFormSubmitHandle } from "../../helperFunctions";
 import ErrorMessage from "../errors/ErrorMessage";
-import "../shows/ShowsForm.css"
+import "../css/ShowsForm.css"
 
 function Form({endpoint, edit}) {
   // Declare state for obj shapefor input
@@ -32,8 +33,8 @@ function Form({endpoint, edit}) {
   useEffect(() => {
     if(edit) {
       getOneFetch(id, endpoint)
-      .then(respJson => setInput(respJson)
-      .catch(err => setError(true)))
+      .then(respJson => setInput(respJson))
+      .catch(err => setError(true))
     }
   }, [id])
 

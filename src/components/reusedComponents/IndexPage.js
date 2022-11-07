@@ -1,10 +1,11 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { getAllMedia, filterSearch, convertEndpoint } from '../../api/fetch';
+import { getAllMedia } from '../../api/fetch';
+import { filterSearch, convertEndpoint } from '../../helperFunctions';
 import MediaListing from './MediaListing';
 import ErrorMessage from '../errors/ErrorMessage';
-import "../shows/ShowsIndex.css";
+import "../css/ShowsIndex.css";
 
 
 function IndexPage({endpoint}) {
