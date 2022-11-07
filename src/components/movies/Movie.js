@@ -1,44 +1,44 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { getOneMovie, destroyMovie } from '../../api/fetch';
 
 import './Movie.css';
 import ErrorMessage from '../errors/ErrorMessage';
 
-function movie() {
-
-    const [loadingError, setLoadingError] = useState(false)
-    const [movie, setMovie] = useState({})
-    
-    const { id } = useParams()
-    const navigate = useNavigate()
-
-
-    const handleDelete = (id) => {
-        destroyMovie(id)
-            .then(() => navigate("/movies"))
-            .catch(err => {
-                console.log(err)
-                setLoadingError(true)
-            })
+function Movie() {
+    const [movie, setMovie] = useState({});
+    const [error, setError] = useState(false);
+  
+    const { id } = useParams();
+    const navigate = useNavigate();
+  
+    function handleDelete(id) {
+      destroyMovie(id).then(() => {
+        navigate('/movies').catch((err) => {
+          setError(true);
+          console.log(err);
+        });
+      });
     }
-
+  
     useEffect(() => {
-        getOneMovie(id)
-            .then(res => {
-                setMovie(res)
-                if(Object.keys(res).length === 0) setLoadingError(true)
-                else setLoadingError(false)
-            })
-            .catch(err => {
-                console.log(err)
-                setLoadingError(true)
-            })
-    }, [id])
-
+      getOneMovie(id)
+        .then((response) => {
+          setMovie(response);
+          if (Object.keys(response).length === 0) {
+            setError(true);
+          } else {
+            setError(false);
+          }
+        })
+        .catch((err) => {
+          setError(true);
+        });
+    }, [id]);
+  
     return (
-        <section className="movies-movie-wrapper">
+      <section className="movies-movie-wrapper">
         <h2>{movie.title}</h2>
         <section className="movies-movie">
           {error ? (
@@ -80,4 +80,4 @@ function movie() {
     );
 }
 
-export default movie;
+export default Movie;

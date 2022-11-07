@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { getAllMovies } from "../../api/fetch";
-import "./MoviesIndex.css"
 import { Link } from "react-router-dom";
 
+import "./MoviesIndex.css"
 import ErrorMessage from "../errors/ErrorMessage";
 import MovieListing from "./MovieListing";
 
@@ -16,8 +16,8 @@ export default function MoviesIndex() {
 
   const handleTextChange = (e) => {
     const title = e.target.value
-    const results = title.length ? filterMovies(search, movies) : movieSearch
-    setMovieSearch(results)
+    const results = title.length ? filterMovies(title, movies) : movieSearch
+    setMovies(results)
     setSearch(title)
     
   }
@@ -47,7 +47,9 @@ export default function MoviesIndex() {
         ) : (
           <section className="movies-index-wrapper">
           <h2>All Movies</h2>
-          <button>Add a new movie</button>
+          <Link to="/movies/new">
+            <button>Add a new movie</button>
+          </Link>
           <br/>
           <label htmlFor="searchMovie" >
             Search Movies: 
