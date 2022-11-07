@@ -29,7 +29,7 @@ function MoviesEditForm() {
         console.log(err)
       })
   }
-  function handleTextchange(e) {
+  function handleTextChange(e) {
     setMovie({
       ...movie,
       [e.target.id]: e.target.value,
@@ -44,11 +44,85 @@ function MoviesEditForm() {
       .catch((err) => {
         console.log(err)
       })
-  }, [])
+  }, [id])
+
   return (
-    <div>
-      <h1>form</h1>
-    </div>
+    <>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="Movie title">
+          Movie Title:
+          <input
+            type="text"
+            id="title"
+            value={movie.title}
+            onChange={handleTextChange}
+          />
+        </label>
+        <label htmlFor="description">
+          Description:
+          <input
+            type="text"
+            id="description"
+            value={movie.description}
+            onChange={handleTextChange}
+          />
+        </label>
+        <label htmlFor="type">
+          Type:
+          <input
+            type="text"
+            id="type"
+            value={movie.type}
+            onChange={handleTextChange}
+          />
+        </label>
+        <label htmlFor="rating">
+          Rating:
+          <input
+            type="text"
+            id="rating"
+            value={movie.rating}
+            onChange={handleTextChange}
+          />
+        </label>
+        <label htmlFor="Listed in ">
+          Listed In:
+          <input
+            type="text"
+            id="listedIn"
+            value={movie.listedIn}
+            onChange={handleTextChange}
+          />
+        </label>
+        <label htmlFor="duration">
+          Duration:
+          <input
+            type="text"
+            id="duration"
+            value={movie.duration}
+            onChange={handleTextChange}
+          />
+        </label>
+        <label htmlFor="release Year">
+          Release Year:
+          <input
+            type="text"
+            id="releaseYear"
+            value={movie.releaseYear}
+            onChange={handleTextChange}
+          />
+        </label>
+        <label htmlFor="country">
+          Country:
+          <input
+            type="text"
+            id="country"
+            value={movie.country}
+            onChange={handleTextChange}
+          />
+        </label>
+      </form>
+    </>
   )
 }
 
