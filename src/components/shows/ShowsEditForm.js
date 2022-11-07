@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import "./ShowsForm.css";
-import { updateShow, getOneShow } from "../../api/fetch";
+import { updateShow, getOneShow, editFormSubmitHandle } from "../../api/fetch";
 import { useNavigate, useParams } from "react-router-dom";
+import Form from "../reusedComponents/Form";
 
 
 export default function ShowsForm() {
@@ -24,7 +25,7 @@ export default function ShowsForm() {
 
   function handleSubmit(e) {
     e.preventDefault()
-    updateShow(id, show)
+    updateShow(id, show, `shows`)
     .then(resp => navigate(`/shows/${resp.id}`))
     .catch(err => console.log(err))
     // can add the error component here 
@@ -43,7 +44,18 @@ export default function ShowsForm() {
     getOneShow(id)
     .then(resp => setShow(resp))
   }, [id])
+
   return (
+
+    // <Form 
+    // submitFunction = {editFormSubmitHandle}
+    // fetchFunction = {updateShow}
+    // stateVar = {show}
+    // setStateFunction = {setShow}
+    // endpoint = {`shows`}
+    // navigateVar= {navigate}
+    // paramVar = {id}
+    // />
     <form onSubmit={(event) =>handleSubmit(event)}>
       <label htmlFor="title">Title:</label>
       <input

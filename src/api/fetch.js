@@ -3,7 +3,7 @@
 // REACT_APP_API_BASE_URL="http://localhost:5001/api"
 const URL = process.env.REACT_APP_API_BASE_URL;
 
-// function to filter for search bars, dynamic
+// dynamic function to filter for search bars, 
 export function filterSearch(input, arr) {
   const filteredArr = arr.filter((obj) => 
   obj.title.toLowerCase().match(input.toLowerCase())
@@ -18,17 +18,25 @@ export function handleFormInput(e, obj, setFunction) {
   );
 }
 
-// function to handle submit for fetch calls to create a new show/movie obj -> dynamic
-export function newFormSubmitHandle(e, obj, endpoint, navigateVar ) {
+// dynamic function to handle submit for fetch calls to create a new show/movie obj -> 
+export function newFormSubmitHandle(e, obj, endpoint, navigateVar, fetchFunction) {
   // submit button so prevent default
   e.preventDefault()
   // obj is state that holds object that is updated for each form input value typed in -> send obj in POST fetch -> and what is returned from POST fetch is the created media object, so then use id key in that new media object to navigate to that media's individual page
-  createMedia(endpoint, obj)
+  fetchFunction(endpoint, obj)
   .then(resp => navigateVar(`/${endpoint}/${resp.id}`))
   .catch(err => console.log(err) )
 }
 
-// Create
+export function editFormSubmitHandle(e, obj, endpoint, navigateVar, fetchFunction, paramVar) {
+  // function needs useParam Value 
+  e.preventDefault()
+  fetchFunction(endpoint, obj, paramVar)
+  .then(resp => navigateVar(`/${endpoint}/${resp.id}`))
+  .catch(err => console.log(err) )
+}
+
+// Create -> (dynamic)
 /* using a POST fetch call to grab the form info in form -> turned from an object to JSON to pass through 'body' key in the 'options' object */
 export function createMedia(endpoint, obj) {
   const options = {
@@ -63,15 +71,15 @@ export function getOneShow(showId) {
   .then(resp => resp.json())
 }
 
-// Update
+// Update (Edit Media) -> (dynamic)
 // use a PUT fetch request to edit a show
-export function updateShow(showId, obj) {
+export function updateShow(paramVar, obj, endpoint) {
   const options = {
     method: "PUT",
     body: JSON.stringify(obj),
     headers: { "Content-Type": "application/json" },
   };
-  return fetch(`${URL}/shows/${showId}`, options).then((response) => response.json())
+  return fetch(`${URL}/${endpoint}/${paramVar}`, options).then((response) => response.json())
 }
 
 // Movies

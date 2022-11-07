@@ -1,10 +1,11 @@
 import React from "react";
+import { handleFormInput } from "../../api/fetch";
 
-function Form({newFormSubmitHandle, handleFormInput, stateVar, setStateFunction, endpoint, navigateVar}) {
+function Form({submitFunction, fetchFunction, stateVar, setStateFunction, endpoint, navigateVar}) {
   return (
     <form
       onSubmit={(event) => {
-        newFormSubmitHandle(event, stateVar, endpoint, navigateVar);
+        submitFunction(event, stateVar, endpoint, navigateVar, fetchFunction);
       }}
     >
       <label htmlFor="title">Title:</label>
