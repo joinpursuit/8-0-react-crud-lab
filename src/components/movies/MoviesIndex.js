@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { getAllMedia, filterSearch } from "../../api/fetch";
-import ErrorMessage from "../errors/ErrorMessage";
-import MovieListing from "./MovieListing";
+import IndexPage from "../reusedComponents/IndexPage";
 
 
 export default function MoviesIndex() {
@@ -40,46 +38,14 @@ function handleMovieSearch(e) {
   }, [])
 
   return(
-    <div>
-      {error ? <ErrorMessage /> :
-      <section className="shows-index-wrapper">
-        
-        <h2>All Movies</h2>
-        <button>
-          <Link to = "/movies/new">Add New Movie</Link> 
-          </button>
-        
-        <br />
-        {/* Search bar input */}
-        <label htmlFor="searchMovie">
-            Search Movies:
-            <input
-              type = "text"
-              value = {movieSearch}
-              id = "searchMovie"
-              onChange={(event) => {handleMovieSearch(event)}}
-            />
-          </label>
-
-          <section className="shows-index">
-            {/* map over movies and return a component for each film here */}
-            {
-              movies.map(({title, description, listedIn, id, rating, releaseYear }) => 
-                <MovieListing
-                key = {id}
-                id = {id}
-                title ={title}
-                description = {description}
-                category = {listedIn} 
-                rating = {rating}
-                releaseYear = {releaseYear}
-                />
-              )
-            }
-          </section>
-
-
-      </section>}
-    </div>
+    
+    <IndexPage 
+    errorVar = {error}
+    endpoint = {`movies`} 
+    searchVar = {movieSearch}
+    handleSearchFunction = {handleMovieSearch} 
+    dataVar = {movies}
+    />
+    
   ) 
 }

@@ -1,12 +1,8 @@
-import { Link } from "react-router-dom";
+
 import { useState, useEffect } from "react";
 import { getAllMedia, filterSearch } from "../../api/fetch";
 
-
-import ErrorMessage from "../errors/ErrorMessage";
-
-import "./ShowsIndex.css";
-import ShowListing from "./ShowListing";
+import IndexPage from "../reusedComponents/IndexPage";
 
 export default function ShowsIndex() {
 // create loading error state
@@ -46,41 +42,14 @@ useEffect(() => {
   })
 }, [])
   return (
-    <div>
-      {loadingError ? (
-        <ErrorMessage />
-      ) : (
-        <section className="shows-index-wrapper">
-          <h2>All Shows</h2>
-          <button>
-            <Link to="/shows/new">Add a new show</Link>
-          </button>
-          <br />
-          {/* Search bar input, to be updated with value searchInput */}
-          <label htmlFor="searchTitle">
-            Search Shows:
-            <input
-              type="text"
-              value={searchInput}
-              id="searchTitle"
-              onChange={(event) => {handleSearch(event)}}
-            />
-          </label>
-          
-          <section className="shows-index">
-            {/* <!-- ShowListing components -> import showListing component to map over info from fetch and return showListing Component for each show--> */}
-
-            {
-              allShows.map(show => {
-                return <ShowListing
-                show = {show}
-                key = {show.id} />
-              })
-            }
-          
-          </section>
-        </section>
-      )}
-    </div>
+    
+    <IndexPage 
+    errorVar = {loadingError}
+    endpoint = {`shows`} 
+    searchVar = {searchInput}
+    handleSearchFunction = {handleSearch} 
+    dataVar = {allShows}
+    />
+   
   );
 }

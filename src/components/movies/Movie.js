@@ -56,8 +56,8 @@ function Movie(props) {
         errorVar ={error} 
         paramVar = {movieId}
         deleteFunction ={handleDelete}
-        endpoint = {`movies`} />
-        
+        endpoint = {`movies`} 
+        />
     )
     
 }
