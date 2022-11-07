@@ -1,0 +1,47 @@
+.movies-movie-wrapper {
+    margin: 0 auto;
+    width: 70%;
+  }
+  
+  .movies-movie {
+    border: 1px solid var(--primary);
+    border-radius: 3px;
+    color: var(--gray);
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+  }
+  
+  .movies-movie article {
+    padding: 10px 25px;
+  }
+  
+  .movies-movie aside {
+    background: var(--primary);
+    color: var(--light);
+  }
+  
+  .movies-movie aside p {
+    display: inline-block;
+    font-size: 14px;
+    margin: 10px 25px;
+    padding: 0;
+    width: auto;
+  }
+  
+  .movies-movie aside span {
+    font-weight: bold;
+  }
+  
+  .movies-movie aside button {
+    background: none;
+    border: none;
+    color: var(--light);
+    cursor: pointer;
+    margin: 10px 25px;
+    text-decoration: underline;
+  }
+  
+  .movies-movie aside button:hover {
+    text-decoration: none;
+  }
+  
