@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { getOneFetch, deleteMedia } from "../../api/fetch";
 import "./Show.css";
-
-import ErrorMessage from "../errors/ErrorMessage";
+import DisplayIndividualInfo from '../reusedComponents/DisplayIndividualInfo'
 
 function Show() {
   const [show, setShow] = useState({});
@@ -36,47 +35,14 @@ function Show() {
   // use the id value in dependency array to fire whenever the selected show id value changes. -> id is optional param value :id
 
   return (
-    <section className="shows-show-wrapper">
-      <h2>{show.title}</h2>
-      <section className="shows-show">
-        {loadingError ? (
-          <ErrorMessage />
-        ) : (
-          <>
-            <aside>
-              <p>
-                <span>Duration:</span> {show.duration}
-              </p>
-              <p>
-                <span>Listed Categories:</span> {show.listedIn}
-              </p>
-              <p>
-                <span>Country:</span> {show.country}
-              </p>
-              <p>
-                <span>Rating:</span> {show.rating}
-              </p>
-              <p>
-                <span>Date Added:</span> {show.dateAdded}
-              </p>
-            </aside>
-            <article>
-              <p>{show.description}</p>
-            </article>
-            <aside>
-              <button className="delete" 
-              // on click trigger DELETE fetch call
-              onClick={() => handleDelete(id)}>
-                Remove show
-              </button>
-              <Link to={`/shows/${id}/edit`}>
-                <button>Edit</button>
-              </Link>
-            </aside>
-          </>
-        )}
-      </section>
-    </section>
+    
+    <DisplayIndividualInfo
+    dataVar = {show} 
+    errorVar ={loadingError} 
+    paramVar = {id}
+    deleteFunction ={handleDelete}
+    endpoint = {`shows`} />
+   
   );
 }
 

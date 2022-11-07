@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { getOneFetch, deleteMedia } from '../../api/fetch';
-import ErrorMessage from '../errors/ErrorMessage';
+import DisplayIndividualInfo from '../reusedComponents/DisplayIndividualInfo';
 
 
 function Movie(props) {
@@ -51,48 +51,13 @@ function Movie(props) {
 
 
     return (
-        <section className="shows-show-wrapper">
-            
-            <h2>{thisMovie.title}</h2>
-            
-            <section className="shows-show">
-                {
-                    error ? <ErrorMessage /> :
-                    <>
-                    <aside>
-                        <p>
-                            <span>Country: </span>
-                            {thisMovie.country ? thisMovie.country : `Unknown`}
-                        </p>
-                        <p>
-                            <span>Rating: </span>
-                            {thisMovie.rating}
-                        </p>
-                        <p>
-                            <span>Released: </span>
-                            {thisMovie.releaseYear}
-                        </p>
-                    </aside>
-
-                    <article>
-                        <p>{thisMovie.description}</p>
-                    </article>
-
-                    {/* aside with delete button and edit link */}
-                    <aside>
-                        <button className = 'delete'
-                        onClick = {() => {handleDelete()}}>Remove Movie
-                        </button>
-                        
-                        <Link to = {`/movies/${movieId}/edit`}>
-                            <button>Edit</button>
-                        </Link>
-                    </aside>
-                    </>
-            }
-            </section>
-
-        </section>
+        <DisplayIndividualInfo
+        dataVar = {thisMovie} 
+        errorVar ={error} 
+        paramVar = {movieId}
+        deleteFunction ={handleDelete}
+        endpoint = {`movies`} />
+        
     )
     
 }
