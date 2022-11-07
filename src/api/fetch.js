@@ -87,3 +87,17 @@ export function editFormSubmitHandle(e, obj, endpoint, navigateVar, fetchFunctio
   .catch(err => console.log(err) )
 }
 
+//  function to convert endpoint strings
+export function convertEndpoint (string, firstUpperCase = false, singleUpperCase = false, singleLowerCase = false) {
+  if(firstUpperCase){
+    return `${string.slice(0,1).toUpperCase()}${string.slice(1).toLowerCase()}`
+  }
+  if(singleUpperCase){
+    const upperPlural = `${string.slice(0,1).toUpperCase()}${string.slice(1).toLowerCase()}`
+    return upperPlural.slice(0, upperPlural.length-1)
+  }
+  if(singleLowerCase){
+    return string.slice(0, string.length-1).toLowerCase()
+  }
+
+}

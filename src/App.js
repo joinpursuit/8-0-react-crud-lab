@@ -13,6 +13,7 @@ import Movie from "./components/movies/Movie";
 import MovieForm from "./components/movies/MovieForm";
 import EditMovieForm from "./components/movies/EditMovieForm";
 import IndexPage from "./components/reusedComponents/IndexPage";
+import DisplayIndividualInfo from "./components/reusedComponents/DisplayIndividualInfo";
 
 function App() {
   return (
@@ -23,7 +24,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/shows" element={<IndexPage endpoint = {`shows`} />} />
           <Route path="/shows/new" element={<ShowsNewForm />} />
-          <Route path="/shows/:id" element={<Show />} />
+          <Route path="/shows/:id" element={<DisplayIndividualInfo endpoint = {`shows`} />} />
           <Route path="/shows/:id/edit" element={<ShowsEditForm />} />
 
           {/* Movie Routes */}
@@ -31,7 +32,7 @@ function App() {
           <Route path = "/movies" element = {<IndexPage endpoint = {`movies`} />} />
 
           {/* route for individual movie  */}
-          <Route path = "/movies/:movieId" element = {<Movie />} />
+          <Route path = "/movies/:id" element = {<DisplayIndividualInfo endpoint = {`movies`} />} />
 
           {/* route for new Movie Form */}
           <Route path = "/movies/new" element = {<MovieForm />}/>

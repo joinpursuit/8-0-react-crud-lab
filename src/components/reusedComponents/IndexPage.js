@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { getAllMedia, filterSearch } from '../../api/fetch';
+import { getAllMedia, filterSearch, convertEndpoint } from '../../api/fetch';
 import MediaListing from './MediaListing';
 import ErrorMessage from '../errors/ErrorMessage';
 import "../shows/ShowsIndex.css";
@@ -24,11 +24,6 @@ function IndexPage({endpoint}) {
         input ? setData(filterSearch(input, altData)) : setData(altData)
         setSearch(input)
     }
-
-    // endpoint from `shows` -> `Shows`
-    const convertEndpoint = `${endpoint.slice(0,1).toUpperCase()}${endpoint.slice(1).toLowerCase()}`
-    // endpoint from `Shows` -> `Show`
-    const singleEndpoint = convertEndpoint.slice(0, convertEndpoint.length-1)
    
     // useEffect to fetch data on page load
     useEffect(() => {
@@ -47,14 +42,14 @@ function IndexPage({endpoint}) {
           <ErrorMessage />
         ) : (
           <section className="shows-index-wrapper">
-            <h2>All {convertEndpoint}</h2>
+            <h2>All {convertEndpoint(endpoint, true, false, false)}</h2>
             <button>
-              <Link to = {`/${endpoint}/new`}>Add a new {singleEndpoint}</Link>
+              <Link to = {`/${endpoint}/new`}>Add a new {convertEndpoint(endpoint, false, true, false)}</Link>
             </button>
             <br />
             {/* Search bar input, to be updated with value searchInput */}
             <label htmlFor="searchTitle">
-              Search {convertEndpoint}:
+              Search {convertEndpoint(endpoint, true, false, false)}: 
               <input
                 type="text"
                 value={search}
