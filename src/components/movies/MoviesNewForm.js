@@ -43,18 +43,32 @@ function MoviesNewForm() {
           Title:
           <input type="text" id="title" value={movie.title} onChange={handleTextChange}/>
         </label>
-        <label htmlFor="">
-          <input type="" id="" value={} onChange={}/>
+        <label htmlFor="description">
+          Description:
+          <input type="text" id="description" value={movie.description} onChange={handleTextChange}/>
+        </label>
+        <label htmlFor="country">
+          Country:
+          <input type="text" id="" value={movie.country} onChange={handleTextChange}/>
         </label>
         <label htmlFor="">
-          <input type="" id="" value={} onChange={}/>
+      
+          <input type="text" id="" value={} onChange={handleTextChange}/>
         </label>
         <label htmlFor="">
-          <input type="" id="" value={} onChange={}/>
+          <input type="text" id="" value={} onChange={handleTextChange}/>
         </label>
         <label htmlFor="">
-          <input type="" id="" value={} onChange={}/>
+          <input type="text" id="" value={} onChange={handleTextChange}/>
         </label>
+        <label htmlFor="">
+          <input type="text" id="" value={} onChange={handleTextChange}/>
+        </label>
+        <label htmlFor="">
+          <input type="text" id="" value={} onChange={handleTextChange}/>
+        </label>
+        <br/>
+         <input type="submit"/>
       </form>
     
   )
