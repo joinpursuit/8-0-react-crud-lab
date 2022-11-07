@@ -23,7 +23,8 @@ function App() {
           <Route path="/shows" element={<IndexPage endpoint = {`shows`} />} />
           <Route path="/shows/new" element={<Form endpoint = {`shows`} />} />
           <Route path="/shows/:id" element={<DisplayIndividualInfo endpoint = {`shows`} />} />
-          <Route path="/shows/:id/edit" element={<ShowsEditForm />} />
+          {/* <Route path="/shows/:id/edit" element={<ShowsEditForm />} /> */}
+          <Route path="/shows/:id/edit" element={<Form endpoint= {`shows`} edit = {true} />} />
 
           {/* Movie Routes */}
           {/* route for all movies */}
@@ -36,7 +37,7 @@ function App() {
           <Route path = "/movies/new" element = {<Form endpoint = {`movies`} />}/>
 
           {/* route for edit individual movie */}
-          <Route path = "/movies/:movieId/edit" element = {<EditMovieForm />}/>
+          <Route path = "/movies/:id/edit" element = {<Form endpoint= {`movies`} edit = {true} />}/>
 
         </Routes>
 

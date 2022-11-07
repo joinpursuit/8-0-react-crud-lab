@@ -1,10 +1,11 @@
 import React from "react";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { handleFormInput, createMedia, newFormSubmitHandle } from "../../api/fetch";
+import { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { handleFormInput, createMedia, newFormSubmitHandle, editMedia, getOneFetch, editFormSubmitHandle } from "../../api/fetch";
+import ErrorMessage from "../errors/ErrorMessage";
 import "../shows/ShowsForm.css"
 
-function Form({submitFunction, fetchFunction, stateVar, setStateFunction, endpoint, navigateVar, paramVar}) {
+function Form({endpoint, edit}) {
   // Declare state for obj shapefor input
   const [input, setInput] = useState({
     type: "",
@@ -17,16 +18,34 @@ function Form({submitFunction, fetchFunction, stateVar, setStateFunction, endpoi
     rating: "",
     releaseYear: ""
   })
+  // Declare state for error
+  const [error, setError] = useState(false)
 
   // Declare variable for navigate -> send back to index page
   const navigate = useNavigate()
+  
+// FOR EDIT FORM CONDITIONAL -> useParams/ and fetch to set default values in form if edit prop true
+  // Declare variable for useParams for edit version
+  const {id} = useParams()
+
+  // use effect to on page load fetch for data for selected show, to be default value for the form -> dependency array based on change in show id 
+  useEffect(() => {
+    if(edit) {
+      getOneFetch(id, endpoint)
+      .then(respJson => setInput(respJson)
+      .catch(err => setError(true)))
+    }
+  }, [id])
 
 
   return (
-    <form
-      onSubmit={(event) => {!paramVar ?
+   <>
+    {
+      error ? <ErrorMessage /> :
+      <form
+      onSubmit={(event) => {!id ?
         newFormSubmitHandle(event, input, endpoint, navigate, createMedia) :
-        newFormSubmitHandle(event, stateVar, endpoint, navigateVar, fetchFunction, paramVar)
+        editFormSubmitHandle(event, input, endpoint, navigate, editMedia, id)
       }}
     >
       <label htmlFor="title">Title:</label>
@@ -123,6 +142,9 @@ function Form({submitFunction, fetchFunction, stateVar, setStateFunction, endpoi
 
       <input type="submit" />
     </form>
+    }
+   </>
+    
   );
 }
 
