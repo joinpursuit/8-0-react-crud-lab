@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import {  createMedia, editMedia, getOneFetch } from "../../api/fetch";
-import { handleFormInput, newFormSubmitHandle, editFormSubmitHandle } from "../../helperFunctions";
+import { handleFormInput, formSubmitHandle, editFormSubmitHandle } from "../../helperFunctions";
 import ErrorMessage from "../errors/ErrorMessage";
 import "../css/ShowsForm.css"
 
@@ -45,8 +45,8 @@ function Form({endpoint, edit}) {
       error ? <ErrorMessage /> :
       <form
       onSubmit={(event) => {!id ?
-        newFormSubmitHandle(event, input, endpoint, navigate, createMedia) :
-        editFormSubmitHandle(event, input, endpoint, navigate, editMedia, id)
+        formSubmitHandle(event, input, endpoint, navigate, createMedia) :
+        formSubmitHandle(event, input, endpoint, navigate, editMedia, id)
       }}
     >
       <label htmlFor="title">Title:</label>
