@@ -123,7 +123,12 @@ function MoviesEditForm() {
         </label>
         <label htmlFor="date added">
           Date added:
-          <input />
+          <input
+            type="text"
+            id="date added"
+            value={movie.dateAdded}
+            onChange={handleTextChange}
+          />
         </label>
       </form>
     </>
