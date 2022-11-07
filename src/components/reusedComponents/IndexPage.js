@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { Link,Outlet } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { getAllMedia } from '../../api/fetch';
 import { filterSearch, convertEndpoint } from '../../helperFunctions';
 import MediaListing from './MediaListing';
@@ -39,7 +39,7 @@ function IndexPage({endpoint}) {
 
     return (
         <div>
-            {/* <Outlet> */}
+            
         {error ? (
           <ErrorMessage />
         ) : (
@@ -79,7 +79,7 @@ function IndexPage({endpoint}) {
             </section>
           </section>
         )}
-        {/* </Outlet> */}
+        
       </div>
     );
 }
