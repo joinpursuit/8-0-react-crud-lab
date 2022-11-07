@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import "../shows/ShowListing.css"
+import "../css/ShowListing.css"
 
 function MediaListing({title, description, listedIn, duration, id, endpoint }) {
     return (

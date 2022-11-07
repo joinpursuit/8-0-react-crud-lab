@@ -4,14 +4,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Footer from "./components/common/Footer";
 import Home from "./components/home/Home";
 import Nav from "./components/common/Nav";
-import Show from "./components/shows/Show";
-import ShowsEditForm from "./components/shows/ShowsEditForm";
-import ShowsIndex from "./components/shows/ShowsIndex";
-import ShowsNewForm from "./components/shows/ShowsNewForm";
-import MoviesIndex from "./components/movies/MoviesIndex";
-import Movie from "./components/movies/Movie";
-import MovieForm from "./components/movies/MovieForm";
-import EditMovieForm from "./components/movies/EditMovieForm";
+import IndexPage from "./components/reusedComponents/IndexPage";
+import DisplayIndividualInfo from "./components/reusedComponents/DisplayIndividualInfo";
+import Form from "./components/reusedComponents/Form";
 
 function App() {
   return (
@@ -20,27 +15,28 @@ function App() {
         <Nav />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/shows" element={<ShowsIndex />} />
-          <Route path="/shows/new" element={<ShowsNewForm />} />
-          <Route path="/shows/:id" element={<Show />} />
-          <Route path="/shows/:id/edit" element={<ShowsEditForm />} />
 
-          {/* Movie Routes */}
+          {/* SHOWS ROUTES */}
+          <Route path="/shows" element={<IndexPage endpoint = {`shows`} />} />
+          <Route path="/shows/new" element={<Form endpoint = {`shows`} />} />
+          <Route path="/shows/:id" element={<DisplayIndividualInfo endpoint = {`shows`} />} />
+          <Route path="/shows/:id/edit" element={<Form endpoint= {`shows`} edit = {true} />} />
+
+          {/* MOVIE ROUTES*/}
           {/* route for all movies */}
-          <Route path = "/movies" element = {<MoviesIndex />} />
-
-          {/* route for individual movie  */}
-          <Route path = "/movies/:movieId" element = {<Movie />} />
-
+          <Route path = "/movies" element = {<IndexPage endpoint = {`movies`} />} />
           {/* route for new Movie Form */}
-          <Route path = "/movies/new" element = {<MovieForm />}/>
-
+          <Route path = "/movies/new" element = {<Form endpoint = {`movies`} />}/>
+          {/* route for individual movie  */}
+          <Route path = "/movies/:id" element = {<DisplayIndividualInfo endpoint = {`movies`} />} />
           {/* route for edit individual movie */}
-          <Route path = "/movies/:movieId/edit" element = {<EditMovieForm />}/>
+          <Route path = "/movies/:id/edit" element = {<Form endpoint= {`movies`} edit = {true} />}/>
+        
 
         </Routes>
-        
+
         <Footer />
+
       </Router>
     </div>
   );

@@ -1,21 +1,61 @@
 import React from "react";
-import { handleFormInput } from "../../api/fetch";
+import { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import {  createMedia, editMedia, getOneFetch } from "../../api/fetch";
+import { handleFormInput, newFormSubmitHandle, editFormSubmitHandle } from "../../helperFunctions";
+import ErrorMessage from "../errors/ErrorMessage";
+import "../css/ShowsForm.css"
 
-function Form({submitFunction, fetchFunction, stateVar, setStateFunction, endpoint, navigateVar, paramVar}) {
+function Form({endpoint, edit}) {
+  // Declare state for obj shapefor input
+  const [input, setInput] = useState({
+    type: "",
+    title: "",
+    country: "",
+    dateAdded: "",
+    description: "",
+    duration: "",
+    listedIn: "",
+    rating: "",
+    releaseYear: ""
+  })
+  // Declare state for error
+  const [error, setError] = useState(false)
+
+  // Declare variable for navigate -> send back to index page
+  const navigate = useNavigate()
+  
+// FOR EDIT FORM CONDITIONAL -> useParams/ and fetch to set default values in form if edit prop true
+  // Declare variable for useParams for edit version
+  const {id} = useParams()
+
+  // use effect to on page load fetch for data for selected show, to be default value for the form -> dependency array based on change in show id 
+  useEffect(() => {
+    if(edit) {
+      getOneFetch(id, endpoint)
+      .then(respJson => setInput(respJson))
+      .catch(err => setError(true))
+    }
+  }, [id])
+
+
   return (
-    <form
-      onSubmit={(event) => {!paramVar ?
-        submitFunction(event, stateVar, endpoint, navigateVar, fetchFunction) :
-        submitFunction(event, stateVar, endpoint, navigateVar, fetchFunction, paramVar)
+   <>
+    {
+      error ? <ErrorMessage /> :
+      <form
+      onSubmit={(event) => {!id ?
+        newFormSubmitHandle(event, input, endpoint, navigate, createMedia) :
+        editFormSubmitHandle(event, input, endpoint, navigate, editMedia, id)
       }}
     >
       <label htmlFor="title">Title:</label>
       <input
         type="text"
         id="title"
-        value={stateVar.title}
+        value={input.title}
         onChange={(event) => {
-          handleFormInput(event, stateVar, setStateFunction);
+          handleFormInput(event, input, setInput);
         }}
       />
 
@@ -23,9 +63,9 @@ function Form({submitFunction, fetchFunction, stateVar, setStateFunction, endpoi
       <input
         type="text"
         id="description"
-        value={stateVar.description}
+        value={input.description}
         onChange={(event) => {
-          handleFormInput(event, stateVar, setStateFunction);
+          handleFormInput(event, input, setInput);
         }}
       />
 
@@ -33,9 +73,9 @@ function Form({submitFunction, fetchFunction, stateVar, setStateFunction, endpoi
       <input
         type="text"
         id="type"
-        value={stateVar.type}
+        value={input.type}
         onChange={(event) => {
-          handleFormInput(event, stateVar, setStateFunction);
+          handleFormInput(event, input, setInput);
         }}
       />
 
@@ -43,9 +83,9 @@ function Form({submitFunction, fetchFunction, stateVar, setStateFunction, endpoi
       <input
         type="text"
         id="rating"
-        value={stateVar.rating}
+        value={input.rating}
         onChange={(event) => {
-          handleFormInput(event, stateVar, setStateFunction);
+          handleFormInput(event, input, setInput);
         }}
       />
 
@@ -53,9 +93,9 @@ function Form({submitFunction, fetchFunction, stateVar, setStateFunction, endpoi
       <input
         type="text"
         id="listedIn"
-        value={stateVar.listedIn}
+        value={input.listedIn}
         onChange={(event) => {
-          handleFormInput(event, stateVar, setStateFunction);
+          handleFormInput(event, input, setInput);
         }}
       />
 
@@ -63,9 +103,9 @@ function Form({submitFunction, fetchFunction, stateVar, setStateFunction, endpoi
       <input
         type="text"
         id="duration"
-        value={stateVar.duration}
+        value={input.duration}
         onChange={(event) => {
-          handleFormInput(event, stateVar, setStateFunction);
+          handleFormInput(event, input, setInput);
         }}
       />
 
@@ -73,9 +113,9 @@ function Form({submitFunction, fetchFunction, stateVar, setStateFunction, endpoi
       <input
         type="text"
         id="releaseYear"
-        value={stateVar.releaseYear}
+        value={input.releaseYear}
         onChange={(event) => {
-          handleFormInput(event, stateVar, setStateFunction);
+          handleFormInput(event, input, setInput);
         }}
       />
 
@@ -83,9 +123,9 @@ function Form({submitFunction, fetchFunction, stateVar, setStateFunction, endpoi
       <input
         type="text"
         id="country"
-        value={stateVar.country}
+        value={input.country}
         onChange={(event) => {
-          handleFormInput(event, stateVar, setStateFunction);
+          handleFormInput(event, input, setInput);
         }}
       />
 
@@ -93,9 +133,9 @@ function Form({submitFunction, fetchFunction, stateVar, setStateFunction, endpoi
       <input
         type="text"
         id="dateAdded"
-        value={stateVar.dateAdded}
+        value={input.dateAdded}
         onChange={(event) => {
-          handleFormInput(event, stateVar, setStateFunction);
+          handleFormInput(event, input, setInput);
         }}
       />
 
@@ -103,6 +143,9 @@ function Form({submitFunction, fetchFunction, stateVar, setStateFunction, endpoi
 
       <input type="submit" />
     </form>
+    }
+   </>
+    
   );
 }
 
