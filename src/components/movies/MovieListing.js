@@ -1,3 +1,3 @@
 export default function MovieListing() {
-  return;
+  return <p>Movie Listing</p>;
 }

@@ -1,0 +1,16 @@
+#movie-listing {
+  display: grid;
+  padding: 4px 20px;
+  grid-template-rows: auto auto 1fr;
+}
+
+.movies-elements {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
+
+.movies-elements label {
+  margin: 0 auto;
+}
