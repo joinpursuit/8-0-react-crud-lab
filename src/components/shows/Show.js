@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import { getOneShow, destroyShow } from "../../api/fetch";
+import { getOneFetch, destroyShow } from "../../api/fetch";
 import "./Show.css";
 
 import ErrorMessage from "../errors/ErrorMessage";
@@ -21,7 +21,7 @@ function Show() {
 
   // Object.keys to get an array of the object's key values. If the array's length is 0 (no keys), it is an empty object.
   useEffect(() => {
-    getOneShow(id).then(respJson => {
+    getOneFetch(id, `shows`).then(respJson => {
       setShow(respJson)
 
       if(Object.keys(respJson).length === 0){

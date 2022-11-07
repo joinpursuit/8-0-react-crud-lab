@@ -11,6 +11,7 @@ import ShowsNewForm from "./components/shows/ShowsNewForm";
 import MoviesIndex from "./components/movies/MoviesIndex";
 import Movie from "./components/movies/Movie";
 import MovieForm from "./components/movies/MovieForm";
+import EditMovieForm from "./components/movies/EditMovieForm";
 
 function App() {
   return (
@@ -31,7 +32,11 @@ function App() {
           {/* route for individual movie  */}
           <Route path = "/movies/:movieId" element = {<Movie />} />
 
+          {/* route for new Movie Form */}
           <Route path = "/movies/new" element = {<MovieForm />}/>
+
+          {/* route for edit individual movie */}
+          <Route path = "/movies/:movieId/edit" element = {<EditMovieForm />}/>
 
         </Routes>
         <Footer />

@@ -64,10 +64,10 @@ export function getAllShows() {
 
 }
 
-// Show/Get one
+// Show/Get one (dynamic)
 // fetch call to get data from specific show /show/:id -> id value is parameter
-export function getOneShow(showId) {
-  return fetch(`${URL}/shows/${showId}`)
+export function getOneFetch(paramVar, endpoint) {
+  return fetch(`${URL}/${endpoint}/${paramVar}`)
   .then(resp => resp.json())
 }
 

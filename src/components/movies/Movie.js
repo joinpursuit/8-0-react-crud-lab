@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { getByMovieId, deleteMovie } from '../../api/fetch';
+import { getOneFetch, deleteMovie } from '../../api/fetch';
 import ErrorMessage from '../errors/ErrorMessage';
 
 
@@ -35,7 +35,7 @@ function Movie(props) {
         -> use param variable as arg for fetch 
         -> dependency array based on change in movieId (param)  */
     useEffect(() => {
-        getByMovieId(movieId)
+        getOneFetch(movieId, `movies`)
         .then(respJson =>{
             setThisMovie(respJson)
 
