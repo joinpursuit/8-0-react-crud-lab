@@ -39,6 +39,7 @@ function App() {
           <Route path = "/movies/:movieId/edit" element = {<EditMovieForm />}/>
 
         </Routes>
+        
         <Footer />
       </Router>
     </div>

@@ -26,7 +26,7 @@ export function deleteMedia(paramVar, endpoint) {
 
 // DYNAMIC EDIT/UPDATE FETCH CALL FUNCTION (shows/movies)
 // use a PUT fetch request to edit a show
-export function updateMedia(endpoint, obj, paramVar) {
+export function editMedia(endpoint, obj, paramVar) {
   const options = {
     method: "PUT",
     body: JSON.stringify(obj),
@@ -47,11 +47,10 @@ export function getOneFetch(paramVar, endpoint) {
 export function getAllMedia(endpoint) {
   return fetch(`${URL}/${endpoint}`)
   .then(resp => resp.json())
-
 }
 
 /* REUSED DYNAMIC FUNCTIONS FOR BOTH SHOW AND MOVIE COMPONENTS
-    - in future would move to separate reused function file
+    - in future would move to separate reused/helper function file
      */
 
 // dynamic function to filter for ALL search bars, 

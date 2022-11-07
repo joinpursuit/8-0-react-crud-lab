@@ -1,7 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Movie from './Movie';
 import Form from '../reusedComponents/Form';
 import { createMedia, newFormSubmitHandle } from '../../api/fetch';
 
@@ -26,10 +25,10 @@ description: "",
         <Form 
         submitFunction = {newFormSubmitHandle}
         fetchFunction = {createMedia}
-         stateVar = {newMovie}
-         setStateFunction = {setNewMovie}
-         endpoint = {`movies`}
-         navigateVar= {navigate}
+        stateVar = {newMovie}
+        setStateFunction = {setNewMovie}
+        endpoint = {`movies`}
+        navigateVar= {navigate}
         />
    
     );

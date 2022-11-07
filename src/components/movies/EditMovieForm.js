@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Form from '../reusedComponents/Form';
-import { editFormSubmitHandle, updateMedia, getOneFetch } from '../../api/fetch';
+import { editFormSubmitHandle, editMedia, getOneFetch } from '../../api/fetch';
 
 
 function EditMovieForm(props) {
@@ -31,13 +31,12 @@ function EditMovieForm(props) {
     return (
         <Form 
         submitFunction = {editFormSubmitHandle}
-        fetchFunction = {updateMedia}
+        fetchFunction = {editMedia}
         stateVar = {editMovie}
         setStateFunction = {setEditMovie}
         endpoint = {`movies`}
         navigateVar= {navigate}
         paramVar = {movieId}
-        key = {movieId}
     />
     );
 }

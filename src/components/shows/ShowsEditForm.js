@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "./ShowsForm.css";
-import { updateMedia, getOneFetch, editFormSubmitHandle } from "../../api/fetch";
+import { editMedia, getOneFetch, editFormSubmitHandle } from "../../api/fetch";
 import { useNavigate, useParams } from "react-router-dom";
 import Form from "../reusedComponents/Form";
 
@@ -33,13 +33,12 @@ export default function ShowsForm() {
 
     <Form 
     submitFunction = {editFormSubmitHandle}
-    fetchFunction = {updateMedia}
+    fetchFunction = {editMedia}
     stateVar = {show}
     setStateFunction = {setShow}
     endpoint = {`shows`}
     navigateVar= {navigate}
     paramVar = {id}
-    key = {id}
     />
    
   );
