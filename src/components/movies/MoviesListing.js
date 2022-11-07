@@ -1,22 +1,23 @@
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import "./ShowListing.css";
 
-export default function ShowListing({ show }) {
+import "./MoviesListing.css";
+
+export default function MoviesListing({ movie }) {
   const { id } = useParams();
   return (
-    <article className="show">
+    <article className="movie">
       <h3 className="title">
-        <Link to={`/shows/${show.id}`}>{show.title}</Link>
+        <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
       </h3>
-      <p className="description">{show.description}</p>
+      <p className="description">{movie.description}</p>
       <aside className="details">
         <p>
           <span>Listed Categories:</span>
-          {show.listedIn}
+          {movie.listedIn}
         </p>
         <p>
-          <span>Duration:</span> {show.duration}
+          <span>Duration:</span> {movie.duration}
         </p>
       </aside>
     </article>
