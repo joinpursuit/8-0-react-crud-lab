@@ -1,5 +1,6 @@
+//image imported for homep page
 import hero from "../../assets/denise-jans-Lq6rcifGjOU-unsplash.jpg";
-
+/**the home page renders an image and photo credits */
 export default function Home() {
   return (
     <div>

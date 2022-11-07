@@ -1,4 +1,4 @@
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 import "./ShowListing.css";
 
 export default function ShowListing({ show }) {
@@ -20,3 +20,7 @@ export default function ShowListing({ show }) {
     </article>
   );
 }
+//similar to birdCard/student card show listing takes data
+//takes show as a prop and display that corresponsind information
+
+//show is used as a property name to access the data gathered in show comp
