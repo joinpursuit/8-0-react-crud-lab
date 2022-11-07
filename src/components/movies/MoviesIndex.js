@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { getAllMovies } from "../../api/fetch";
+import "./MoviesIndex.css"
 import { Link } from "react-router-dom";
 
 import ErrorMessage from "../errors/ErrorMessage";
