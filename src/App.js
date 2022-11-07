@@ -4,16 +4,14 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Footer from "./components/common/Footer";
 import Home from "./components/home/Home";
 import Nav from "./components/common/Nav";
-import Show from "./components/shows/Show";
+
 import ShowsEditForm from "./components/shows/ShowsEditForm";
 
-import ShowsNewForm from "./components/shows/ShowsNewForm";
 
-import Movie from "./components/movies/Movie";
-import MovieForm from "./components/movies/MovieForm";
 import EditMovieForm from "./components/movies/EditMovieForm";
 import IndexPage from "./components/reusedComponents/IndexPage";
 import DisplayIndividualInfo from "./components/reusedComponents/DisplayIndividualInfo";
+import Form from "./components/reusedComponents/Form";
 
 function App() {
   return (
@@ -23,7 +21,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/shows" element={<IndexPage endpoint = {`shows`} />} />
-          <Route path="/shows/new" element={<ShowsNewForm />} />
+          <Route path="/shows/new" element={<Form endpoint = {`shows`} />} />
           <Route path="/shows/:id" element={<DisplayIndividualInfo endpoint = {`shows`} />} />
           <Route path="/shows/:id/edit" element={<ShowsEditForm />} />
 
@@ -35,7 +33,7 @@ function App() {
           <Route path = "/movies/:id" element = {<DisplayIndividualInfo endpoint = {`movies`} />} />
 
           {/* route for new Movie Form */}
-          <Route path = "/movies/new" element = {<MovieForm />}/>
+          <Route path = "/movies/new" element = {<Form endpoint = {`movies`} />}/>
 
           {/* route for edit individual movie */}
           <Route path = "/movies/:movieId/edit" element = {<EditMovieForm />}/>
