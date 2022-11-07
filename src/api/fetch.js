@@ -73,7 +73,7 @@ export function getOneShow(showId) {
 
 // Update (Edit Media) -> (dynamic)
 // use a PUT fetch request to edit a show
-export function updateShow(paramVar, obj, endpoint) {
+export function updateMedia(endpoint, obj, paramVar) {
   const options = {
     method: "PUT",
     body: JSON.stringify(obj),
