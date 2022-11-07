@@ -3,7 +3,58 @@
 // REACT_APP_API_BASE_URL="http://localhost:5001/api"
 const URL = process.env.REACT_APP_API_BASE_URL;
 
-// dynamic function to filter for search bars, 
+
+// DYNAMIC CREATE MEDIA FETCH CALL FUNCTION (shows/movies)
+/* using a POST fetch call to grab the form info in form -> turned from an object to JSON to pass through 'body' key in the 'options' object */
+export function createMedia(endpoint, obj) {
+  const options = {
+    method: "POST",
+    body: JSON.stringify(obj),
+    headers: { "Content-Type": "application/json" },
+  };
+  // resp from server is set by server, the return is the newly created show
+  return fetch(`${URL}/${endpoint}/`, options).then((resp) => resp.json()
+  )
+}
+
+// DYNAMIC DELETE MEDIA FETCH CALL FUNCTION (show/movies)
+// make a DELETE request in the fetch, by default it's GET (like been using), so have to specify change in request type
+export function deleteMedia(paramVar, endpoint) {
+  const reqType = {method: 'DELETE'}
+  return fetch(`${URL}/${endpoint}/${paramVar}`, reqType)
+}
+
+// DYNAMIC EDIT/UPDATE FETCH CALL FUNCTION (shows/movies)
+// use a PUT fetch request to edit a show
+export function updateMedia(endpoint, obj, paramVar) {
+  const options = {
+    method: "PUT",
+    body: JSON.stringify(obj),
+    headers: { "Content-Type": "application/json" },
+  };
+  return fetch(`${URL}/${endpoint}/${paramVar}`, options).then((response) => response.json())
+}
+
+// DYNAMIC GET ONE OBJECT FETCH CALL USING PARAMS (shows/movies)
+// fetch call to get data from specific show /show/:id -> id value is parameter
+export function getOneFetch(paramVar, endpoint) {
+  return fetch(`${URL}/${endpoint}/${paramVar}`)
+  .then(resp => resp.json())
+}
+
+// Index/Get all
+// use 'URL' in showIndex to get all shows -> this will be fetch function for endpoint /shows -> 2nd .then() is where decide what to do with respJson so that will be done in component
+export function getAllMedia(endpoint) {
+  return fetch(`${URL}/${endpoint}`)
+  .then(resp => resp.json())
+
+}
+
+/* REUSED DYNAMIC FUNCTIONS FOR BOTH SHOW AND MOVIE COMPONENTS
+    - in future would move to separate reused function file
+     */
+
+// dynamic function to filter for ALL search bars, 
 export function filterSearch(input, arr) {
   const filteredArr = arr.filter((obj) => 
   obj.title.toLowerCase().match(input.toLowerCase())
@@ -11,7 +62,7 @@ export function filterSearch(input, arr) {
   return filteredArr
 }
 
-// dynamic function to handle form inputs
+// dynamic function to handle ALL form inputs
 export function handleFormInput(e, obj, setFunction) {
   setFunction(
     {...obj, [e.target.id]: e.target.value,}
@@ -28,76 +79,12 @@ export function newFormSubmitHandle(e, obj, endpoint, navigateVar, fetchFunction
   .catch(err => console.log(err) )
 }
 
+// Function for EDIT FORM SUBMIT HANDLE (USEPARAMS VARIABLE NEEDED)
 export function editFormSubmitHandle(e, obj, endpoint, navigateVar, fetchFunction, paramVar) {
   // function needs useParam Value 
   e.preventDefault()
   fetchFunction(endpoint, obj, paramVar)
   .then(resp => navigateVar(`/${endpoint}/${resp.id}`))
   .catch(err => console.log(err) )
-}
-
-// Create -> (dynamic)
-/* using a POST fetch call to grab the form info in form -> turned from an object to JSON to pass through 'body' key in the 'options' object */
-export function createMedia(endpoint, obj) {
-  const options = {
-    method: "POST",
-    body: JSON.stringify(obj),
-    headers: { "Content-Type": "application/json" },
-  };
-  // resp from server is set by server, the return is the newly created show
-  return fetch(`${URL}/${endpoint}/`, options).then((resp) => resp.json()
-  )
-}
-
-// Delete
-// make a DELETE request in the fetch, by default it's GET (like been using), so have to specify change in request type
-export function destroyShow(id) {
-  const reqType = {method: 'DELETE'}
-  return fetch(`${URL}/shows/${id}`, reqType)
-}
-
-// Index/Get all
-// use 'URL' in showIndex to get all shows -> this will be fetch function for endpoint /shows -> 2nd .then() is where decide what to do with respJson so that will be done in component
-export function getAllShows() {
-  return fetch(`${URL}/shows`)
-  .then(resp => resp.json())
-
-}
-
-// Show/Get one (dynamic)
-// fetch call to get data from specific show /show/:id -> id value is parameter
-export function getOneFetch(paramVar, endpoint) {
-  return fetch(`${URL}/${endpoint}/${paramVar}`)
-  .then(resp => resp.json())
-}
-
-// Update (Edit Media) -> (dynamic)
-// use a PUT fetch request to edit a show
-export function updateMedia(endpoint, obj, paramVar) {
-  const options = {
-    method: "PUT",
-    body: JSON.stringify(obj),
-    headers: { "Content-Type": "application/json" },
-  };
-  return fetch(`${URL}/${endpoint}/${paramVar}`, options).then((response) => response.json())
-}
-
-// Movies
-// fetch for all movies -> movieIndex page
-export function getAllMovies() {
-  return fetch(`${URL}/movies`)
-  .then(resp => resp.json())
-}
-
-// function for fetch with movie id endpoint -> movie page
-export function getByMovieId (value) {
-  return fetch(`${URL}/movies/${value}`)
-  .then(resp => resp.json())
-}
-
-// function to remove movie via fetch
-export function deleteMovie(value) {
-  const reqType = {method: 'DELETE'}
-  return fetch(`${URL}/movies/${value}`, reqType)
 }
 

@@ -39,6 +39,7 @@ export default function ShowsForm() {
     endpoint = {`shows`}
     navigateVar= {navigate}
     paramVar = {id}
+    key = {id}
     />
    
   );

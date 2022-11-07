@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import { getOneFetch, destroyShow } from "../../api/fetch";
+import { getOneFetch, deleteMedia } from "../../api/fetch";
 import "./Show.css";
 
 import ErrorMessage from "../errors/ErrorMessage";
@@ -13,8 +13,8 @@ function Show() {
   // when show is deleted, want to send user back to shows index page -> useNavigate
   const navigate = useNavigate()
 
-  function handleDelete(value) {
-    destroyShow(value)
+  function handleDelete() {
+    deleteMedia(id, `shows`)
     .then(() => navigate("/shows"))
     .catch(err => setLoadingError(true))
   }
@@ -66,7 +66,7 @@ function Show() {
             <aside>
               <button className="delete" 
               // on click trigger DELETE fetch call
-              onClick={() => handleDelete(show.id)}>
+              onClick={() => handleDelete(id)}>
                 Remove show
               </button>
               <Link to={`/shows/${id}/edit`}>

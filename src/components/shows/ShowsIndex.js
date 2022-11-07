@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { getAllShows, filterSearch } from "../../api/fetch";
+import { getAllMedia, filterSearch } from "../../api/fetch";
 
 
 import ErrorMessage from "../errors/ErrorMessage";
@@ -34,7 +34,7 @@ function handleSearch(e) {
 
 // use effect to fetch data on page load
 useEffect(() => {
-  getAllShows()
+  getAllMedia(`shows`)
   .then(respJson => {
     // set allshows2 to resp from fetch as well
     setAllShows2(respJson)

@@ -3,7 +3,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Form from '../reusedComponents/Form';
 import { editFormSubmitHandle, updateMedia, getOneFetch } from '../../api/fetch';
-import ErrorMessage from '../errors/ErrorMessage';
 
 
 function EditMovieForm(props) {
@@ -25,7 +24,7 @@ function EditMovieForm(props) {
     useEffect(() => {
         getOneFetch(movieId, `movies`)
         .then(resp => setEditMovie(resp))
-        .catch(err => <ErrorMessage /> )
+        .catch(err => console.log(err))
     }, [movieId])
 
 
@@ -38,6 +37,7 @@ function EditMovieForm(props) {
         endpoint = {`movies`}
         navigateVar= {navigate}
         paramVar = {movieId}
+        key = {movieId}
     />
     );
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { getOneFetch, deleteMovie } from '../../api/fetch';
+import { getOneFetch, deleteMedia } from '../../api/fetch';
 import ErrorMessage from '../errors/ErrorMessage';
 
 
@@ -24,8 +24,8 @@ function Movie(props) {
     const navigate = useNavigate()
 
     // onClick function for delete movie
-    function handleDelete(value) {
-        deleteMovie(value)
+    function handleDelete() {
+        deleteMedia(movieId, `movies`)
         .then(() => navigate("/movies"))
         .catch(err => setError(true))
     }
@@ -49,6 +49,7 @@ function Movie(props) {
         .catch(err => setError(true))
     }, [movieId]) 
 
+
     return (
         <section className="shows-show-wrapper">
             
@@ -56,7 +57,7 @@ function Movie(props) {
             
             <section className="shows-show">
                 {
-                    error? <ErrorMessage /> :
+                    error ? <ErrorMessage /> :
                     <>
                     <aside>
                         <p>
@@ -80,7 +81,7 @@ function Movie(props) {
                     {/* aside with delete button and edit link */}
                     <aside>
                         <button className = 'delete'
-                        onClick = {() => {handleDelete(movieId)}}>Remove Movie
+                        onClick = {() => {handleDelete()}}>Remove Movie
                         </button>
                         
                         <Link to = {`/movies/${movieId}/edit`}>

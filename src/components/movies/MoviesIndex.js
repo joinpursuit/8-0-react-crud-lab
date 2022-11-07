@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getAllMovies, filterSearch } from "../../api/fetch";
+import { getAllMedia, filterSearch } from "../../api/fetch";
 import ErrorMessage from "../errors/ErrorMessage";
 import MovieListing from "./MovieListing";
 
@@ -31,7 +31,7 @@ function handleMovieSearch(e) {
 
   //  use Effect to call fetch on page load
   useEffect(() => {
-    getAllMovies()
+    getAllMedia(`movies`)
     .then(respJson => {
       setMovies(respJson)
       setMovieSearchData(respJson)
