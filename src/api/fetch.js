@@ -1,4 +1,4 @@
-// Shows
+// Shows + Movies API URL
 const URL = process.env.REACT_APP_API_BASE_URL;
 
 // Create
@@ -22,6 +22,10 @@ export function getAllShows() {
   return fetch(`${URL}/shows`).then((res) => res.json());
 }
 
+export function getAll(media) {
+  return fetch(`${URL}/${media}`).then((res) => res.json());
+}
+
 // Show/Get one
 export function getOneShow(id) {
   return fetch(`${URL}/shows/${id}`).then((res) => res.json());
@@ -35,10 +39,4 @@ export function updateShow(id, show) {
     headers: { "Content-Type": "application/json" },
   };
   return fetch(`${URL}/shows/${id}`, options).then((res) => res.json());
-}
-
-// Movies
-
-export function getAllMovies() {
-  return;
 }
