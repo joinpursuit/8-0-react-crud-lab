@@ -1,6 +1,6 @@
 import React from "react"
 import { useState, useEffect } from "react"
-import { useNavigate, useParams } from "react"
+import { useNavigate, useParams } from "react-router-dom"
 
 import { editMovie, getOneMovie } from "../../api/fetch"
 
