@@ -130,6 +130,7 @@ function MoviesEditForm() {
             onChange={handleTextChange}
           />
         </label>
+        <input type="submit" />
       </form>
     </>
   )
