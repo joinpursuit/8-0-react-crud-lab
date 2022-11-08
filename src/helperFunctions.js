@@ -22,7 +22,7 @@ export function filterSearch(input, arr) {
     // obj is state that holds object that is updated for each form input value typed in -> send obj in POST fetch -> and what is returned from POST fetch is the created media object, so then use id key in that new media object to navigate to that media's individual page
 
     // conditional if paramVar is true (diff between creating/editing new show/movie)
-    const fetchData = !paramVar ? fetchFunction(endpoint, obj) :fetchFunction(endpoint, obj, paramVar)
+    const fetchData = !paramVar ? fetchFunction(endpoint, obj) : fetchFunction(endpoint, obj, paramVar)
     
     fetchData.then(resp => navigateVar(`/${endpoint}/${resp.id}`))
     .catch(err => console.log(err) )

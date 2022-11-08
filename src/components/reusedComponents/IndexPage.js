@@ -9,7 +9,6 @@ import "../css/ShowsIndex.css";
 
 
 function IndexPage({endpoint}) {
-
     // Declare dynamic state to hold fetch data
     const [data, setData] = useState([])
     // Second set of data storage for search bar 
@@ -35,7 +34,8 @@ function IndexPage({endpoint}) {
             setError(false)
         })
         .catch(err => setError(true))
-    }, [])
+    }, [endpoint])
+    
 
     return (
         <div>
