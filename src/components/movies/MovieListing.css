@@ -1,10 +1,10 @@
 .movie-listing {
-  border: 2px solid green;
+  border: 2px solid blueviolet;
   border-radius: 5px;
   display: grid;
-  grid-template-rows: 1fr 1fr auto auto auto;
+  grid-template-rows: 1fr 1fr;
   padding: 10px;
-  background-image: linear-gradient(to bottom right, #f7f591, #C2C038);
+  background-image: linear-gradient(to bottom right, #f7f591, #c2c038);
   box-shadow: 5px 5px rgba(10, 20, 30, 0.3);
 }
 .movie-listing p {
@@ -16,7 +16,7 @@
 
 .movie-listing h3 {
   text-decoration: underline;
-  color: blue;
+  color: blueviolet;
 }
 
 .movie-listing hr {
