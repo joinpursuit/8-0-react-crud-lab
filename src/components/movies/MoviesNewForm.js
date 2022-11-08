@@ -1,11 +1,10 @@
-import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { createShow } from "../../api/fetch";
+import React, { useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+import { createMovie } from '../../api/fetch'
 
-import "./ShowsForm.css";
+export default function MoviesForm() {
 
-export default function ShowsForm() {
-  const [show, setShow] = useState({
+const [movie, setMovie] = useState({
     type: "",
     title: "",
     country: "",
@@ -15,41 +14,41 @@ export default function ShowsForm() {
     listedIn: "",
     rating: "",
     releaseYear: "",
-  });
+})
 
 const { id } = useParams();
 
-let navigate = useNavigate()
+let navigate = useNavigate();
 
-  function handleSubmit(event) {
-    event.preventDefault();
+function handleSubmit(e) {
+    e.preventDefault();
 
-    createShow(show).then(res => {navigate(`/shows/${res.id}`)})
-    .catch((error) => console.error(error))
-  }
+    createMovie(movie).then(res => {navigate(`/movies/${res.id}`)}).catch((error) => console.error(error))
+}
 
-  function handleTextChange(event) {
-    setShow({
-      ...show,
+function handleTextChange(event) {
+    setMovie({
+      ...movie,
       [event.target.id]: event.target.value,
     });
   }
 
   useEffect(() => {
-    function getShow() {
-      fetch(`${URL}/shows/${id}`)
+    function getMovie() {
+      fetch(`${URL}/movies/${id}`)
         .then((response) => response.json())
         .then((response) => {
-          setShow(response);
+          setMovie(response);
         })
         .catch((error) => {
           console.error(error);
         });
     }
     if (id) {
-      getShow();
+      getMovie();
     }
   }, [id]);
+
 
   return (
     <form onSubmit={handleSubmit}>
@@ -57,7 +56,7 @@ let navigate = useNavigate()
       <input
         type="text"
         id="title"
-        value={show.title}
+        value={movie.title}
         onChange={handleTextChange}
       />
 
@@ -65,7 +64,7 @@ let navigate = useNavigate()
       <input
         type="text"
         id="description"
-        value={show.description}
+        value={movie.description}
         onChange={handleTextChange}
       />
 
@@ -73,7 +72,7 @@ let navigate = useNavigate()
       <input
         type="text"
         id="type"
-        value={show.type}
+        value={movie.type}
         onChange={handleTextChange}
       />
 
@@ -81,7 +80,7 @@ let navigate = useNavigate()
       <input
         type="text"
         id="rating"
-        value={show.rating}
+        value={movie.rating}
         onChange={handleTextChange}
       />
 
@@ -89,7 +88,7 @@ let navigate = useNavigate()
       <input
         type="text"
         id="listedIn"
-        value={show.listedIn}
+        value={movie.listedIn}
         onChange={handleTextChange}
       />
 
@@ -97,7 +96,7 @@ let navigate = useNavigate()
       <input
         type="text"
         id="duration"
-        value={show.duration}
+        value={movie.duration}
         onChange={handleTextChange}
       />
 
@@ -105,7 +104,7 @@ let navigate = useNavigate()
       <input
         type="text"
         id="releaseYear"
-        value={show.releaseYear}
+        value={movie.releaseYear}
         onChange={handleTextChange}
       />
 
@@ -113,7 +112,7 @@ let navigate = useNavigate()
       <input
         type="text"
         id="country"
-        value={show.country}
+        value={movie.country}
         onChange={handleTextChange}
       />
 
@@ -121,7 +120,7 @@ let navigate = useNavigate()
       <input
         type="text"
         id="dateAdded"
-        value={show.dateAdded}
+        value={movie.dateAdded}
         onChange={handleTextChange}
       />
 
@@ -129,5 +128,5 @@ let navigate = useNavigate()
 
       <input type="submit" />
     </form>
-  );
+  )
 }
