@@ -73,3 +73,9 @@ form input[type="submit"]:hover {
 label {
   color: var(--primary);
 }
+
+.success-message {
+  display: block;
+  margin: 1rem 0;
+  color: green;
+}

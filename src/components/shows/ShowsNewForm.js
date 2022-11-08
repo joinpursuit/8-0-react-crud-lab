@@ -1,9 +1,10 @@
 import { useState } from "react";
-
+import { createShow } from "../../api/fetch";
+import ErrorMessage from "../errors/ErrorMessage";
 import "./ShowsForm.css";
 
 export default function ShowsForm() {
-  const [show, setShow] = useState({
+  const initialState = {
     type: "",
     title: "",
     country: "",
@@ -13,9 +14,23 @@ export default function ShowsForm() {
     listedIn: "",
     rating: "",
     releaseYear: "",
+  };
+  const [show, setShow] = useState({
+    ...initialState,
   });
-
-  function handleSubmit(event) {}
+  const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
+  function handleSubmit(event) {
+    event.preventDefault();
+    setSuccess(false);
+    setError(false);
+    createShow(show)
+      .then(() => {
+        setSuccess(true);
+        setShow({ ...initialState });
+      })
+      .catch(() => setError(true));
+  }
 
   function handleTextChange(event) {
     setShow({
@@ -24,7 +39,9 @@ export default function ShowsForm() {
     });
   }
 
-  return (
+  return error ? (
+    <ErrorMessage />
+  ) : (
     <form onSubmit={handleSubmit}>
       <label htmlFor="title">Title:</label>
       <input
@@ -101,6 +118,12 @@ export default function ShowsForm() {
       <br />
 
       <input type="submit" />
+      {success && (
+        <small className="success-message">
+          {" "}
+          successfully created a new show
+        </small>
+      )}
     </form>
   );
 }
