@@ -1,13 +1,45 @@
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"
+import { useState, useEffect } from "react"
+import ErrorMessage from "../errors/ErrorMessage"
+import ShowListing from "./ShowListing"
+import "./ShowsIndex.css"
 
-import ErrorMessage from "../errors/ErrorMessage";
+import { getAllShows } from "../../api/fetch"
 
-import "./ShowsIndex.css";
+function filterShows(search, shows) {
+  return shows.filter((show) => {
+    return show.title.toLowerCase().match(search.toLowerCase())
+  })
+}
 
 export default function ShowsIndex() {
+  const [loadingError, setLoadingError] = useState(false)
+  const [shows, setShows] = useState([])
+  const [allShows, setAllShows] = useState([])
+  const [searchTitle, setSearchTitle] = useState("")
+  useEffect(() => {
+    getAllShows()
+      .then((res) => {
+        setAllShows(res)
+        setShows(res)
+        setLoadingError(false)
+      })
+      .catch((err) => {
+        console.log(err)
+        setLoadingError(true)
+      })
+  }, [])
+
+  function handleTextChange(e) {
+    const title = e.target.value
+    const result = title.length ? filterShows(title, allShows) : allShows
+    setShows(result)
+    setSearchTitle(title)
+  }
+
   return (
     <div>
-      {false ? (
+      {loadingError ? (
         <ErrorMessage />
       ) : (
         <section className="shows-index-wrapper">
@@ -20,16 +52,18 @@ export default function ShowsIndex() {
             Search Shows:
             <input
               type="text"
-              // value={searchTitle}
+              value={searchTitle}
               id="searchTitle"
-              // onChange={handleTextChange}
+              onChange={handleTextChange}
             />
           </label>
           <section className="shows-index">
-            {/* <!-- ShowListing components --> */}
+            {shows.map((show) => {
+              return <ShowListing show={show} key={show.id} />
+            })}
           </section>
         </section>
       )}
     </div>
-  );
+  )
 }

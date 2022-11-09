@@ -1,5 +1,5 @@
-import {Link} from 'react-router-dom'
-import "./ShowListing.css";
+import { Link } from "react-router-dom"
+import "./ShowListing.css"
 
 export default function ShowListing({ show }) {
   return (
@@ -18,5 +18,5 @@ export default function ShowListing({ show }) {
         </p>
       </aside>
     </article>
-  );
+  )
 }
