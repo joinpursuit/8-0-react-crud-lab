@@ -10,14 +10,11 @@ import ShowsIndex from "./components/shows/ShowsIndex";
 import ShowsNewForm from "./components/shows/ShowsNewForm";
 import MoviesIndex from "./components/movies/MoviesIndex";
 import  Movie  from "./components/movies/Movie";
+import MovieForm from './components/movies/MovieForm'
+import EditMovieForm from './components/movies/EditMovieForm'
 
 function App() {
-  const [loadingError, setLoadingError] = useState(false);
-  //This might need to be a higher state option.
-
-  const { id } = useParams();
-  const navigate = useNavigate()
-
+ 
   return (
     <div className="wrapper">
       <Router>
@@ -27,26 +24,13 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/shows" element={<ShowsIndex />} />
           <Route path="/shows/new" element={<ShowsNewForm />} />
-          <Route path="/shows/:id" element={
-          <Show 
-          loadingError={loadingError}
-          setLoadingError={setLoadingError}
-          id={id}
-          navigate={navigate}/>
-          } />
+          <Route path="/shows/:id" element={<Show/>} />
           <Route path="/shows/:id/edit" element={<ShowsEditForm />} />
-          <Route path="/movies/:id" element={
-          <Movie
-          loadingError={loadingError}
-          setLoadingError={setLoadingError}
-          id={id}
-          navigate={navigate}
-          />
-          } />
           {/* Movie Routes */}
-          {/* <Route path='/movies' element={<MoviesIndex/>} /> */}
-          {/* <Route path="/shows/new" element={<ShowsNewForm />} /> */}
-          {/* <Route path="/shows/:id/edit" element={<ShowsEditForm />} /> */}
+          <Route path='/movies' element={<MoviesIndex/>} /> 
+          <Route path="/movies/:id" element={<Movie/>} />
+          <Route path="/movies/new" element={<MovieForm />} />
+          <Route path="/movies/:id/edit" element={<EditMovieForm />} />
         </Routes>
         <Footer />
       </Router>

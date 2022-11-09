@@ -7,8 +7,14 @@ import ErrorMessage from "../errors/ErrorMessage";
 import { useEffect } from "react";
 import { getOneShow, destroyShow} from "../../api/fetch";
 
-function Show({loadingError, setLoadingError, id, navigate}) {
+function Show() {
   const [show, setShow] = useState({});
+  const [loadingError, setLoadingError] = useState(false);
+  //This might need to be a higher state option.
+
+  const { id } = useParams();
+  const navigate = useNavigate()
+
   
 
   function handleDelete() {
