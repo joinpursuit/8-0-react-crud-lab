@@ -1,12 +1,11 @@
 import React from 'react';
 import { useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { createMovie } from '../../api/fetch';
 
 function MoviesNewForm() {
    
     let navigate = useNavigate()
-    const { id } = useParams()
 
     const [movie, setMovie] = useState({
         type: "",

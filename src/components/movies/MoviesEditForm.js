@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { updateMovie } from '../../api/fetch';
-import Movie from './Movie';
 
 function MoviesEditForm() {
     let navigate = useNavigate()
