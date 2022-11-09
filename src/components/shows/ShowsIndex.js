@@ -6,9 +6,9 @@ import "./ShowsIndex.css";
 import { getAllShows } from "../../api/fetch";
 
 function filterShows(search, shows) {
-  return shows.filter((show) =>
-    show.title.toLowerCase().match(search.toLowerCase())
-  );
+  return shows.filter((show) => {
+    return show.title.toLowerCase().match(search.toLowerCase());
+  });
 }
 
 export default function ShowsIndex() {
@@ -21,6 +21,8 @@ export default function ShowsIndex() {
 
   const handleTextChange = (e) => {
     const title = e.target.value;
+    console.log(title);
+
     const result = title.length ? filterShows(title, allShows) : allShows;
 
     setSearchTitle(title);
