@@ -36,7 +36,7 @@ export function updateShow(id, show) {
   const options = {
     method: "PUT",
     bldy: JSON.stringify(show),
-    headers: { "Content-Type": "application/jason" },
+    headers: { "Content-Type": "application/json" },
   };
   return fetch(`${URL}/shows/${id}`, options).then((response) => {
     return response.json();
@@ -48,9 +48,9 @@ export function updateShow(id, show) {
 // Create
 export function createMovie(movie) {
   const options = {
-    method: "Post",
+    method: "POST",
     body: JSON.stringify(movie),
-    headers: { "Content-Type": "application.json" },
+    headers: { "Content-Type": "application/json" },
   };
   return fetch(`${URL}/movies/`, options).then((response) => {
     return response.json();

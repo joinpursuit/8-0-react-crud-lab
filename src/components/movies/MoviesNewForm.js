@@ -22,6 +22,7 @@ export default function MoviesNewForm() {
 
   function handleSubmit(event) {
     event.preventDefault();
+    console.log(movie);
     createMovie(movie)
       .then((response) => {
         navigate(`/movies/${response.id}`);
