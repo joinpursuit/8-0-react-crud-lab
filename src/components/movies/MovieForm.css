@@ -1,0 +1,12 @@
+.movie-form label {
+  color: blueviolet;
+}
+
+.movie-form .submit-movie {
+  background-color: blueviolet;
+}
+
+.movie-form .submit-movie:hover {
+  background: gold;
+  color: blueviolet;
+}

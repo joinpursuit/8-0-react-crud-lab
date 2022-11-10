@@ -6,7 +6,7 @@ import { createShow } from "../../api/fetch";
 import "./ShowsForm.css";
 
 export default function ShowsForm() {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [show, setShow] = useState({
     type: "",

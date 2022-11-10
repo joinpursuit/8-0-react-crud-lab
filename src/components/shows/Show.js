@@ -36,7 +36,7 @@ function Show() {
 
   return (
     <section className="shows-show-wrapper">
-      <h2>{show.title} test</h2>
+      <h2>{show.title}</h2>
       <section className="shows-show">
         {loadingError ? (
           <ErrorMessage />
