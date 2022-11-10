@@ -1,7 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { getOneShow, updateShow } from "../../api/fetch";
+
 import "./ShowsForm.css";
 
 export default function ShowsForm() {
+  const navigate = useNavigate();
+  const { id } = useParams();
+
   const [show, setShow] = useState({
     type: "",
     title: "",
@@ -14,7 +20,12 @@ export default function ShowsForm() {
     releaseYear: "",
   });
 
-  function handleSubmit(event) {}
+  function handleSubmit(event) {
+    event.preventDefault();
+    updateShow(id, show)
+      .then((response) => navigate(`/shows/${response.id}`))
+      .catch((error) => console.log(error));
+  }
 
   function handleTextChange(event) {
     setShow({
@@ -22,6 +33,9 @@ export default function ShowsForm() {
       [event.target.id]: event.target.value,
     });
   }
+  useEffect(() => {
+    getOneShow(id).then((res) => setShow(res));
+  }, [id]);
 
   return (
     <form onSubmit={handleSubmit}>
