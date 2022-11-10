@@ -22,3 +22,9 @@
 .movie-listing hr {
   width: 100%;
 }
+
+.movie-listing:hover {
+    border: 4px solid blueviolet;
+    box-shadow: 8px 8px rgba(10, 20, 30, 0.3);
+    cursor: pointer;
+}

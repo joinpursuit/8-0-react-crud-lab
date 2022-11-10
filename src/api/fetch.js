@@ -26,9 +26,13 @@ export function getAll(media) {
   return fetch(`${URL}/${media}`).then((res) => res.json());
 }
 
-// Show/Get one
+// Get one
 export function getOneShow(id) {
   return fetch(`${URL}/shows/${id}`).then((res) => res.json());
+}
+
+export function getOne(media, id) {
+  return fetch(`${URL}/${media}/${id}`).then((res) => res.json());
 }
 
 // Update

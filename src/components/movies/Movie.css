@@ -1,0 +1,52 @@
+.movie {
+  margin: 0 30vh;
+}
+
+.movie-card {
+  border: 2px solid gold;
+  border-radius: 6px;
+}
+
+.movie-details,
+.movie-links {
+  background-image: linear-gradient(to bottom right, #f7f591, #c2c038);
+  padding: 0;
+  margin: 0;
+}
+
+.movie-details {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  padding: 0px 20px;
+  font-size: 14px;
+  color: blueviolet;
+  line-height: 0.4;
+}
+
+.movie-details span {
+  font-weight: bold;
+}
+
+.movie-description {
+  padding: 0px 20px;
+}
+
+.movie-links {
+  padding: 10px 20px;
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  column-gap: 20px;
+}
+
+.movie-links button {
+  width: fit-content;
+  border: none;
+  background: none;
+  color: blueviolet;
+  text-decoration: underline;
+}
+
+.movie-links button:hover {
+  text-decoration: none;
+  cursor: pointer;
+}

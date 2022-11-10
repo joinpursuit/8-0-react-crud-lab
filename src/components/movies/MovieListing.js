@@ -1,13 +1,19 @@
-import "./MovieListing.css"
+import { useNavigate } from "react-router-dom";
+import "./MovieListing.css";
 
 export default function MovieListing({
   title,
   description,
   listedIn,
   duration,
+  id,
 }) {
+  const navigate = useNavigate();
   return (
-    <article className="movie-listing">
+    <article
+      className="movie-listing"
+      onClick={() => navigate(`/movies/${id}`)}
+    >
       <h3>{title}</h3>
       <p>{description}</p>
       <hr />
@@ -17,7 +23,7 @@ export default function MovieListing({
       </p>
       <p>
         <span>Duration: </span>
-        {duration? duration :"unavailable"}
+        {duration ? duration : "unavailable"}
       </p>
     </article>
   );
