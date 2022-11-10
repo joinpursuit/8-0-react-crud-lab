@@ -1,7 +1,7 @@
 .movie {
     border: 1px solid var(--primary);
     border-radius: 3px;
-    color: var(--gray);
+    color: palevioletred;
     display: grid;
     grid-template-rows: auto 1fr auto;
     padding: 10px 25px;
@@ -9,7 +9,7 @@
   
   .movie a {
     border-bottom: 1px solid var(--primary);
-    color: var(--primary);
+    color: rgb(255, 178, 106);
     text-decoration: none;
   }
   

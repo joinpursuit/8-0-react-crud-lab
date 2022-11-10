@@ -54,7 +54,7 @@ form {
     -webkit-box-shadow: inset 0px 1px 0px 0px dodgerblue;
     box-shadow: inset 0px 1px 0px 0px dodgerblue;
     background-color: var(--primary);
-    border: 1px solid darkblue;
+    border: 1px solid rgb(129, 129, 232);
     display: inline-block;
     cursor: pointer;
     color: #ffffff;
