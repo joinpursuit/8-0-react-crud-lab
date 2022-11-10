@@ -6,10 +6,6 @@
   margin-bottom: 10px;
 }
 
-/* .count span {
-    font-weight: bold;
-} */
-
 .movies-elements {
   display: flex;
   flex-direction: column;

@@ -11,6 +11,15 @@ export function createShow(show) {
   return fetch(`${URL}/shows`, options).then((res) => res.json());
 }
 
+export function createOne(media, object) {
+  const options = {
+    method: "POST",
+    body: JSON.stringify(object),
+    headers: { "Content-Type": "application/json" },
+  };
+  return fetch(`${URL}/${media}`, options).then((res) => res.json());
+}
+
 // Delete
 export function destroyShow(id) {
   const options = { method: "DELETE" };
