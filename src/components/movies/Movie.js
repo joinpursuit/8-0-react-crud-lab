@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 
 import ErrorMessage from "../errors/ErrorMessage";
 
-import { getOne } from "../../api/fetch";
+import { getOne, deleteItem } from "../../api/fetch";
 
 import "./Movie.css";
 
@@ -12,6 +12,16 @@ export default function Movie() {
   const [error, setError] = useState(false);
 
   const { id } = useParams();
+  const navigate = useNavigate();
+
+  const deleteMovie = (id) => {
+    deleteItem("movies", id)
+      .then(() => navigate("/movies"))
+      .catch((err) => {
+        console.log(err);
+        setError(true);
+      });
+  };
 
   useEffect(() => {
     getOne("movies", id)
@@ -59,8 +69,8 @@ export default function Movie() {
               <p>{movie.description}</p>
             </section>
             <section className="movie-links">
-              <button>Remove Movie</button>
-              <Link to={`/movies/${id}edit/`}>
+              <button onClick={() => deleteMovie(id)}>Remove Movie</button>
+              <Link to={`/movies/${id}/edit/`}>
                 <button>Edit</button>
               </Link>
             </section>

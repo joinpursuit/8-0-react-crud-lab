@@ -17,6 +17,11 @@ export function destroyShow(id) {
   return fetch(`${URL}/shows/${id}`, options);
 }
 
+export function deleteItem(media, id) {
+  const options = { method: "DELETE" };
+  return fetch(`${URL}/${media}/${id}`, options);
+}
+
 // Index/Get all
 export function getAllShows() {
   return fetch(`${URL}/shows`).then((res) => res.json());
