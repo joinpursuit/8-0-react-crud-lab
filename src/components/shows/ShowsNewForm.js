@@ -1,8 +1,14 @@
-import { useState } from "react";
+import { useState  } from "react";
+import { useNavigate} from "react-router-dom"
+
+import { createShow } from "../../api/fetch"
 
 import "./ShowsForm.css";
 
 export default function ShowsForm() {
+
+  let navigate = useNavigate()
+
   const [show, setShow] = useState({
     type: "",
     title: "",
@@ -15,7 +21,16 @@ export default function ShowsForm() {
     releaseYear: "",
   });
 
-  function handleSubmit(event) {}
+  function handleSubmit(event) {
+    event.preventDefault()
+    createShow(show)
+    .then((res) => {
+      navigate(`/shows/${res.id}`)
+    })
+    .catch((error) => {
+      console.error(error)
+    })
+  }
 
   function handleTextChange(event) {
     setShow({
