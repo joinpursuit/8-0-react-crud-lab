@@ -37,6 +37,7 @@ export function updateShow(id, show) {
 return fetch(`${URL}/shows/${id}`, options).then((res) => res.json());
 }
 
+
 // Movies
 
 
@@ -44,4 +45,38 @@ return fetch(`${URL}/shows/${id}`, options).then((res) => res.json());
 export function getAllMovies() {
   return fetch(`${URL}/movies`).then((res) => res.json());
   ;
+}
+
+// Create
+
+export function createMovie(movie) {
+  const options = {
+    method: "POST",
+    body: JSON.stringify(movie),
+    headers: {"Content-Type": "application/json"}
+  };
+  return fetch (`${URL}/movies/`, options).then((res)=> res.json())
+}
+
+// Delete
+export function destroyMovie(id) {
+  const options = { method: "DELETE" };
+  return fetch(`${URL}/movies/${id}`, options);
+}
+
+
+// Show/Get one
+export function getOneMovie(id) {
+  return fetch(`${URL}/movies/${id}`).then((res) => res.json());
+}
+
+
+// Update
+export function updateMovie(id, movie) {
+  const options = {
+    method: "PUT",
+    body: JSON.stringify(movie),
+    headers: { "Content-Type": "application/json" },
+  };
+return fetch(`${URL}/movies/${id}`, options).then((res) => res.json());
 }
