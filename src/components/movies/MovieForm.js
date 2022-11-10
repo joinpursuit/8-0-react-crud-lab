@@ -1,15 +1,15 @@
 import { useNavigate } from "react-router-dom";
 
-import { createOne } from "../../api/fetch";
+import { createOne, updateOne } from "../../api/fetch";
 
 import "./MovieForm.css";
 
-export default function MovieForm({ movie, setMovie }) {
+export default function MovieForm({ movie, setMovie, isEdit, id }) {
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    createOne("movies", movie)
+    (isEdit ? updateOne("movies", id, movie) : createOne("movies", movie))
       .then((res) => navigate(`/movies/${res.id}`))
       .catch((err) => console.log(err));
   };

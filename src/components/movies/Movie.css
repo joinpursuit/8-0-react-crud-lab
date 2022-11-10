@@ -17,10 +17,11 @@
 .movie-details {
   display: grid;
   grid-template-columns: repeat(4, auto);
+  column-gap: 4px;
   padding: 0px 20px;
   font-size: 14px;
   color: blueviolet;
-  line-height: 0.4;
+  line-height: 1;
 }
 
 .movie-details span {

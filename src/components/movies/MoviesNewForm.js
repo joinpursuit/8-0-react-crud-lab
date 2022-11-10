@@ -14,5 +14,5 @@ export default function MoviesNewForm() {
     listedIn: "",
     description: "",
   });
-  return <MovieForm movie={movie} setMovie={setMovie} />;
+  return <MovieForm movie={movie} setMovie={setMovie} isEdit={false} />;
 }

@@ -58,3 +58,12 @@ export function updateShow(id, show) {
   };
   return fetch(`${URL}/shows/${id}`, options).then((res) => res.json());
 }
+
+export function updateOne(media, id, object) {
+  const options = {
+    method: "PUT",
+    body: JSON.stringify(object),
+    headers: { "Content-Type": "application/json" },
+  };
+  return fetch(`${URL}/${media}/${id}`, options).then((res) => res.json());
+}
