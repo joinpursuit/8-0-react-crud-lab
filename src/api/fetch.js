@@ -1,6 +1,12 @@
 // Shows
 const URL = process.env.REACT_APP_API_BASE_URL
 
+export function filterShows(search, shows) {
+  return shows.filter((show) =>{
+    return show.title.toLowerCase().match(search.toLowerCase())
+  })
+}
+
 // Create
 export function createShow(show) {
   return;
@@ -8,8 +14,10 @@ export function createShow(show) {
 
 // Delete
 export function destroyShow(id) {
-  return;
+  const options = {method: 'DELETE'}
+  return fetch(`${URL}/shows/${id}` ,options)
 }
+
 
 // Index/Get all
 export function getAllShows() {
@@ -20,7 +28,7 @@ export function getAllShows() {
 
 // Show/Get one
 export function getOneShow(id) {
-  return;
+  return fetch(`${URL}/shows/${id}`).then((res) => res.json())
 }
 
 // Update
@@ -31,5 +39,8 @@ export function updateShow(id, show) {
 // Movies
 
 export function getAllMovies() {
-  return;
+  // return fetch(`${URL}/movies`)
+  // .then(res => res.json())
 }
+
+// Movie/Get one
