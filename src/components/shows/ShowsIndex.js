@@ -11,13 +11,7 @@ export default function ShowsIndex() {
   const [allShows, setAllShows] = useState([]);
   const [searchTitle, setSearchTitle] = useState("");
 
-  function handleTextChange(e) {
-    const title = e.target.value;
-    const result = title.length ? filterShows(title, allShows) : allShows;
-    setShows(result);
-    setSearchTitle(title);
-  }
-
+ 
   useEffect(() => {
     getAllShows()
       .then((res) => {
@@ -30,7 +24,13 @@ export default function ShowsIndex() {
         setLoadingError(true);
       });
   }, []);
-
+  
+  function handleTextChange(e) {
+    const title = e.target.value;
+    const result = title.length ? filterShows(title, allShows) : allShows;
+    setShows(result);
+    setSearchTitle(title);
+  }
   return (
     <div>
       {loadingError ? (
