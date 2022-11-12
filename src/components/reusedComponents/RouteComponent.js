@@ -12,7 +12,7 @@ function RouteComponent(props) {
         <Route path="/" element={<Home />} />
          {
           endpointOptions.map(endpoint =>
-            <Route path = {`/${endpoint}`} > 
+            <Route path = {`/${endpoint}`} key = {endpoint} > 
                 <Route index element = {<IndexPage endpoint = {endpoint } />}/>
                 <Route path = "new" element = {<Form endpoint = {endpoint } />}/>
                 <Route path = ":id" >

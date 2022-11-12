@@ -2,15 +2,16 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import {  createMedia, editMedia, getOneFetch } from "../../api/fetch";
-import { handleFormInput, formSubmitHandle, editFormSubmitHandle } from "../../helperFunctions";
+import { formSubmitHandle } from "../../helperFunctions";
 import ErrorMessage from "../errors/ErrorMessage";
+import Input from "./Input";
 import "../css/ShowsForm.css"
 
 function Form({endpoint, edit}) {
   // Declare state for obj shapefor input
   const [input, setInput] = useState({
-    type: "",
     title: "",
+    type: "",
     country: "",
     dateAdded: "",
     description: "",
@@ -22,6 +23,9 @@ function Form({endpoint, edit}) {
   // Declare state for error
   const [error, setError] = useState(false)
 
+  // variable for array of keys in input object
+  const arr = Object.keys(input)
+  
   // Declare variable for navigate -> send back to index page
   const navigate = useNavigate()
   
@@ -41,6 +45,7 @@ function Form({endpoint, edit}) {
 
   return (
    <>
+   <h2 style={{textAlign: 'center'}}>{edit ? `Edit Form` : `Create Form`}</h2>
     {
       error ? <ErrorMessage /> :
       <form
@@ -49,104 +54,28 @@ function Form({endpoint, edit}) {
         formSubmitHandle(event, input, endpoint, navigate, editMedia, id)
       }}
     >
-      <label htmlFor="title">Title:</label>
-      <input
-        type="text"
-        id="title"
-        value={input.title}
-        onChange={(event) => {
-          handleFormInput(event, input, setInput);
-        }}
-      />
-
-      <label htmlFor="description">Description:</label>
-      <input
-        type="text"
-        id="description"
-        value={input.description}
-        onChange={(event) => {
-          handleFormInput(event, input, setInput);
-        }}
-      />
-
-      <label htmlFor="type">Type</label>
-      <input
-        type="text"
-        id="type"
-        value={input.type}
-        onChange={(event) => {
-          handleFormInput(event, input, setInput);
-        }}
-      />
-
-      <label htmlFor="rating">Rating:</label>
-      <input
-        type="text"
-        id="rating"
-        value={input.rating}
-        onChange={(event) => {
-          handleFormInput(event, input, setInput);
-        }}
-      />
-
-      <label htmlFor="listedIn">Listed in</label>
-      <input
-        type="text"
-        id="listedIn"
-        value={input.listedIn}
-        onChange={(event) => {
-          handleFormInput(event, input, setInput);
-        }}
-      />
-
-      <label htmlFor="duration">Duration</label>
-      <input
-        type="text"
-        id="duration"
-        value={input.duration}
-        onChange={(event) => {
-          handleFormInput(event, input, setInput);
-        }}
-      />
-
-      <label htmlFor="releaseYear">Release Year</label>
-      <input
-        type="text"
-        id="releaseYear"
-        value={input.releaseYear}
-        onChange={(event) => {
-          handleFormInput(event, input, setInput);
-        }}
-      />
-
-      <label htmlFor="country">Country</label>
-      <input
-        type="text"
-        id="country"
-        value={input.country}
-        onChange={(event) => {
-          handleFormInput(event, input, setInput);
-        }}
-      />
-
-      <label htmlFor="dateAdded">Date added:</label>
-      <input
-        type="text"
-        id="dateAdded"
-        value={input.dateAdded}
-        onChange={(event) => {
-          handleFormInput(event, input, setInput);
-        }}
-      />
-
+      {
+        arr.map(el => {
+          if(el !== `id`){
+            return <Input
+            key = {el}
+            input = {input}
+            property = {el}
+            setInput = {setInput} />
+          }
+          
+        }
+          
+          )
+      }
       <br />
-
       <input type="submit" />
     </form>
     }
    </>
-    
   );
 }
 
 export default Form;
+
+

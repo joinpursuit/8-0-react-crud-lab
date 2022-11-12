@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import EstRouter from "./components/EstRouter";
+import WrapRouter from "./components/WrapRouter";
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <EstRouter />
+  <WrapRouter />
 );

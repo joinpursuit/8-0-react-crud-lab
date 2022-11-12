@@ -2,7 +2,7 @@ import React from 'react';
 import App from '../App';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-function EstRouter(props) {
+function WrapRouter(props) {
     // Wrap the entire App in Router component allows for components to return Route components
     return (
         <Router>
@@ -13,4 +13,4 @@ function EstRouter(props) {
     );
 }
 
-export default EstRouter;
+export default WrapRouter;
