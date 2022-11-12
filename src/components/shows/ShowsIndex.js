@@ -31,6 +31,7 @@ export default function ShowsIndex() {
     setShows(result);
     setSearchTitle(title);
   }
+  
   return (
     <div>
       {loadingError ? (

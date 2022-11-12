@@ -2,6 +2,7 @@ import React, {  useState, useEffect } from "react";
 import {Link, useParams, useNavigate} from 'react-router-dom'
 import ErrorMessage from "../errors/ErrorMessage";
 import {getOneMovie, destroyMovie} from '../../api/fetch'
+import "./Movie.css"
 
 function Movie({}) {
     const [loadingError,setLoadingError] = useState(false)
