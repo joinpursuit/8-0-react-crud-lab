@@ -3,7 +3,13 @@ const URL = process.env.REACT_APP_API_BASE_URL
 
 // Create
 export function createShow(show) {
-  return;
+  const options = {
+method: "POST",
+body: JSON.stringify(show),
+headers: {"Content-Type": "application/json"},
+  }
+  return fetch(`${URL}/shows/`, options)
+    .then((res) => res.json())
 }
 
 // ShowIndex/Get all
@@ -14,14 +20,14 @@ export function getAllShows() {
  }
  
  export function filterShows(search, shows) {
-  return shows.filter((show) =>{
-    return show.title.toLowerCase().match(search.toLowerCase())
-  })
+  return shows.filter(show =>
+    show.title.toLowerCase().match(search.toLowerCase())
+  )
 }
 
  // Show/Get one
  export function getOneShow(id) {
-   return fetch(`${URL}/shows/${id}`).then((res) => res.json())
+   return fetch(`${URL}/shows/${id}`).then(res => res.json())
  }
 
  // Update
@@ -47,9 +53,8 @@ export function getAllMovies() {
   .then(res => res.json())
 }
 export function filterMovies(search, movies) {
-  return movies.filter((movie) =>{
-    return movie.title.toLowerCase().match(search.toLowerCase())
-  })
+  return movies.filter(movie => movie.title.toLowerCase().match(search.toLowerCase())
+  )
 }
 
 // Movie/Get one

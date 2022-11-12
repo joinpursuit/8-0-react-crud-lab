@@ -11,7 +11,6 @@ export default function ShowsIndex() {
   const [allShows, setAllShows] = useState([]);
   const [searchTitle, setSearchTitle] = useState("");
 
- 
   useEffect(() => {
     getAllShows()
       .then((res) => {
@@ -31,7 +30,7 @@ export default function ShowsIndex() {
     setShows(result);
     setSearchTitle(title);
   }
-  
+
   return (
     <div>
       {loadingError ? (
