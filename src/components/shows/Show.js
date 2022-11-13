@@ -14,12 +14,12 @@ function Show() {
 
   useEffect(() => {
     getOneShow(id)
-      .then((res) => {
+      .then(res => {
         setShow(res);
         if (Object.keys(res).length === 0) setLoadingError(true);
         else setLoadingError(false);
       })
-      .catch((error) => {
+      .catch(error => {
         setLoadingError(true);
       });
   }, [id]);
@@ -27,7 +27,7 @@ function Show() {
   function handleDelete(id) {
     destroyShow(id)
     .then(() => navigate("/shows"))
-    .catch((error) => {
+    .catch(error => {
       console.error(error);
       setLoadingError(true);
     });

@@ -17,7 +17,7 @@ function Movie({}) {
             if (Object.keys(res).length === 0) setLoadingError(true);
             else setLoadingError(false);
           })
-          .catch((error) => {
+          .catch(error => {
             setLoadingError(true);
           });
       }, [id]);
@@ -25,7 +25,7 @@ function Movie({}) {
       function handleDelete(id){
         destroyMovie(id)
         .then(() => navigate('/movies'))
-        .catch((error) => {
+        .catch(error => {
             console.error(error);
             setLoadingError(true)
         })

@@ -1,4 +1,4 @@
-// Shows
+//----Shows----///
 const URL = process.env.REACT_APP_API_BASE_URL
 
 // Create
@@ -8,8 +8,8 @@ method: "POST",
 body: JSON.stringify(show),
 headers: {"Content-Type": "application/json"},
   }
-  return fetch(`${URL}/shows/`, options)
-    .then((res) => res.json())
+  return fetch(`${URL}/shows`, options)
+    .then(res => res.json())
 }
 
 // ShowIndex/Get all
@@ -32,7 +32,13 @@ export function getAllShows() {
 
  // Update
 export function updateShow(id, show) {
-  return;
+  const options = {
+    method: "PUT",
+    body: JSON.stringify(show),
+    headers:{"Content-Type" : "application/json"},
+  }
+  return fetch(`${URL}/shows/${id}`, options)
+    .then(res => res.json)
 }
 
 // Delete
@@ -41,10 +47,16 @@ export function destroyShow(id) {
   return fetch(`${URL}/shows/${id}` ,options)
 }
 
-///-----Movies------///
+///----Movies----///
 // Create
 export function createMovie(movie) {
-  return;
+  const options = {
+    method: "POST",
+    body: JSON.stringify(movie),
+    headers: {"Content-Type": "application/json"},
+      }
+      return fetch(`${URL}/movies`, options)
+        .then(res => res.json())
 }
 
 // MoviesIndex/Get All
@@ -64,8 +76,14 @@ export function getOneMovie(id){
 }
 
 // Update
-export function updateMovie(id, show) {
-  return;
+export function updateMovie(id, movie) {
+  const options = {
+    method: "PUT",
+    body: JSON.stringify(movie),
+    headers:{"Content-Type" : "application/json"},
+  }
+  return fetch(`${URL}/movies/${id}`, options)
+    .then(res => res.json)
 }
 
 //destroy Movie

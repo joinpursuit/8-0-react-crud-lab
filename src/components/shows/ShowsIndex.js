@@ -13,12 +13,12 @@ export default function ShowsIndex() {
 
   useEffect(() => {
     getAllShows()
-      .then((res) => {
+      .then(res => {
         setAllShows(res);
         setShows(res);
         setLoadingError(false);
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
         setLoadingError(true);
       });

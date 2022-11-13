@@ -13,12 +13,12 @@ export default function MoviesIndex() {
 
   useEffect(() => {
     getAllMovies()
-      .then((res) => {
+      .then(res => {
         setAllMovies(res);
         setMovies(res);
         setLoadingError(false);
       })
-      .catch((error) => {
+      .catch(error => {
         setLoadingError(true);
       });
   }, []);
