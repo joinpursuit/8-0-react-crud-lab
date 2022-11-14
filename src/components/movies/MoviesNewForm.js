@@ -1,14 +1,10 @@
-import { useEffect, useState } from "react";
-import "./ShowsForm.css";
-import { updateShow, getOneShow } from "../../api/fetch";
-import { useParams, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { createMovie } from "../../api/fetch";
 import ErrorMessage from "../errors/ErrorMessage";
+import "../shows/ShowsForm.css";
 
-export default function ShowsForm() {
-  const { id } = useParams();
-  const navigate = useNavigate();
-  const [loadingError, setLoadingError] = useState(false);
-  const [show, setShow] = useState({
+export default function MoviesForm() {
+  const initialState = {
     type: "",
     title: "",
     country: "",
@@ -18,30 +14,32 @@ export default function ShowsForm() {
     listedIn: "",
     rating: "",
     releaseYear: "",
+  };
+  const [movie, setMovie] = useState({
+    ...initialState,
   });
-
+  const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
   function handleSubmit(event) {
     event.preventDefault();
-    updateShow(id, show).then(() =>
-      navigate(`/shows/${id}`).catch((error) => setLoadingError(true))
-    );
+    setSuccess(false);
+    setError(false);
+    createMovie(movie)
+      .then(() => {
+        setSuccess(true);
+        setMovie({ ...initialState });
+      })
+      .catch(() => setError(true));
   }
 
   function handleTextChange(event) {
-    setShow({
-      ...show,
+    setMovie({
+      ...movie,
       [event.target.id]: event.target.value,
     });
   }
-  useEffect(() => {
-    getOneShow(id)
-      .then((res) => {
-        setShow({ ...res });
-        setLoadingError(false);
-      })
-      .catch((error) => setLoadingError(true));
-  }, [id]);
-  return loadingError ? (
+
+  return error ? (
     <ErrorMessage />
   ) : (
     <form onSubmit={handleSubmit}>
@@ -49,7 +47,7 @@ export default function ShowsForm() {
       <input
         type="text"
         id="title"
-        value={show.title}
+        value={movie.title}
         onChange={handleTextChange}
       />
 
@@ -57,7 +55,7 @@ export default function ShowsForm() {
       <input
         type="text"
         id="description"
-        value={show.description}
+        value={movie.description}
         onChange={handleTextChange}
       />
 
@@ -65,7 +63,7 @@ export default function ShowsForm() {
       <input
         type="text"
         id="type"
-        value={show.type}
+        value={movie.type}
         onChange={handleTextChange}
       />
 
@@ -73,7 +71,7 @@ export default function ShowsForm() {
       <input
         type="text"
         id="rating"
-        value={show.rating}
+        value={movie.rating}
         onChange={handleTextChange}
       />
 
@@ -81,7 +79,7 @@ export default function ShowsForm() {
       <input
         type="text"
         id="listedIn"
-        value={show.listedIn}
+        value={movie.listedIn}
         onChange={handleTextChange}
       />
 
@@ -89,7 +87,7 @@ export default function ShowsForm() {
       <input
         type="text"
         id="duration"
-        value={show.duration}
+        value={movie.duration}
         onChange={handleTextChange}
       />
 
@@ -97,7 +95,7 @@ export default function ShowsForm() {
       <input
         type="text"
         id="releaseYear"
-        value={show.releaseYear}
+        value={movie.releaseYear}
         onChange={handleTextChange}
       />
 
@@ -105,7 +103,7 @@ export default function ShowsForm() {
       <input
         type="text"
         id="country"
-        value={show.country}
+        value={movie.country}
         onChange={handleTextChange}
       />
 
@@ -113,13 +111,19 @@ export default function ShowsForm() {
       <input
         type="text"
         id="dateAdded"
-        value={show.dateAdded}
+        value={movie.dateAdded}
         onChange={handleTextChange}
       />
 
       <br />
 
       <input type="submit" />
+      {success && (
+        <small className="success-message">
+          {" "}
+          successfully created a new movie
+        </small>
+      )}
     </form>
   );
 }
