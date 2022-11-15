@@ -11,17 +11,21 @@ export default function MoviesIndex() {
   const [movies, setMovies] = useState([]);
   const [allMovies, setAllMovies] = useState([]);
   const [searchTitle, setSearchTitle] = useState("");
+  const [loading, setLoading] = useState(false);
   const [loadingError, setLoadingError] = useState(false);
   useEffect(() => {
+    setLoading(true);
     getAllMovies()
       .then((response) => {
         console.log(response);
         setAllMovies(response);
         setMovies(response);
+        setLoading(false);
         setLoadingError(false);
       })
       .catch((error) => {
         console.error(error);
+        setLoading(false);
         setLoadingError(true);
       });
   }, []);
@@ -42,6 +46,11 @@ export default function MoviesIndex() {
 
   return (
     <div>
+      {loading && (
+        <section className="loading">
+          <p>Loading...</p>
+        </section>
+      )}
       {loadingError ? (
         <ErrorMessage />
       ) : (

@@ -11,16 +11,19 @@ export default function ShowsIndex() {
   const [shows, setShows] = useState([]);
   const [allShows, setAllShows] = useState([]);
   const [searchTitle, setSearchTitle] = useState("");
+  const [loading, setLoading] = useState(false);
   const [loadingError, setLoadingError] = useState(false);
   useEffect(() => {
-    console.log("useEffect called");
+    setLoading(true);
     getAllShows()
       .then((response) => {
         setAllShows(response);
         setShows(response);
+        setLoading(false);
         setLoadingError(false);
       })
       .catch((error) => {
+        setLoading(false);
         console.error(error);
         setLoadingError(true);
       });
@@ -45,6 +48,11 @@ export default function ShowsIndex() {
 
   return (
     <div>
+      {loading && (
+        <section className="loading">
+          <p>Loading...</p>
+        </section>
+      )}
       {loadingError ? (
         <ErrorMessage />
       ) : (

@@ -1,5 +1,12 @@
+let URL;
+if (process.env.NODE_ENV === "development") {
+  URL = process.env.REACT_APP_API_BASE_URL;
+} else {
+  URL = process.env.REACT_APP_BACKEND_URL;
+}
+
 // Movies
-const URL = process.env.REACT_APP_API_BASE_URL;
+
 // Create
 export function createShow(show) {
   const options = {
@@ -62,7 +69,7 @@ export function destroyMovie(id) {
 
 // Index/Get all
 export function getAllMovies() {
-  return fetch("http://localhost:3000/movies").then((res) => res.json());
+  return fetch(URL + "/movies").then((res) => res.json());
   // return fetch(`${URL}/movies`).then((response) => response.json());
 }
 
