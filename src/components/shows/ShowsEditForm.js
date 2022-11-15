@@ -41,7 +41,8 @@ export default function ShowsForm({entry}) {
       })
       .catch(error=>{
 
-      })
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   },[]);
 
 

@@ -12,12 +12,14 @@ function Show({entry}) {
   const navigate = useNavigate();
   /////////////////////////////////////
   useEffect(()=>{
+    
     ea.getOne(id)
       .then((data)=>{
         setShow(data);
         setLoadingError(false);
       })
       .catch(error=>{setLoadingError(true)});
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   },[]);
   /////////////////////////////////////
 

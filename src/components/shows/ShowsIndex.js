@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import ErrorMessage from "../errors/ErrorMessage";
 
@@ -38,6 +38,7 @@ export default function ShowsIndex({entry}) {
       updateError(true);
       console.log(error);
     })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   },[entry]);
   //////////////////////////////////////
   return (

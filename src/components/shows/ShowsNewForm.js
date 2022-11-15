@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { createShow, entry_api } from "../../api/fetch";
+import { entry_api } from "../../api/fetch";
 import "./ShowsForm.css";
 
 export default function ShowsForm({entry}) {
@@ -24,7 +24,7 @@ export default function ShowsForm({entry}) {
     for(let x in show)
     {
       event.target.querySelector(`#${x}`).classList.remove("redbox");
-      if(mustVaild.includes(x)&&show[x]=="")
+      if(mustVaild.includes(x)&&show[x]==="")
       {
         vailded=false;
         event.target.querySelector(`#${x}`).classList.add("redbox");
