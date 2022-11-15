@@ -1,9 +1,11 @@
-.error {
+.error,
+.lodading {
   border: 1px solid var(--error);
   margin: 25px;
   padding: 25px;
 }
-.error p {
+.error p,
+.lodading p {
   color: var(--error);
   font-family: var(--primary-font);
   margin: 25px;
