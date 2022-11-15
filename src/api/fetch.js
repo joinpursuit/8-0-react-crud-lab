@@ -35,7 +35,7 @@ export function updateShow(id, show,entry="shows") {
     body : JSON.stringify(show), 
     headers: { 'Content-Type': 'application/json'}
   };
-  return fetch(`${server_url}${entry}/${id}`,options_base).then(response => response.json());
+  return fetch(`${server_url}${entry}/${id}`,options).then(response => response.json());
 }
 
 // Movies
