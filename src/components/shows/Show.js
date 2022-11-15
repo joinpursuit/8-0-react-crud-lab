@@ -3,13 +3,14 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import "./Show.css";
 
 import ErrorMessage from "../errors/ErrorMessage";
-import { getOneShow, destroyShow, entry_api } from "../../api/fetch";
+import { entry_api } from "../../api/fetch";
 function Show({entry}) {
   const ea = entry_api[entry];
   const [ show, setShow ] = useState({});
   const [ loadingError, setLoadingError ] = useState(false);
   const { id } = useParams();
   const navigate = useNavigate();
+  /////////////////////////////////////
   useEffect(()=>{
     ea.getOne(id)
       .then((data)=>{
@@ -18,6 +19,8 @@ function Show({entry}) {
       })
       .catch(error=>{setLoadingError(true)});
   },[]);
+  /////////////////////////////////////
+
   function handleDelete(id) {
     ea.destroy(id)
       .then((response)=>{
@@ -25,6 +28,7 @@ function Show({entry}) {
       })
       .catch(error=>{setLoadingError(false);});
   }
+  /////////////////////////////////////
 
   return (
     <section className="shows-show-wrapper">

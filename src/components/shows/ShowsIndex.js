@@ -4,7 +4,7 @@ import ErrorMessage from "../errors/ErrorMessage";
 
 import "./ShowsIndex.css";
 
-import {getAllShows, entry_api} from '../../api/fetch';
+import { entry_api } from '../../api/fetch';
 import { useEffect, useState } from 'react';
 import ShowListing from "./ShowListing";
 
@@ -23,14 +23,13 @@ export default function ShowsIndex({entry}) {
   function handleTextChange(evt){
     //
     setSearchTitle(evt.target.value);
-    updateShowsList(actual_display_list.filter(el=> el.title.toLowerCase().match(evt.target.value)));
+    updateShowsList(actual_display_list.filter(el=> el.title.toLowerCase().match(evt.target.value.toLowerCase())));
 
   }
   //////////////////////////////////////
   useEffect(()=>{
     ea.getAll()
     .then((data)=>{
-      console.log(data)
       updateShowsList(data);
       actual_display_list = data;
       updateError(false);

@@ -44,17 +44,17 @@ export function getAllMovies() {
 
 export let entry_api = {
   show:{
-    create:(content)=>createShow(content),
+    create :(content)=>createShow(content),
     destroy:(id)=>destroyShow(id),
-    getAll:()=>getAllShows(),
-    getOne:(id)=>getOneShow(id),
-    update:(id,content)=>updateShow(id,content),
+    getAll :()=>getAllShows(),
+    getOne :(id)=>getOneShow(id),
+    update :(id,content)=>updateShow(id,content),
   },
   movie:{
-    create:(content)=>createShow(content,"movies"),
+    create :(content)=>createShow(content,"movies"),
     destroy:(id)=>destroyShow(id,"movies"),
-    getAll:()=>getAllShows("movies"),
-    getOne:(id)=>getOneShow(id,"movies"),
-    update:(id,content)=>updateShow(id,content,"movies"),
+    getAll :()=>getAllShows("movies"),
+    getOne :(id)=>getOneShow(id,"movies"),
+    update :(id,content)=>updateShow(id,content,"movies"),
   }
 }
