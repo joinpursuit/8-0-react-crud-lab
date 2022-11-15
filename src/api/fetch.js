@@ -1,5 +1,5 @@
 // Shows
-const server_url = "http://localhost:3001/api/";
+const server_url = "http://150.230.113.32:5001/api";
 // Create
 export function createShow(show,entry="shows") {
   let options = {
