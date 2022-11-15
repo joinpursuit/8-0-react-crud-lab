@@ -1,7 +1,9 @@
 const server_url = "http://150.230.113.32:5001/api/";
+const options_base = {mode: 'cors', }// no-cors, *cors, same-originß
 // Create
 export function createShow(show,entry="shows") {
   let options = {
+    ...options_base,
     method: 'POST', 
     body : JSON.stringify(show), 
     headers: { 'Content-Type': 'application/json'}
@@ -11,7 +13,7 @@ export function createShow(show,entry="shows") {
 
 // Delete
 export function destroyShow(id,entry="shows") {
-  let options = {method: 'DELETE'};
+  let options = {...options_base,method: 'DELETE'};
   return fetch(`${server_url}${entry}/${id}`,options).then(response => response.json());
 }
 
@@ -22,12 +24,13 @@ export function getAllShows(entry="shows") {
 
 // Show/Get one
 export function getOneShow(id,entry="shows") {
-  return fetch(`${server_url}${entry}/${id}`).then(response => response.json());
+  return fetch(`${server_url}${entry}/${id}`,options).then(response => response.json());
 }
 
 // Update
 export function updateShow(id, show,entry="shows") {
   let options = {
+    ...options_base,
     method: 'PUT', 
     body : JSON.stringify(show), 
     headers: { 'Content-Type': 'application/json'}
