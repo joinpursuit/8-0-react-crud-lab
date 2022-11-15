@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import ErrorMessage from "../errors/ErrorMessage";
-import { getAllShows, getOneShow } from "../../api/fetch";
+import { getAllShows } from "../../api/fetch";
 import ShowListing from "./ShowListing";
 
 import "./ShowsIndex.css";
@@ -13,6 +13,7 @@ export default function ShowsIndex() {
   const [searchTitle, setSearchTitle] = useState("");
   const [loadingError, setLoadingError] = useState(false);
   useEffect(() => {
+    console.log("useEffect called");
     getAllShows()
       .then((response) => {
         setAllShows(response);
@@ -23,6 +24,9 @@ export default function ShowsIndex() {
         console.error(error);
         setLoadingError(true);
       });
+    return () => {
+      console.log("show page unmounted");
+    };
   }, []);
 
   function filterShows(search, shows) {
