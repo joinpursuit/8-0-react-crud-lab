@@ -6,6 +6,7 @@ import { getAllMovies } from "../../api/fetch";
 import MovieListing from "./MovieListing";
 
 import "../shows/ShowsIndex.css";
+import "../errors/ErrorMessage.css";
 
 export default function MoviesIndex() {
   const [movies, setMovies] = useState([]);

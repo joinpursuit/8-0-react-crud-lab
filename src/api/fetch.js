@@ -5,7 +5,7 @@ if (process.env.NODE_ENV === "development") {
   URL = process.env.REACT_APP_BACKEND_URL;
 }
 
-// Movies
+// Shows
 
 // Create
 export function createShow(show) {
