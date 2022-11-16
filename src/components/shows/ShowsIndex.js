@@ -25,11 +25,7 @@ function handleTextChange(e){
   const result = title.length ? filterShows (title, allShows) : allShows;
   setShows(result);
   setSearchTitle(title)
-
-
 }
-
-
 
 useEffect(() => {
   getAllShows()

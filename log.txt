@@ -1,0 +1,1 @@
+> nov 2 1044PM : when creating MoviesIndex.js, I noticed we have a link from our old page ( showsIndex ), how do we link it to our new movies form of the page
