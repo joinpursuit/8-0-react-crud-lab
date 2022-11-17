@@ -24,6 +24,7 @@ export default function ShowsForm() {
     createShow(show)
       .then((response) => {
         navigate(`/shows/${response.id}`);
+        //if the slash before shows is not included, it will add on to the previous url and will not work
       })
       .catch((error) => {
         console.error(error);
