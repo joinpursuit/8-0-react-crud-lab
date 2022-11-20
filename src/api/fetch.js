@@ -1,5 +1,5 @@
 const server_url = "http://150.230.113.32:5001/api/";
-const options_base = {mode: 'cors', }// no-cors, *cors, same-originß
+const options_base = {mode: 'cors',"Access-Control-Allow-Origin": "*" }// no-cors, *cors, same-origin
 // Create
 export function createShow(show,entry="shows") {
   let options = {
