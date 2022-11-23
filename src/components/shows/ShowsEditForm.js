@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./ShowsForm.css";
-
-export default function ShowsForm() {
+import { entry_api } from "../../api/fetch";
+import { useNavigate, useParams } from "react-router-dom";
+export default function ShowsForm({entry}) {
   const [show, setShow] = useState({
     type: "",
     title: "",
@@ -13,8 +14,50 @@ export default function ShowsForm() {
     rating: "",
     releaseYear: "",
   });
+  const {id} = useParams();
+  const navigate = useNavigate();
+  const ea = entry_api[entry];
+////////////////////////////////////
+  function on_reset_form(){
+    setShow({
+      type: "",
+      title: "",
+      country: "",
+      dateAdded: "",
+      description: "",
+      duration: "",
+      listedIn: "",
+      rating: "",
+      releaseYear: "",
+    });
+  }
+////////////////////////////////////
 
-  function handleSubmit(event) {}
+  useEffect(()=>{
+    ea.getOne(id,entry)
+      .then((data)=>{
+        setShow(data);
+        
+      })
+      .catch(error=>{
+
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[]);
+
+
+  function handleSubmit(event) {
+    event.preventDefault();
+      ea.update(id,show,entry)
+      .then((data)=>{
+        on_reset_form();
+        navigate(`/${entry}s/${id}`);
+      })
+      .catch((error)=>{
+        console.log(error)
+      });
+    
+  }
 
   function handleTextChange(event) {
     setShow({

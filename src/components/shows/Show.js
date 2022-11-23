@@ -1,17 +1,36 @@
-import { useState } from "react";
-import { Link, useParams } from "react-router-dom";
-
+import { useEffect, useState } from "react";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import "./Show.css";
 
 import ErrorMessage from "../errors/ErrorMessage";
-
-function Show() {
-  const [show, setShow] = useState({});
-  const [loadingError, setLoadingError] = useState(false);
-
+import { entry_api } from "../../api/fetch";
+function Show({entry}) {
+  const ea = entry_api[entry];
+  const [ show, setShow ] = useState({});
+  const [ loadingError, setLoadingError ] = useState(false);
   const { id } = useParams();
+  const navigate = useNavigate();
+  /////////////////////////////////////
+  useEffect(()=>{
+    
+    ea.getOne(id)
+      .then((data)=>{
+        setShow(data);
+        setLoadingError(false);
+      })
+      .catch(error=>{setLoadingError(true)});
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[]);
+  /////////////////////////////////////
 
-  function handleDelete() {}
+  function handleDelete(id) {
+    ea.destroy(id)
+      .then((response)=>{
+        navigate(`/${entry}s`);
+      })
+      .catch(error=>{setLoadingError(false);});
+  }
+  /////////////////////////////////////
 
   return (
     <section className="shows-show-wrapper">
@@ -43,9 +62,9 @@ function Show() {
             </article>
             <aside>
               <button className="delete" onClick={() => handleDelete(show.id)}>
-                Remove show
+                Remove {entry}
               </button>
-              <Link to={`/shows/${id}/edit`}>
+              <Link to={`/${entry}s/${id}/edit`}>
                 <button>Edit</button>
               </Link>
             </aside>
