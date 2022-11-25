@@ -38,13 +38,13 @@ export default function MoviesIndex() {
   // handles the user text input for the search, the onChange prop triggers the function update the state based on the input and the newly updated state gets passed as the value for the input. 
   function handleTextChange (event) {
     const title = event.target.value;
-    const result = title.length ? filterMovies(title,allMovies) : allMovies;
+    const result = title.length ? filterMovies(title, allMovies) : allMovies;
     setSearchTitle (title);
     setMovies(result);
   }
 
   // filter the movies with the .match() method. If a string matches with .match("string") it will return true. if it is false we will filter it out. toLowerCase() method is used to add uppercase input capability. 
-  function filterMovies(search,movies) {
+  function filterMovies(search, movies) {
     return movies.filter((movie) => {
       return movie.title.toLowerCase().match(search.toLowerCase());
     });
@@ -60,7 +60,7 @@ export default function MoviesIndex() {
         <section className="shows-index-wrapper">
           <h2>All Movies</h2>
           <button>
-            <Link to="/movie/new">Add a new movie</Link>
+            <Link to="/movies/new">Add a new movie</Link>
           </button>
           <br />
           <label htmlFor="searchTitle">

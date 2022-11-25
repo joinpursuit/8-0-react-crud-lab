@@ -13,7 +13,7 @@ function Movie() {
 
   function handleDelete() {
     destroyMovie(id)
-    .then(() => navigate("/movie"))
+    .then(() => navigate("/movies"))
     .catch((error) => {
       console.log(error);
       setLoadingError(true);

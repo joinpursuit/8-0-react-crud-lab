@@ -24,7 +24,7 @@ export default function MoviesForm() {
     event.preventDefault();
     updateMovie(id, movie)
       .then(() => {
-        navigate(`/movie/${id}`);
+        navigate(`/movies/${id}`);
       })
       .catch((error) => {
         console.error(error);

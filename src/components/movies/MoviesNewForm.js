@@ -23,7 +23,7 @@ export default function MoviesForm() {
     event.preventDefault();
     createMovie(movie)
     .then((response) => {
-      navigate(`/movie/${response.id}`);
+      navigate(`/movies/${response.id}`);
     })
     .catch((error) => {
       console.log(error);
