@@ -1,7 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import "./ShowsForm.css";
+import { useParams } from "react-router-dom";
+import { updateShow, getOneShow } from "../../api/fetch";
 
 export default function ShowsForm() {
+  const navigate = useNavigate()
+  // RECUPERAR EL ID
+  const { id } = useParams();
+
   const [show, setShow] = useState({
     type: "",
     title: "",
@@ -14,7 +21,26 @@ export default function ShowsForm() {
     releaseYear: "",
   });
 
-  function handleSubmit(event) {}
+  // CARGANDO LA INFORMACION DEL SHOW EXISTENTE EN EL FORMULARIO
+  // 1-. Se ejecuta la peticion para obtener la informacion de este show en especifico
+  // 2-. Una vez se tiene la informacion, se guarda en el estado
+  useEffect(() => {
+    getOneShow(id)
+      .then(data => setShow(data))
+  }, [])
+
+
+
+
+  function handleSubmit(event) {
+    event.preventDefault()
+
+    updateShow(id, show)
+      .then(data => {
+        console.log(data)
+        navigate('/shows')
+      })
+  }
 
   function handleTextChange(event) {
     setShow({
@@ -22,6 +48,13 @@ export default function ShowsForm() {
       [event.target.id]: event.target.value,
     });
   }
+  ///////////////////////////////////////////////////
+  // function clickSubmit(event) {
+  //   event.preventDefault()
+  //   console.log(show)
+  // }
+
+  
 
   return (
     <form onSubmit={handleSubmit}>
@@ -99,7 +132,17 @@ export default function ShowsForm() {
 
       <br />
 
-      <input type="submit" />
+      <input
+        type="submit" 
+      />
+
+      {/* <button onClick={() => clickSubmit()}>
+        SUBMIT
+      </button> */}
+
+      {/* <button>
+        <Link to="/shows">SUBMIT GO!</Link>
+      </button> */}
     </form>
   );
 }
