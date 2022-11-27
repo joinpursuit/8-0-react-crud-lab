@@ -1,12 +1,13 @@
-import { useState } from "react";
-import { useNavigate } from 'react-router-dom'
+import { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
-import { createMovie } from '../../api/fetch'
+import { getOneMovie, updateMovie } from "../../api/fetch";
 
 import "./MoviesForm.css";
 
-export default function MoviesNewForm() {
-  let navigate = useNavigate()
+export default function MoviesForm() {
+  const navigate = useNavigate()
+  const { id } = useParams()
 
   const [movie, setMovie] = useState({
     type: "",
@@ -21,15 +22,10 @@ export default function MoviesNewForm() {
   });
 
   function handleSubmit(event) {
-    event.preventDefault();
-    createMovie(movie)
-    .then((response) => {
-      navigate(`/movies/${response.id}`);
-    })
-    .catch((error) => {
-      console.error(error);
-    })
-
+    event.preventDefault()
+    updateMovie(id,movie)
+    .then(res => navigate(`/movies/${res.id}`))
+    .catch(err => console.log(err))
   }
 
   function handleTextChange(event) {
@@ -38,6 +34,13 @@ export default function MoviesNewForm() {
       [event.target.id]: event.target.value,
     });
   }
+
+  useEffect(() => {
+    getOneMovie(id)
+    .then(res => setMovie(res))
+    .catch(err => console.log(err))
+
+  }, [id])
 
   return (
     <form onSubmit={handleSubmit}>

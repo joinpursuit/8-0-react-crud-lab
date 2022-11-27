@@ -58,9 +58,19 @@ export function getOneMovie(id) {
 //Create
 export function createMovie(movie){
   const options = {
-    method: "PUT",
+    method: "POST",
     body: JSON.stringify(movie),
     headers: {"Content-Type": "application/json"}
   }
   return fetch(`${URL}/movies/`, options).then((response) => response.json())
+}
+
+// Update
+export function updateMovie(id, movie) {
+  const options = {
+    method: "PUT",
+    body: JSON.stringify(movie),
+    headers: { "Content-Type": 'application/json' }
+  }
+  return fetch(`${URL}/movies/${id}`, options).then(res => res.json())
 }
