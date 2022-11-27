@@ -2,6 +2,7 @@ import {Link} from 'react-router-dom'
 import "./ShowListing.css";
 
 export default function ShowListing({ show }) {
+
   return (
     <article className="show">
       <h3 className="title">
