@@ -29,6 +29,28 @@ export function updateShow(id, show) {
 
 // Movies
 
+// Create
+export function createMovie(show) {
+  return;
+}
+
+// Delete
+export function destroyMovie(id) {
+  const options = { method: "DELETE" };
+  return fetch(`${URL}/movies/${id}`, options);
+}
+
+// Index/Get all
 export function getAllMovies() {
+  return fetch(`${URL}/movies`).then((response) => response.json());
+}
+
+// Show/Get one
+export function getOneMovie(id) {
+  return fetch(`${URL}/movies/${id}`).then((response) => response.json());
+}
+
+// Update
+export function updateMovie(id, show) {
   return;
 }
