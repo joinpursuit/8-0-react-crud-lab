@@ -8,7 +8,7 @@ export function createShow(show) {
     body: JSON.stringify(show),
     headers: { "Content-Type": "application/json"},
   }
-  return fetch(`${URL}/shows/`, options).then((response => response.json()));
+  return fetch(`${URL}/shows/`, options).then((response) => response.json());
 }
 
 // Delete
@@ -43,7 +43,12 @@ export function updateShow(id, show) {
 
 // Create
 export function createMovie(show) {
-  return;
+  const options = {
+    method: "POST",
+    body: JSON.stringify(show),
+    headers: { "Content-Type": "application/json" },
+  }
+  return fetch(`${URL}/movies/`, options).then(response => response.json());
 }
 
 // Delete
