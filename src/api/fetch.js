@@ -3,7 +3,12 @@ const URL = process.env.REACT_APP_API_BASE_URL;
 
 // Create
 export function createShow(show) {
-  return;
+  const options ={
+    method: "POST",
+    body: JSON.stringify(show),
+    headers: { "Content-Type": "application/json"},
+  }
+  return fetch(`${URL}/shows/`, options).then((response => response.json()));
 }
 
 // Delete
