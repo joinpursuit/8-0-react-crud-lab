@@ -3,7 +3,12 @@ const URL = process.env.REACT_APP_API_BASE_URL;
 
 // Create
 export function createShow(show) {
-  return;
+  const options ={
+    method: "POST",
+    body: JSON.stringify(show),
+    headers: { "Content-Type": "application/json"},
+  }
+  return fetch(`${URL}/shows/`, options).then((response) => response.json());
 }
 
 // Delete
@@ -24,14 +29,26 @@ export function getOneShow(id) {
 
 // Update
 export function updateShow(id, show) {
-  return;
+  const options = {
+    method: "PUT",
+    body: JSON.stringify(show),
+    headers: { "Content-Type": "application/json" },
+  }
+  return fetch(`${URL}/shows/${id}`, options).then(response => response.json());
 }
+
+
 
 // Movies
 
 // Create
-export function createMovie(show) {
-  return;
+export function createMovie(movie) {
+  const options = {
+    method: "POST",
+    body: JSON.stringify(movie),
+    headers: { "Content-Type": "application/json" },
+  }
+  return fetch(`${URL}/movies/`, options).then(response => response.json());
 }
 
 // Delete
@@ -51,6 +68,11 @@ export function getOneMovie(id) {
 }
 
 // Update
-export function updateMovie(id, show) {
-  return;
+export function updateMovie(id, movie) {
+  const options = {
+    method: "PUT",
+    body: JSON.stringify(movie),
+    headers: { "Content-Type": "application/json" },
+  }
+  return fetch(`${URL}/movies/${id}`, options).then((response) => response.json());
 }
