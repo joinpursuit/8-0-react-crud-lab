@@ -1,11 +1,15 @@
-import { useEffect, useState } from "react";
-import "./ShowsForm.css";
-import { useNavigate, useParams } from "react-router-dom";
-import { updateShow, getOneShow } from "../../api/fetch";
+import { useState } from "react";
 
+import "../shows/ShowsForm.css";
+import { createShow } from "../../api/fetchMovies";
+import { useNavigate } from "react-router-dom";
 
-export default function ShowsEditForm() {
-  const [show, setShow] = useState({
+export default function MoviesNewForm() {
+
+  let navigate = useNavigate();
+
+  const [movies, setMovies] = useState(
+{
     type: "",
     title: "",
     country: "",
@@ -17,34 +21,19 @@ export default function ShowsEditForm() {
     releaseYear: "",
   });
 
-  let navigate = useNavigate();
-const { id } = useParams();
-
-
-useEffect(() => {
-  getOneShow(id)
-    .then((response) => {
-      setShow(response);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-}, [id]);
-function handleSubmit(event) {
-  event.preventDefault();
-
-  updateShow(id, show)
-    .then(() => {
-      navigate(`/shows/${id}`);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-}
-
+  function handleSubmit(event) {
+    event.preventDefault();
+    createShow(movies)
+      .then((response) => {
+        navigate(`/movies/${response.id}`);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
   function handleTextChange(event) {
-    setShow({
-      ...show,
+    setMovies({
+      ...movies,
       [event.target.id]: event.target.value,
     });
   }
@@ -55,7 +44,7 @@ function handleSubmit(event) {
       <input
         type="text"
         id="title"
-        value={show.title}
+        value={movies.title}
         onChange={handleTextChange}
       />
 
@@ -63,7 +52,7 @@ function handleSubmit(event) {
       <input
         type="text"
         id="description"
-        value={show.description}
+        value={movies.description}
         onChange={handleTextChange}
       />
 
@@ -71,7 +60,7 @@ function handleSubmit(event) {
       <input
         type="text"
         id="type"
-        value={show.type}
+        value={movies.type}
         onChange={handleTextChange}
       />
 
@@ -79,7 +68,7 @@ function handleSubmit(event) {
       <input
         type="text"
         id="rating"
-        value={show.rating}
+        value={movies.rating}
         onChange={handleTextChange}
       />
 
@@ -87,7 +76,7 @@ function handleSubmit(event) {
       <input
         type="text"
         id="listedIn"
-        value={show.listedIn}
+        value={movies.listedIn}
         onChange={handleTextChange}
       />
 
@@ -95,7 +84,7 @@ function handleSubmit(event) {
       <input
         type="text"
         id="duration"
-        value={show.duration}
+        value={movies.duration}
         onChange={handleTextChange}
       />
 
@@ -103,7 +92,7 @@ function handleSubmit(event) {
       <input
         type="text"
         id="releaseYear"
-        value={show.releaseYear}
+        value={movies.releaseYear}
         onChange={handleTextChange}
       />
 
@@ -111,7 +100,7 @@ function handleSubmit(event) {
       <input
         type="text"
         id="country"
-        value={show.country}
+        value={movies.country}
         onChange={handleTextChange}
       />
 
@@ -119,7 +108,7 @@ function handleSubmit(event) {
       <input
         type="text"
         id="dateAdded"
-        value={show.dateAdded}
+        value={movies.dateAdded}
         onChange={handleTextChange}
       />
 
