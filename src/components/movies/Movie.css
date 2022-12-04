@@ -1,0 +1,46 @@
+.movie-show-wrapper {
+    margin: 0 auto;
+    width: 70%;
+  }
+  
+  .movie-show {
+    border: 1px solid var(--primary);
+    border-radius: 3px;
+    color: var(--gray);
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+  }
+  
+  .movie-show article {
+    padding: 10px 25px;
+  }
+  
+  .movie-show aside {
+    background: var(--primary);
+    color: var(--light);
+  }
+  
+  .movie-show aside p {
+    display: inline-block;
+    font-size: 14px;
+    margin: 10px 25px;
+    padding: 0;
+    width: auto;
+  }
+  
+  .movie-show aside span {
+    font-weight: bold;
+  }
+  
+  .movie-show aside button {
+    background: none;
+    border: none;
+    color: var(--light);
+    cursor: pointer;
+    margin: 10px 25px;
+    text-decoration: underline;
+  }
+  
+  .movie-show aside button:hover {
+    text-decoration: none;
+  }
