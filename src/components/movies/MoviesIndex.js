@@ -47,7 +47,7 @@ export default function MoviesIndex() {
  
   return (
     <div>
-      {false ? (
+      {isError ? (
         <ErrorMessage />
       ) : (
         <section className="movies-index-wrapper">
@@ -66,7 +66,7 @@ export default function MoviesIndex() {
             />
           </label>
           <section className="movies-index">
-            {/* <!-- ShowListing components --> */}
+            {/* <!-- MovieListing components --> */}
               {matchingMovies.map(movie => <MovieListing key={movie.id} movie={movie} />)}
           </section>
         </section>

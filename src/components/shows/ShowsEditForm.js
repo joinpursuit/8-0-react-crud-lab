@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import "./ShowsForm.css";
 import { useParams } from "react-router-dom";
 import { updateShow, getOneShow } from "../../api/fetch";
@@ -27,7 +27,7 @@ export default function ShowsForm() {
   useEffect(() => {
     getOneShow(id)
       .then(data => setShow(data))
-  }, [])
+  }, [id])
 
 
 

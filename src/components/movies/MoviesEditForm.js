@@ -1,4 +1,4 @@
-import { useParams, useNavigate, Navigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getOneMovie, updateMovie } from "../../api/fetch";
 import "./MoviesForm.css";
@@ -24,7 +24,7 @@ export default function MoviesEditForm() {
   useEffect(() => {
     getOneMovie(id)
      .then (data => setMovie(data)) 
-  }, [])
+  }, [id])
 
   function handleSubmit(event) {
     event.preventDefault()

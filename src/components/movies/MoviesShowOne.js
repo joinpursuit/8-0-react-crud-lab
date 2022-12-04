@@ -28,7 +28,8 @@ export default function MoviesShowOne() {
       .then(movieData => {
         setMovie(movieData)
       })
-  }, [])
+    .catch(()=> setLoadingError(true))
+  }, [id])
 
   return (
     <section className="movies-movie-wrapper">

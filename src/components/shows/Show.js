@@ -25,8 +25,9 @@ function Show() {
 
       .then(showData => {
       setShow(showData)
-    })
-  }, [])
+      })
+    .catch(()=> setLoadingError(true))
+  }, [id])
 
   return (
     <section className="shows-show-wrapper">

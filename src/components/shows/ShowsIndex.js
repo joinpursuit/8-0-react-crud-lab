@@ -7,7 +7,7 @@ import ShowListing from "./ShowListing";
 
 import "./ShowsIndex.css";
 
-export default function ShowsIndex() {
+export default function   ShowsIndex() {
   const [shows, setShows] = useState([])
 
   const [matchingShows, setMatchingShows] = useState([])
@@ -42,7 +42,8 @@ export default function ShowsIndex() {
 
     setMatchingShows(filteredShows)
   }, [filterValue, shows])
-
+  
+////////////////////////////////////////////////////////////////
   const handleTextChange = (event) => {
     setFilterValue(event.target.value)
   }
