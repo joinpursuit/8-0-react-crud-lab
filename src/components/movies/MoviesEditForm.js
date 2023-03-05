@@ -1,15 +1,10 @@
+import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import {  useNavigate } from "react-router-dom";
-import "./ShowsForm.css";
-import { useParams } from "react-router-dom";
-import { updateShow, getOneShow } from "../../api/fetch";
+import { getOneMovie, updateMovie } from "../../api/fetch";
+import "./MoviesForm.css";
 
-export default function ShowsForm() {
-  const navigate = useNavigate()
-  // RECUPERAR EL ID
-  const { id } = useParams();
-
-  const [show, setShow] = useState({
+export default function MoviesEditForm() {
+  const [movie, setMovie] = useState({
     type: "",
     title: "",
     country: "",
@@ -21,40 +16,31 @@ export default function ShowsForm() {
     releaseYear: "",
   });
 
-  // CARGANDO LA INFORMACION DEL SHOW EXISTENTE EN EL FORMULARIO
-  // 1-. Se ejecuta la peticion para obtener la informacion de este show en especifico
-  // 2-. Una vez se tiene la informacion, se guarda en el estado
+   const navigate = useNavigate()
+
+  // RECUPERAR EL ID
+  const { id } = useParams();
+
   useEffect(() => {
-    getOneShow(id)
-      .then(data => setShow(data))
+    getOneMovie(id)
+     .then (data => setMovie(data)) 
   }, [id])
-
-
-
 
   function handleSubmit(event) {
     event.preventDefault()
-
-    updateShow(id, show)
+    updateMovie(id, movie)
       .then(data => {
         console.log(data)
-        navigate('/shows')
+        navigate('/movies')
       })
   }
 
   function handleTextChange(event) {
-    setShow({
-      ...show,
+    setMovie({
+      ...movie,
       [event.target.id]: event.target.value,
     });
   }
-  ///////////////////////////////////////////////////
-  // function clickSubmit(event) {
-  //   event.preventDefault()
-  //   console.log(show)
-  // }
-
-  
 
   return (
     <form onSubmit={handleSubmit}>
@@ -62,7 +48,7 @@ export default function ShowsForm() {
       <input
         type="text"
         id="title"
-        value={show.title}
+        value={movie.title}
         onChange={handleTextChange}
       />
 
@@ -70,7 +56,7 @@ export default function ShowsForm() {
       <input
         type="text"
         id="description"
-        value={show.description}
+        value={movie.description}
         onChange={handleTextChange}
       />
 
@@ -78,7 +64,7 @@ export default function ShowsForm() {
       <input
         type="text"
         id="type"
-        value={show.type}
+        value={movie.type}
         onChange={handleTextChange}
       />
 
@@ -86,7 +72,7 @@ export default function ShowsForm() {
       <input
         type="text"
         id="rating"
-        value={show.rating}
+        value={movie.rating}
         onChange={handleTextChange}
       />
 
@@ -94,7 +80,7 @@ export default function ShowsForm() {
       <input
         type="text"
         id="listedIn"
-        value={show.listedIn}
+        value={movie.listedIn}
         onChange={handleTextChange}
       />
 
@@ -102,7 +88,7 @@ export default function ShowsForm() {
       <input
         type="text"
         id="duration"
-        value={show.duration}
+        value={movie.duration}
         onChange={handleTextChange}
       />
 
@@ -110,7 +96,7 @@ export default function ShowsForm() {
       <input
         type="text"
         id="releaseYear"
-        value={show.releaseYear}
+        value={movie.releaseYear}
         onChange={handleTextChange}
       />
 
@@ -118,7 +104,7 @@ export default function ShowsForm() {
       <input
         type="text"
         id="country"
-        value={show.country}
+        value={movie.country}
         onChange={handleTextChange}
       />
 
@@ -126,23 +112,13 @@ export default function ShowsForm() {
       <input
         type="text"
         id="dateAdded"
-        value={show.dateAdded}
+        value={movie.dateAdded}
         onChange={handleTextChange}
       />
 
       <br />
 
-      <input
-        type="submit" 
-      />
-
-      {/* <button onClick={() => clickSubmit()}>
-        SUBMIT
-      </button> */}
-
-      {/* <button>
-        <Link to="/shows">SUBMIT GO!</Link>
-      </button> */}
+      <input type="submit" />
     </form>
   );
 }
