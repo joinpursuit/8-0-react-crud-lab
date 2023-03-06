@@ -47,7 +47,7 @@ export default function ShowsForm() {
       ...show,
       [event.target.id]: event.target.value,
     });
-  }
+  } 
 
   return (
     <form onSubmit={handleSubmit}>

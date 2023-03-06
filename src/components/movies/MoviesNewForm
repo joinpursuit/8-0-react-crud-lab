@@ -1,0 +1,51 @@
+import { useState } from "react";
+import { createMovie } from "../../api/fetch";
+import { useParams, useNavigate } from "react-router-dom";
+import "./ShowsForm.css";
+
+export default function MoviesForm() {
+    const [movie, setMovie] = useState({
+        type: "",
+        title: "",
+        country: "",
+        dateAdded: "",
+        description: "",
+        duration: "",
+        listedIn: "",
+        rating: "",
+        releaseYear: "",
+    });
+
+    let navigate = useNavigate();
+    const { id } = useParams()
+
+    function handleSubmit(event) {
+        event.preventDefault()
+        createMovie(movie).then((response) => {
+            console.log(response);
+            navigate(`/movies${response.id}`)
+        }).catch((error) => {
+            console.log(event)
+        });
+    }
+
+
+    function handleTextChange(event) {
+        setMovie({
+          ...movie,
+          [event.target.id]: event.target.value,
+        });
+      }
+
+
+    return (
+        <form>
+
+        
+        <form onSubmit={handleSubmit}>
+        <label htmlFor="title">Title:</label>
+
+
+        </form>
+    )
+}

@@ -7,6 +7,8 @@ import ShowListing from "./ShowListing";
 
 import "./ShowsIndex.css";
 
+
+
 function filterShows(search, shows) {
   return shows.filter((show) => {
     return show.title.toLowerCase().match(search.toLowerCase());
@@ -23,7 +25,7 @@ export default function ShowsIndex() {
 
   function handleTextChange (event){
     const title = event.target.value;
-    const result = title.length ? filterShows(title,allShows) : allShows; setSearchTitle(title;
+    const result = title.length ? filterShows(title,allShows) : allShows; setSearchTitle(title);
       setShows(result)
     }
 
