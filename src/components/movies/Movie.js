@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useNavigate, Link, useParams } from "react-router-dom";
 import { destroyMovie, getOneMovie } from "../../api/fetch";
 
-import "./Show.css";
 
 import ErrorMessage from "../errors/ErrorMessage";
 

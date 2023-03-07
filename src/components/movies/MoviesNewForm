@@ -3,7 +3,7 @@ import { createMovie } from "../../api/fetch";
 import { useParams, useNavigate } from "react-router-dom";
 import "./ShowsForm.css";
 
-export default function MoviesForm() {
+export default function MoviesNewForm() {
     const [movie, setMovie] = useState({
         type: "",
         title: "",
@@ -39,13 +39,15 @@ export default function MoviesForm() {
 
 
     return (
-        <form>
-
+        <div>
+    
         
         <form onSubmit={handleSubmit}>
         <label htmlFor="title">Title:</label>
 
 
         </form>
+
+        </div>
     )
 }
