@@ -6,6 +6,9 @@ import ErrorMessage from "../errors/ErrorMessage";
 import MovieListing from "./MovieListing";
 
 
+
+
+
 function filterMovies (search, movies) {
   return movies.filter((movie) => {
     return movie.title.toLowerCase().match(search.toLowerCase());
@@ -38,17 +41,17 @@ export default function MoviesIndex() {
 
   return (
     <div>
-      {loadingError} ? (
+      {loadingError ? (
         <ErrorMessage />
       ) : (
         <section className="shows-index-wrapper">
           <h2>All Movies</h2>
           <button>
-            <Link to="/movies.new">Add a new movie</Link>
+            <Link to="/movies/new">Add a new movie</Link>
           </button>
           <br />
           <label htmlFor="searchTitle">
-            Search Shows:
+            Search Movies: 
             <input
               type="text"
               value={searchTitle}
@@ -58,13 +61,13 @@ export default function MoviesIndex() {
           </label>
     
         <section className="shows-index">
-            {/* <!-- ShowListing components --> */}
+            {/* <!-- MovieListing components --> */}
             {movies.map((movie) => {
               return <MovieListing movie={movie} key={movie.id} />;
             })}
           </section>
        </section>
-      )
+      )}
     </div>
-  )
+  );
 }

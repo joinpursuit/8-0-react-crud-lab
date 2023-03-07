@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { createShow } from "../../api/fetch";
 import { useParams, useNavigate } from "react-router-dom";
-import "./ShowsForm.css";
+
 
 export default function ShowsForm() {
   const [show, setShow] = useState({

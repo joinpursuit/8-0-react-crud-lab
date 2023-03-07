@@ -1,9 +1,9 @@
 import { useState, useEffect, LabelHTMLAttributes } from "react";
 import { useNavigate, useParams } from "react-router-dom";  
 import { updateMovie, getOneMovie } from "../../api/fetch";
-import "./ShowsForm.css"
 
-export default function ShowsForm() {
+
+export default function MoviesEditForm() {
     const [movie, setMovie] = useState({
         type: "",
         title: "",
