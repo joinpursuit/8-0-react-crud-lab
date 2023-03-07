@@ -18,14 +18,16 @@ export default function MoviesNewForm() {
 
     let navigate = useNavigate();
     const { id } = useParams()
+    //is that const id necessary? It isn't being used in this component
 
     function handleSubmit(event) {
-        event.preventDefault()
+        event.preventDefault();
         createMovie(movie).then((response) => {
             console.log(response);
             navigate(`/movies${response.id}`)
-        }).catch((error) => {
-            console.log(event)
+        })
+        .catch((error) => {
+            console.error(error)
         });
     }
 
@@ -39,7 +41,7 @@ export default function MoviesNewForm() {
 
 
     return (
-     <>
+     
         <form onSubmit={handleSubmit}>
         <label htmlFor="title">Title:</label>
         <input
@@ -116,8 +118,8 @@ export default function MoviesNewForm() {
 
       <br />
 
-      <input type="submit" />
-        </form>
-        </>
-    )
+        <input type="submit" />
+      </form>
+    
+  );
 }

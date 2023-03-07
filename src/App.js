@@ -12,8 +12,8 @@ import ShowsNewForm from "./components/shows/ShowsNewForm";
 
 import Movie from "./components/movies/Movie";
 import MoviesIndex from "./components/movies/MoviesIndex";
-import MoviesEditForm from "./components/movies/MoviesEditForm"
-import MoviesNewForm from "./components/movies/MoviesNewForm"
+import MoviesEditForm from "./components/movies/MoviesEditForm";
+import MoviesNewForm from "./components/movies/MoviesNewForm";
 
 
 

@@ -1,4 +1,4 @@
-import { useState, useEffect, LabelHTMLAttributes } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";  
 import { updateMovie, getOneMovie } from "../../api/fetch";
 
@@ -45,6 +45,7 @@ export default function MoviesEditForm() {
             ...movie,
             [event.target.id]: event.target.value,
         });
+        console.log(movie)
     }
 
     return (
@@ -54,7 +55,7 @@ export default function MoviesEditForm() {
                 type="text"
                 id="title"
                 value={movie.title}
-                onchange={handleTextChange}
+                onChange={handleTextChange}
                 />
 
             <label
@@ -64,7 +65,7 @@ export default function MoviesEditForm() {
             id="description"
             value={movie.description}
             onChange={handleTextChange}
-            />
+        />
 
 
       <label htmlFor="type">Type</label>
@@ -126,9 +127,7 @@ export default function MoviesEditForm() {
       <br />
 
       <input type="submit" />
- 
 
-
-            </form>
-    );
+    </form>
+  );
 }

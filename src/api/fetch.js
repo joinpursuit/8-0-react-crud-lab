@@ -70,15 +70,17 @@ export function getAllMovies() {
 //Delete
 export function destroyMovie(id) {
   const options = { method: "DELETE" };
-  return fetch(`${URL}/shows/${id}`, options);
+  return fetch(`${URL}/movies/${id}`, options);
 }
 
 
 
 // Show/Get One
 export function getOneMovie(id) {
-  return fetch(`${URL}/movies`).then((response) => response.json());
+  return fetch(`${URL}/movies/${id}`).then((response) => response.json());
 }
+
+
 
 //Update
 export function updateMovie(id, movie) {
