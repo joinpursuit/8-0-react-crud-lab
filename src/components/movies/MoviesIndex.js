@@ -9,11 +9,6 @@ import MovieListing from "./MovieListing";
 
 
 
-function filterMovies (search, movies) {
-  return movies.filter((movie) => {
-    return movie.title.toLowerCase().match(search.toLowerCase());
-  });
-}
 
 export default function MoviesIndex() {
   const [loadingError, setLoadingError] = useState(false);
@@ -38,6 +33,13 @@ export default function MoviesIndex() {
       setLoadingError(true);
     });
   }, []);
+
+
+    function filterMovies (search, movies) {
+      return movies.filter((movie) => {
+        return movie.title.toLowerCase().match(search.toLowerCase());
+      });
+    }
 
   return (
     <div>

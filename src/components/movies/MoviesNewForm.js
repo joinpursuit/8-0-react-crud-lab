@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { createMovie } from "../../api/fetch";
-import { useParams, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 
 
 export default function MoviesNewForm() {
@@ -17,9 +17,7 @@ export default function MoviesNewForm() {
     });
 
     let navigate = useNavigate();
-    const { id } = useParams()
-    //is that const id necessary? It isn't being used in this component
-
+    
     function handleSubmit(event) {
         event.preventDefault();
         createMovie(movie).then((response) => {
@@ -32,12 +30,31 @@ export default function MoviesNewForm() {
     }
 
 
+    // First thing to do is to make a copy of state
+    // We then need to add the new movie. The event.target.value is what the user has inputted.
+    // But THEN, we need to add the movie to the database. Otherwise, all that has happened is that you have loaded the trebuchet and never released it.
+
     function handleTextChange(event) {
         setMovie({
           ...movie,
           [event.target.id]: event.target.value,
         });
       }
+
+      // function createMovie(){
+      //   const createMovie = {
+      //     type: movie.type,
+      //     title: movie.title,
+      //     country: movie.country,
+      //     dateAdded: movie.dateAdded,
+      //     description: movie.description,
+      //     duration: movie.duration,
+      //     listedIn: movie.listedIn,
+      //     rating: movie.rating,
+      //     releaseYear: movie.releaseYear,
+      //   };
+      //   setMovie([createMovie, ...movie])
+      // }
 
 
     return (

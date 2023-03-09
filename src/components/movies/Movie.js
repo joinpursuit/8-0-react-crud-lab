@@ -3,6 +3,7 @@ import { useNavigate, Link, useParams } from "react-router-dom";
 import { destroyMovie, getOneMovie } from "../../api/fetch";
 
 
+
 import ErrorMessage from "../errors/ErrorMessage";
 
 function Movie() {

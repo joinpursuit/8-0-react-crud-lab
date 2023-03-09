@@ -2,7 +2,7 @@ const URL = process.env.REACT_APP_API_BASE_URL;
 
 // Shows
 
-// Create
+// Create Show
 export function createShow(show) {
   const options = {
     method: "POST",
@@ -16,23 +16,23 @@ export function createShow(show) {
 }
 
 
-// Delete
+// Delete a Show
 export function destroyShow(id) {
   const options = { method: "DELETE" };
   return fetch(`${URL}/shows/${id}`, options);
 }
 
-// Index/Get all
+// Index/Get all Shows
 export function getAllShows() {
   return fetch(`${URL}/shows`).then((response) => response.json());
 }
 
-// Show/Get one
+// Show/Get one Show
 export function getOneShow(id) {
   return fetch(`${URL}/shows/${id}`).then((response) => response.json());
 }
 
-// Update
+// Update a Show
 export function updateShow(id, show) {
   const options = {
     method: "PUT",
@@ -47,7 +47,7 @@ export function updateShow(id, show) {
 
 // Movies
 
-// Create
+// Create a Movie
 export function createMovie(movie) {
   const options = {
     method: "POST",
@@ -61,28 +61,28 @@ export function createMovie(movie) {
 }
 
 
-// Index/Get all
-export function getAllMovies() {
-  return fetch(`${URL}/movies`).then((response) => response.json());
-}
 
-
-//Delete
+//Delete a Movie
 export function destroyMovie(id) {
   const options = { method: "DELETE" };
   return fetch(`${URL}/movies/${id}`, options);
 }
 
 
+// Index/Get all Movies
+export function getAllMovies() {
+  return fetch(`${URL}/movies`).then((response) => response.json());
+}
 
-// Show/Get One
+
+// Show/Get One Movie
 export function getOneMovie(id) {
   return fetch(`${URL}/movies/${id}`).then((response) => response.json());
 }
 
 
 
-//Update
+//Update a Movie
 export function updateMovie(id, movie) {
   const options = {
     method: "PUT",
