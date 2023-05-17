@@ -3,7 +3,9 @@ import "./Footer.css";
 export default function Footer() {
   return (
     <footer>
-      <p>ScreenViews. An application created by YOUR_NAME.</p>
+      <p>ScreenViews</p> 
+      <p>Created by Destiny J.</p>
+      <p>Pursuit 9.1 2022</p>
     </footer>
   );
 }
